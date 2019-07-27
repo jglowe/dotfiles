@@ -274,6 +274,7 @@ call lh#local_vimrc#munge('whitelist', $HOME.'/git')
 " tmuxline settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Generate current theme by :Tmuxline lightline_insert
 let g:tmuxline_powerline_separators = 0
 let g:tmuxline_preset = {
       \   'a'    : '#S',
