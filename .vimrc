@@ -159,38 +159,73 @@ nnoremap <C-H> <C-W><C-H>
 "   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 " endif
 
-call plug#begin('~/.vim/plugged')
+if &loadplugins
+  if has('packages')
+    packadd! lightline.vim
+    packadd! vim-gitbranch
+    packadd! vim-lightline-base16
 
-Plug 'itchyny/lightline.vim'           " The nice bar below
-Plug 'itchyny/vim-gitbranch'           " Adds git info to bar below
-Plug 'mark-westerhof/vim-lightline-base16'
-if v:version < 800
-  Plug 'vim-syntastic/syntastic'       " Syntax Checker
-else
-  Plug 'w0rp/ale'                      " Async linter Need to install linter though
-  Plug 'maximbaz/lightline-ale'        " Adds ale info to bar below
+    packadd! ale
+    packadd! lightline-ale
+
+    packadd! vim-gitgutter
+    packadd! vim-eunuch
+    packadd! vim-fugitive
+    packadd! nerdtree
+    packadd! nerdtree-git-plugin
+    packadd! vim-trailing-whitespace
+    packadd! tagbar
+    packadd! vim-reason-plus
+    packadd! base16-vim
+    packadd! tmuxline.vim
+    packadd! vim-smooth-scroll
+    packadd! lh-vim-lib
+    packadd! local_vimrc
+    packadd! vim-gutentags
+    packadd! vim-tmux-navigator
+    packadd! CurtineIncSw.vim
+    packadd! poppy.vim
+    packadd! vim-ocaml
+    packadd! vim-commentary
+    packadd! rust.vim
+    packadd! vim-silicon
+  else
+    call plug#begin('~/.vim/plugged')
+
+    Plug 'itchyny/lightline.vim'           " The nice bar below
+    Plug 'itchyny/vim-gitbranch'           " Adds git info to bar below
+    Plug 'mark-westerhof/vim-lightline-base16'
+    if v:version < 800
+      Plug 'vim-syntastic/syntastic'       " Syntax Checker
+    else
+      Plug 'w0rp/ale'                      " Async linter Need to install linter though
+      Plug 'maximbaz/lightline-ale'        " Adds ale info to bar below
+    endif
+    Plug 'airblade/vim-gitgutter'          " Shows changes in vim for git
+    Plug 'tpope/vim-eunuch'                " Adds commands like mkdir to vim
+    Plug 'tpope/vim-fugitive'              " git integration
+    Plug 'scrooloose/nerdtree'             " Adds filetree to left
+    Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'bronson/vim-trailing-whitespace' " Highlites trailing space in red
+    Plug 'majutsushi/tagbar'               " Code Structure on right
+    Plug 'reasonml-editor/vim-reason-plus'
+    Plug 'chriskempson/base16-vim'
+    Plug 'edkolev/tmuxline.vim'
+    Plug 'terryma/vim-smooth-scroll'       " Makes scrolling smooth
+    Plug 'LucHermitte/lh-vim-lib'          " See below
+    Plug 'LucHermitte/local_vimrc'         " project local vimrc
+    Plug 'ludovicchabant/vim-gutentags'    " Manages tags
+    Plug 'christoomey/vim-tmux-navigator'  " Tmux Integration
+    Plug 'ericcurtin/CurtineIncSw.vim'     " Navigate between .ccp and .h files
+    Plug 'bounceme/poppy.vim'              " Highlight parentheses
+    Plug 'rgrinberg/vim-ocaml'
+    Plug 'tpope/vim-commentary'
+    Plug 'rust-lang/rust.vim'
+    Plug 'segeljakt/vim-silicon'
+
+    call plug#end()
+  endif
 endif
-Plug 'airblade/vim-gitgutter'          " Shows changes in vim for git
-Plug 'tpope/vim-eunuch'                " Adds commands like mkdir to vim
-Plug 'tpope/vim-fugitive'              " git integration
-Plug 'scrooloose/nerdtree'             " Adds filetree to left
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'bronson/vim-trailing-whitespace' " Highlites trailing space in red
-Plug 'majutsushi/tagbar'               " Code Structure on right
-Plug 'reasonml-editor/vim-reason-plus'
-Plug 'chriskempson/base16-vim'
-Plug 'edkolev/tmuxline.vim'
-Plug 'terryma/vim-smooth-scroll'       " Makes scrolling smooth
-Plug 'LucHermitte/lh-vim-lib'          " See below
-Plug 'LucHermitte/local_vimrc'         " project local vimrc
-Plug 'ludovicchabant/vim-gutentags'    " Manages tags
-Plug 'christoomey/vim-tmux-navigator'  " Tmux Integration
-Plug 'ericcurtin/CurtineIncSw.vim'     " Navigate between .ccp and .h files
-Plug 'bounceme/poppy.vim'              " Highlight parentheses
-Plug 'rgrinberg/vim-ocaml'
-Plug 'tpope/vim-commentary'
-
-call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin settings
