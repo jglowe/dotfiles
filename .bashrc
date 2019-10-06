@@ -31,8 +31,10 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 
 # Bash aliases
 if [ -f "${HOME}/.bash_aliases" ]; then
-    . "${HOME}/.bash_aliases"
+    source "$HOME/.bash_aliases"
 fi
+
+export PATH="$PATH:/home/jonathanl/.cargo/bin"
 
 # Opam config
 eval "$(opam config env)"

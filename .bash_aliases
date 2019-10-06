@@ -1,6 +1,7 @@
 alias :q="exit"
 
 alias config='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dgit='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then

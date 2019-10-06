@@ -76,3 +76,6 @@
 [submodule "poppy.vim"]
     path = .vim/pack/all/opt/poppy.vim
     url = https://github.com/bounceme/poppy.vim.git
+[submodule "vim-startify"]
+    path = .vim/pack/all/opt/vim-startify
+    url = git@github.com:mhinz/vim-startify.git

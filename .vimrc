@@ -1,10 +1,16 @@
-" .vimrc
-" Jonathan Lowe
-" 10/21/2018
-"
-" vim settings
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+"                           o8o
+"                           `"'
+"              oooo    ooo oooo  ooo. .oo.  .oo.   oooo d8b  .ooooo.
+"               `88.  .8'  `888  `888P"Y88bP"Y88b  `888""8P d88' `"Y8
+"                `88..8'    888   888   888   888   888     888
+"          .o.    `888'     888   888   888   888   888     888   .o8
+"          Y8P     `8'     o888o o888o o888o o888o d888b    `Y8bod8P'
+"
+" Jonathan Lowe
+" github username : https://github.com/jglowe
+"
 " Non plugin settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -25,9 +31,6 @@ set nu rnu
 "set number!
 "set nu!
 
-" syntax hightliting
-syntax on
-
 " Enables file undo after files close
 set undofile
 set undodir=~/.vim/undodir
@@ -40,42 +43,14 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 
-" Search settings
-set incsearch
-set hlsearch
-
-set colorcolumn=81
-
-" Folding code defaults
-set foldmethod=syntax
-"set foldnestmax=1
-
-autocmd Filetype cpp set foldmethod=indent
-
-function! NeatFoldText() "{{{2
-  let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
-  let lines_count = v:foldend - v:foldstart + 1
-  let lines_count_text = '| ' . printf("%10s", lines_count . ' lines') . ' |'
-  let foldchar = matchstr(&fillchars, 'fold:\zs.')
-  let foldtextstart = strpart('+' . repeat(foldchar, v:foldlevel*2) . line, 0, (winwidth(0)*2)/3)
-  let foldtextend = lines_count_text . repeat(foldchar, 8)
-  let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
-  return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
-endfunction
-set foldtext=NeatFoldText()
-" }}}2
-
-augroup AutoSaveFolds
-  autocmd!
-  autocmd BufWinLeave * mkview
-  autocmd BufWinEnter * silent! loadview
-augroup END
-
 " Changes tab settings for specific languages
 autocmd Filetype sh set expandtab&
-autocmd Filetype ocaml setlocal expandtab tabstop=2 shiftwidth=2
-autocmd Filetype ruby setlocal expandtab tabstop=2 shiftwidth=2
-autocmd Filetype vim setlocal expandtab tabstop=2 shiftwidth=2
+autocmd Filetype ocaml,ruby,vim setlocal expandtab tabstop=2 shiftwidth=2
+
+" Enables spell checking for text files
+autocmd Filetype markdown,text set spell |
+                             \ highlight clear SpellBad |
+                             \ highlight SpellBad cterm=underline,bold
 
 autocmd Filetype markdown setlocal textwidth=80
 
@@ -125,22 +100,61 @@ function! Shift_Tab_Or_Complete()
   endif
 endfunction
 
+" Tab will now autocomplete if there is leading chars
 inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 inoremap <S-Tab> <C-R>=Shift_Tab_Or_Complete()<CR>
-set complete-=i
 
-" Sets the path to include the files in this subdirectory
-set path+=**
-set wildmenu
+" Makes enter act as autocomplete select if an item is selected.
+" By default it acts like enter
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Removes searching through all the included files from CTRL-N completion
+" which can signifintly slow down autocompletion`
+set complete-=i
 
 " Sets autocomplete tab to only complete common characters for the first tab.
 " By default it autocompletes to the first item in the list, which you can tab
 " through.
 set completeopt=longest,menuone
 
-" Makes enter act as autocomplete select if an item is selected.
-" By default it acts like enter
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Search settings
+set incsearch
+set hlsearch
+
+" Colors column 81 background so I can see what column is beyond the typical
+" line limit
+set colorcolumn=81
+
+" Folding code defaults
+set foldmethod=syntax
+autocmd Filetype cpp set foldmethod=indent
+"set foldnestmax=1
+
+" augroup AutoSaveFolds
+"   autocmd!
+"   autocmd BufWinLeave * silent! mkview
+"   autocmd BufWinEnter * silent! loadview
+" augroup END
+
+function! NeatFoldText() "{{{2
+  let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
+  let lines_count = v:foldend - v:foldstart + 1
+  let lines_count_text = '| ' . printf("%10s", lines_count . ' lines') . ' |'
+  let foldchar = matchstr(&fillchars, 'fold:\zs.')
+  let foldtextstart = strpart('+' . repeat(foldchar, v:foldlevel*2) . line, 0, (winwidth(0)*2)/3)
+  let foldtextend = lines_count_text . repeat(foldchar, 8)
+  let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
+  return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
+endfunction
+set foldtext=NeatFoldText()
+" }}}2
+
+" Make ctags
+command! MakeTags !ctags -R .
+
+" Sets the path to include the files in this subdirectory
+set path+=**
+set wildmenu
 
 " Vim mappings
 nnoremap <C-J> <C-W><C-J>
@@ -148,90 +162,121 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin Installation
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let mapleader = " "
 
-" TODO -- maybe add later
-" if empty(glob('~/.vim/autoload/plug.vim'))
-"   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-"     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-"   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-" endif
+set updatetime=100
+
+" Make json readable in buffer
+noremap <leader>j :%!python -m json.tool<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+"     ooooooooo.   oooo                          o8o
+"     `888   `Y88. `888                          `"'
+"      888   .d88'  888  oooo  oooo   .oooooooo oooo  ooo. .oo.    .oooo.o
+"      888ooo88P'   888  `888  `888  888' `88b  `888  `888P"Y88b  d88(  "8
+"      888          888   888   888  888   888   888   888   888  `"Y88b.
+"      888          888   888   888  `88bod8P'   888   888   888  o.  )88b
+"     o888o        o888o  `V88V"V8P' `8oooooo.  o888o o888o o888o 8""888P'
+"                                   d"     YD
+"                                   "Y88888P'
+"
+" Plugin loading and settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 if &loadplugins
-  if has('packages')
-    packadd! lightline.vim
-    packadd! vim-gitbranch
-    packadd! vim-lightline-base16
 
-    packadd! ale
-    packadd! lightline-ale
+if has('packages')
+  " Vim8 has native support for package loading.
+  "
+  " These are packages that don't have any settings
+  packadd! vim-gitgutter
+  packadd! vim-eunuch
+  packadd! vim-fugitive
+  packadd! vim-trailing-whitespace
 
-    packadd! vim-gitgutter
-    packadd! vim-eunuch
-    packadd! vim-fugitive
-    packadd! nerdtree
-    packadd! nerdtree-git-plugin
-    packadd! vim-trailing-whitespace
-    packadd! tagbar
-    packadd! vim-reason-plus
-    packadd! base16-vim
-    packadd! tmuxline.vim
-    packadd! vim-smooth-scroll
-    packadd! lh-vim-lib
-    packadd! local_vimrc
-    packadd! vim-gutentags
-    packadd! vim-tmux-navigator
-    packadd! CurtineIncSw.vim
-    packadd! poppy.vim
-    packadd! vim-ocaml
-    packadd! vim-commentary
-    packadd! rust.vim
-    packadd! vim-silicon
+  " packadd! vim-gutentags
+  " packadd! poppy.vim
+  " packadd! rust.vim
+  " packadd! vim-reason-plus
+else
+  call plug#begin('~/.vim/plugged')
+
+  Plug 'itchyny/lightline.vim'           " The nice bar below
+  Plug 'itchyny/vim-gitbranch'           " Adds git info to bar below
+  Plug 'mark-westerhof/vim-lightline-base16'
+  if v:version < 800
+    Plug 'vim-syntastic/syntastic'       " Syntax Checker
   else
-    call plug#begin('~/.vim/plugged')
-
-    Plug 'itchyny/lightline.vim'           " The nice bar below
-    Plug 'itchyny/vim-gitbranch'           " Adds git info to bar below
-    Plug 'mark-westerhof/vim-lightline-base16'
-    if v:version < 800
-      Plug 'vim-syntastic/syntastic'       " Syntax Checker
-    else
-      Plug 'w0rp/ale'                      " Async linter Need to install linter though
-      Plug 'maximbaz/lightline-ale'        " Adds ale info to bar below
-    endif
-    Plug 'airblade/vim-gitgutter'          " Shows changes in vim for git
-    Plug 'tpope/vim-eunuch'                " Adds commands like mkdir to vim
-    Plug 'tpope/vim-fugitive'              " git integration
-    Plug 'scrooloose/nerdtree'             " Adds filetree to left
-    Plug 'Xuyuanp/nerdtree-git-plugin'
-    Plug 'bronson/vim-trailing-whitespace' " Highlites trailing space in red
-    Plug 'majutsushi/tagbar'               " Code Structure on right
-    Plug 'reasonml-editor/vim-reason-plus'
-    Plug 'chriskempson/base16-vim'
-    Plug 'edkolev/tmuxline.vim'
-    Plug 'terryma/vim-smooth-scroll'       " Makes scrolling smooth
-    Plug 'LucHermitte/lh-vim-lib'          " See below
-    Plug 'LucHermitte/local_vimrc'         " project local vimrc
-    Plug 'ludovicchabant/vim-gutentags'    " Manages tags
-    Plug 'christoomey/vim-tmux-navigator'  " Tmux Integration
-    Plug 'ericcurtin/CurtineIncSw.vim'     " Navigate between .ccp and .h files
-    Plug 'bounceme/poppy.vim'              " Highlight parentheses
-    Plug 'rgrinberg/vim-ocaml'
-    Plug 'tpope/vim-commentary'
-    Plug 'rust-lang/rust.vim'
-    Plug 'segeljakt/vim-silicon'
-
-    call plug#end()
+    Plug 'w0rp/ale'                      " Async linter Need to install linter though
+    Plug 'maximbaz/lightline-ale'        " Adds ale info to bar below
   endif
+  Plug 'airblade/vim-gitgutter'          " Shows changes in vim for git
+  Plug 'tpope/vim-eunuch'                " Adds commands like mkdir to vim
+  Plug 'tpope/vim-fugitive'              " git integration
+  Plug 'scrooloose/nerdtree'             " Adds filetree to left
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'bronson/vim-trailing-whitespace' " Highlites trailing space in red
+  Plug 'majutsushi/tagbar'               " Code Structure on right
+  Plug 'reasonml-editor/vim-reason-plus'
+  Plug 'chriskempson/base16-vim'
+  Plug 'edkolev/tmuxline.vim'
+  Plug 'terryma/vim-smooth-scroll'       " Makes scrolling smooth
+  Plug 'LucHermitte/lh-vim-lib'          " See below
+  Plug 'LucHermitte/local_vimrc'         " project local vimrc
+  Plug 'ludovicchabant/vim-gutentags'    " Manages tags
+  Plug 'christoomey/vim-tmux-navigator'  " Tmux Integration
+  Plug 'ericcurtin/CurtineIncSw.vim'     " Navigate between .ccp and .h files
+  Plug 'bounceme/poppy.vim'              " Highlight parentheses
+  Plug 'rgrinberg/vim-ocaml'
+  Plug 'tpope/vim-commentary'
+  Plug 'rust-lang/rust.vim'
+  Plug 'segeljakt/vim-silicon'
+
+  call plug#end()
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin settings
-"
+" color scheme settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+if has('packages')
+  packadd! base16-vim
+endif
+
+let base16colorspace=256
+
+colorscheme base16-classic-dark
+
+if has("termguicolors")
+  set termguicolors
+endif
+
+function! SetColorscheme(name)
+  let l:name = a:name
+  execute 'colorscheme ' . l:name
+  let l:name = substitute(l:name, "-", "_", "g")
+  let g:lightline.colorscheme = l:name
+  call lightline#init()
+  call lightline#colorscheme()
+  call lightline#update()
+endfun
+
+command Light call SetColorscheme('base16-classic-light')
+command Dark call SetColorscheme('base16-classic-dark')
+
+hi! Normal ctermbg=NONE guibg=NONE
+hi! NonText ctermbg=NONE guibg=NONE
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Lightline settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+if has('packages')
+  packadd! lightline.vim
+  packadd! vim-gitbranch
+  packadd! vim-lightline-base16
+endif
 
 " Shows cool status bar
 set laststatus=2
@@ -277,19 +322,31 @@ if v:version >= 800
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-startify settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+if has('packages')
+  packadd! vim-lightline-base16
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-commentary settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-autocmd FileType cpp setlocal commentstring=//%s
+if has('packages')
+  packadd! vim-commentary
+endif
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-ocaml settings
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ocaml_folding=1
+autocmd FileType cpp setlocal commentstring=//%s
+noremap <leader>/ :Commentary<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-tmux-navigator settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+if has('packages')
+  packadd! vim-tmux-navigator
+endif
 
 let g:tmux_navigator_no_mappings = 1
 
@@ -302,12 +359,45 @@ nnoremap <silent> <C-L> :TmuxNavigateRight<cr>
 " local_vimrc settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:local_vimrc = ['.config', '_vimrc_local.vim']
-call lh#local_vimrc#munge('whitelist', $HOME.'/git')
+" if has('packages')
+"   packadd! lh-vim-lib
+"   packadd! local_vimrc
+" endif
+
+" let g:local_vimrc = ['.config', '_vimrc_local.vim']
+" call lh#local_vimrc#munge('whitelist', $HOME.'/git')
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-silicon settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" if has('packages')
+"   packadd! vim-silicon
+" endif
+
+" let g:silicon = {
+"       \ 'theme':              'Dracula',
+"       \ 'font':                  'Hack',
+"       \ 'background':         '#aaaaff',
+"       \ 'shadow-color':       '#555555',
+"       \ 'line-pad':                   2,
+"       \ 'pad-horiz':                  0,
+"       \ 'pad-vert':                   0,
+"       \ 'shadow-blur-radius':         0,
+"       \ 'shadow-offset-x':            0,
+"       \ 'shadow-offset-y':            0,
+"       \ 'line-number':           v:true,
+"       \ 'round-corner':          v:true,
+"       \ 'window-controls':       v:true,
+"       \ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " tmuxline settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+if has('packages')
+  packadd! tmuxline.vim
+endif
 
 " Generate current theme by :Tmuxline lightline_insert
 let g:tmuxline_powerline_separators = 0
@@ -323,28 +413,12 @@ let g:tmuxline_preset = {
       \ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" color scheme settings
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-if v:version >= 800
-  set termguicolors
-endif
-let base16colorspace=256
-colorscheme base16-classic-dark
-"colorscheme base16-tomorrow-night
-"colorscheme base16-railscasts
-
-" if filereadable(expand("~/.vimrc_background"))
-"   let base16colorspace=256
-"   source ~/.vimrc_background
-" endif
-
-hi! Normal ctermbg=NONE guibg=NONE
-hi! NonText ctermbg=NONE guibg=NONE
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CurtineIncSw cpp-h file navigator settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+if has('packages')
+  packadd! CurtineIncSw.vim
+endif
 
 map <F5> :call CurtineIncSw()<CR>
 
@@ -352,22 +426,27 @@ map <F5> :call CurtineIncSw()<CR>
 " NERDTREE settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+if has('packages')
+  packadd! nerdtree
+  packadd! nerdtree-git-plugin
+endif
+
 " Show hidden files in nerdtree
 let NERDTreeShowHidden=1
 
 " autocmd vimenter * NERDTree " Open by default
-autocmd StdinReadPre * let s:std_in=1 " Open if no file is specified
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd StdinReadPre * let s:std_in=1 " Open if no file is specified
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-autocmd StdinReadPre * let s:std_in=1 " Open on directory
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+" autocmd StdinReadPre * let s:std_in=1 " Open on directory
+" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
 " Close vim if left window is nerdtree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " arrow keys
-let g:NERDTreeDirArrowExpandable = '>'
-let g:NERDTreeDirArrowCollapsible = '|'
+" let g:NERDTreeDirArrowExpandable = '>'
+" let g:NERDTreeDirArrowCollapsible = '|'
 " CTL+n is now nerdtree toggle
 map <C-n> :NERDTreeToggle<CR>
 
@@ -375,6 +454,10 @@ map <C-n> :NERDTreeToggle<CR>
 " Ale settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if v:version >= 800
+  if has('packages')
+    packadd! ale
+    packadd! lightline-ale
+  endif
 
   "let g:ale_set_highlights = 0
   let g:airline#extensions#ale#enabled = 1
@@ -387,6 +470,10 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " TAGBAR settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+if has('packages')
+  packadd! tagbar
+endif
 
 nmap <S-t> :TagbarToggle<CR>
 
@@ -412,47 +499,51 @@ endif
 " vim-smooth-scroll settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+if has('packages')
+  packadd! vim-smooth-scroll
+endif
+
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 10, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 10, 2)<CR>
 noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 20, 4)<CR>
 noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 20, 4)<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" OPAM SETTINGS
+" vim-ocaml settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" ## added by OPAM user-setup for vim / base ## 93ee63e278bdfc07d1139a748ed3fff2 ## you can edit, but keep this line
-let s:opam_share_dir = system("opam config var share")
-let s:opam_share_dir = substitute(s:opam_share_dir, '[\r\n]*$', '', '')
+if has('packages')
+  packadd! vim-ocaml
+endif
 
-let s:opam_configuration = {}
+let g:ocaml_folding=1
 
-function! OpamConfOcpIndent()
-  execute "set rtp^=" . s:opam_share_dir . "/ocp-indent/vim"
-endfunction
-let s:opam_configuration['ocp-indent'] = function('OpamConfOcpIndent')
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ocaml merlin and other plugin settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-function! OpamConfOcpIndex()
-  execute "set rtp+=" . s:opam_share_dir . "/ocp-index/vim"
-endfunction
-let s:opam_configuration['ocp-index'] = function('OpamConfOcpIndex')
+if executable("opam")
+  let s:opamshare = substitute(system("opam config var share"),
+                               \ '[\r\n]*$',
+                               \ '',
+                               \ '')
 
-function! OpamConfMerlin()
-  let l:dir = s:opam_share_dir . "/merlin/vim"
-  execute "set rtp+=" . l:dir
-endfunction
-let s:opam_configuration['merlin'] = function('OpamConfMerlin')
+  execute "set rtp+=" . s:opamshare . "/ocp-indent/vim,"
+                    \ . s:opamshare . "/ocp-index/vim,"
+                    \ . s:opamshare . "/merlin/vim"
+endif
 
-let s:opam_packages = ["ocp-indent", "ocp-index", "merlin"]
-let s:opam_check_cmdline = ["opam list --installed --short --safe --color=never"] + s:opam_packages
-let s:opam_available_tools = split(system(join(s:opam_check_cmdline)))
-for tool in s:opam_packages
-  " Respect package order (merlin should be after ocp-index)
-  if count(s:opam_available_tools, tool) > 0
-    call s:opam_configuration[tool]()
-  endif
-endfor
-" ## end of OPAM user-setup addition for vim / base ## keep this line
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Endif for &loadplugins
+"
+" End of plugin settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+endif
 
-let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
+" Automatic, language-dependent indentation, syntax coloring and other
+" functionality.
+"
+" Must come *after* the `:packadd!` calls above otherwise the contents of
+" package "ftdetect" directories won't be evaluated.
+filetype indent plugin on
+syntax on
