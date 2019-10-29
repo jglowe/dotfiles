@@ -14,14 +14,16 @@
 # External files
 ################################################################################
 
+cd "$HOME" || echo "$HOME variable is not set"
+
 # Bash aliases
-if [ -f ~/.bash_aliases ]; then
-    source ~/.bash_aliases
+if [ -f .bash_aliases ]; then
+    source .bash_aliases
 fi
 
 # Bash functions
-if [ -f ~/.bash_functions ]; then
-    source ~/.bash_functions
+if [ -f .bash_functions ]; then
+    source .bash_functions
 fi
 
 ################################################################################
@@ -70,11 +72,11 @@ shopt -s checkwinsize
 # Colorizes the bash prompt if it is supported.
 ncolors=$(tput colors)
 if test -t 1 && test -n "$ncolors" && test "$ncolors" -ge 8; then
-	export PS1="\[\e[34m\]\w\[\e[97m\]\[\e[33m\]\$(parse_git_branch)\[\e[97m\] >\[\e[0m\] "
+	export PS1="[\u@\h \[\e[34m\]\W\[\e[97m\]]\[\e[33m\]\$(parse_git_branch)\[\e[97m\] \\$\[\e[0m\] "
 else
-	export PS1="\w\$(parse_git_branch) > "
+	export PS1="[\u@\h \W]\$(parse_git_branch) \\$ "
 fi
 
-export EDITOR='vim'
+export EDITOR=vim
 export TERM=xterm-256color
 

@@ -14,6 +14,9 @@
 " Non plugin settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Vint global ignores
+" vint: -ProhibitSetNoCompatible
+
 set nomodeline
 
 " Brings vim into this century/decade
@@ -21,7 +24,7 @@ set nocompatible
 
 " turn absolute line numbers on
 set number relativenumber
-set nu rnu
+" set nu rnu
 
 " turn absolute line numbers off
 "set nonumber
@@ -43,16 +46,36 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Autocmd groups
+"
+" These are the non plugin related autocmd groups
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" augroup AutoSaveFolds
+"   autocmd!
+"   autocmd BufWinLeave * silent! mkview
+"   autocmd BufWinEnter * silent! loadview
+" augroup END
+
+augroup indendation
+  autocmd!
+augroup END
+
+augroup cpp
+  autocmd!
+augroup END
+
 " Changes tab settings for specific languages
-autocmd Filetype sh set expandtab&
-autocmd Filetype ocaml,ruby,vim setlocal expandtab tabstop=2 shiftwidth=2
+autocmd indendation Filetype sh set expandtab&
+autocmd indendation Filetype ocaml,ruby,vim setlocal expandtab tabstop=2 shiftwidth=2
 
 " Enables spell checking for text files
-autocmd Filetype markdown,text set spell |
+autocmd indendation Filetype markdown,text set spell |
                              \ highlight clear SpellBad |
                              \ highlight SpellBad cterm=underline,bold
 
-autocmd Filetype markdown setlocal textwidth=80
+autocmd indendation Filetype markdown setlocal textwidth=80
 
 function! Smart_TabComplete()
   let line = getline('.')                         " current line
@@ -77,14 +100,14 @@ endfunction
 
 " Turns tab when in a word to autocomplete
 function! Tab_Or_Complete()
-  if &filetype == "ocaml"
-    if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\(\w\|\.\)'
+  if &filetype ==# 'ocaml'
+    if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~# '^\(\w\|\.\)'
       return pumvisible() ? "\<C-o>" : "\<C-x>\<C-o>"
     else
       return "\<Tab>"
     endif
   endif
-  if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
+  if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~# '^\w'
     return "\<C-N>"
   else
     return "\<Tab>"
@@ -93,7 +116,7 @@ endfunction
 
 " Makes shift tab go backward through autocomplete
 function! Shift_Tab_Or_Complete()
-  if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
+  if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~# '^\w'
     return "\<C-p>"
   else
     return "\<Tab>"
@@ -127,19 +150,15 @@ set colorcolumn=81
 
 " Folding code defaults
 set foldmethod=syntax
-autocmd Filetype cpp set foldmethod=indent
-"set foldnestmax=1
 
-" augroup AutoSaveFolds
-"   autocmd!
-"   autocmd BufWinLeave * silent! mkview
-"   autocmd BufWinEnter * silent! loadview
-" augroup END
+
+autocmd cpp Filetype cpp set foldmethod=indent
+"set foldnestmax=1
 
 function! NeatFoldText() "{{{2
   let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
   let lines_count = v:foldend - v:foldstart + 1
-  let lines_count_text = '| ' . printf("%10s", lines_count . ' lines') . ' |'
+  let lines_count_text = '| ' . printf('%10s', lines_count . ' lines') . ' |'
   let foldchar = matchstr(&fillchars, 'fold:\zs.')
   let foldtextstart = strpart('+' . repeat(foldchar, v:foldlevel*2) . line, 0, (winwidth(0)*2)/3)
   let foldtextend = lines_count_text . repeat(foldchar, 8)
@@ -162,7 +181,7 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-let mapleader = " "
+let mapleader = ' '
 
 set updatetime=100
 
@@ -248,14 +267,14 @@ let base16colorspace=256
 
 colorscheme base16-classic-dark
 
-if has("termguicolors")
+if has('termguicolors')
   set termguicolors
 endif
 
 function! SetColorscheme(name)
   let l:name = a:name
   execute 'colorscheme ' . l:name
-  let l:name = substitute(l:name, "-", "_", "g")
+  let l:name = substitute(l:name, '-', '_', 'g')
   let g:lightline.colorscheme = l:name
   call lightline#init()
   call lightline#colorscheme()
@@ -325,6 +344,8 @@ endif
 " vim-startify settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" vint: -ProhibitUnnecessaryDoubleQuote
+
 if has('packages')
   packadd! vim-startify
 endif
@@ -352,6 +373,8 @@ let g:startify_custom_header = [
       " \ "    █ █ █ █ █ █ ",
       " \ "     █  █ █ █ █ ",
 
+" vint: +ProhibitUnnecessaryDoubleQuote
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-commentary settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -360,7 +383,7 @@ if has('packages')
   packadd! vim-commentary
 endif
 
-autocmd FileType cpp setlocal commentstring=//%s
+autocmd cpp FileType cpp setlocal commentstring=//%s
 noremap <leader>/ :Commentary<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -396,7 +419,7 @@ nnoremap <silent> <C-L> :TmuxNavigateRight<cr>
 
 " if has('packages')
 "   packadd! vim-silicon
-" endif
+" endi
 
 " let g:silicon = {
 "       \ 'theme':              'Dracula',
@@ -454,18 +477,22 @@ if has('packages')
   packadd! nerdtree-git-plugin
 endif
 
+augroup NERDTree
+  autocmd!
+augroup END
+
 " Show hidden files in nerdtree
 let NERDTreeShowHidden=1
 
-" autocmd vimenter * NERDTree " Open by default
-" autocmd StdinReadPre * let s:std_in=1 " Open if no file is specified
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd NERDTree vimenter * NERDTree " Open by default
+" autocmd NERDTree StdinReadPre * let s:std_in=1 " Open if no file is specified
+" autocmd NERDTree VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-" autocmd StdinReadPre * let s:std_in=1 " Open on directory
-" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+" autocmd NERDTree StdinReadPre * let s:std_in=1 " Open on directory
+" autocmd NERDTree VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
 " Close vim if left window is nerdtree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd NERDTree bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " arrow keys
 " let g:NERDTreeDirArrowExpandable = '>'
@@ -545,15 +572,15 @@ let g:ocaml_folding=1
 " ocaml merlin and other plugin settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-if executable("opam")
-  let s:opamshare = substitute(system("opam config var share"),
+if executable('opam')
+  let s:opamshare = substitute(system('opam config var share'),
                                \ '[\r\n]*$',
                                \ '',
                                \ '')
 
-  execute "set rtp+=" . s:opamshare . "/ocp-indent/vim,"
-                    \ . s:opamshare . "/ocp-index/vim,"
-                    \ . s:opamshare . "/merlin/vim"
+  execute 'set rtp+=' . s:opamshare . '/ocp-indent/vim,'
+                    \ . s:opamshare . '/ocp-index/vim,'
+                    \ . s:opamshare . '/merlin/vim'
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
