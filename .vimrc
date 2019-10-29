@@ -17,22 +17,13 @@
 " Vint global ignores
 " vint: -ProhibitSetNoCompatible
 
-set nomodeline
-
 " Brings vim into this century/decade
 set nocompatible
 
+set nomodeline
+
 " turn absolute line numbers on
 set number relativenumber
-" set nu rnu
-
-" turn absolute line numbers off
-"set nonumber
-"set nonu
-
-" toggle absolute line numbers
-"set number!
-"set nu!
 
 " Enables file undo after files close
 set undofile
@@ -40,6 +31,27 @@ set undodir=~/.vim/undodir
 
 " Makes backspace to behave like most text editors
 set backspace=indent,eol,start
+
+" Search settings
+set incsearch
+set hlsearch
+
+" Colors column 81 background to show the line limit
+set colorcolumn=81
+
+" Sets the path to include the files in this subdirectory
+set path+=**
+
+let mapleader = ' '
+
+" Pane navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Sets the update time to be more responsive
+set updatetime=100
 
 " Deals with tab sillyness for default settings
 set expandtab
@@ -68,7 +80,9 @@ augroup END
 
 " Changes tab settings for specific languages
 autocmd indendation Filetype sh set expandtab&
-autocmd indendation Filetype ocaml,ruby,vim setlocal expandtab tabstop=2 shiftwidth=2
+autocmd indendation Filetype ocaml,ruby,vim setlocal expandtab
+                                                   \ tabstop=2
+                                                   \ shiftwidth=2
 
 " Enables spell checking for text files
 autocmd indendation Filetype markdown,text set spell |
@@ -77,24 +91,40 @@ autocmd indendation Filetype markdown,text set spell |
 
 autocmd indendation Filetype markdown setlocal textwidth=80
 
-function! Smart_TabComplete()
-  let line = getline('.')                         " current line
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Autocompletion settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-  let substr = strpart(line, -1, col('.')+1)      " from the start of the current
-                                                  " line to one character right
-                                                  " of the cursor
-  let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
-  if (strlen(substr)==0)                          " nothing to match on empty string
+" sets the wildmenu for tab completion
+set wildmenu
+
+" Removes searching through all the included files from CTRL-N completion
+" which can signifintly slow down autocompletion`
+set complete-=i
+
+" Sets autocomplete tab to only complete common characters for the first tab.
+" By default it autocompletes to the first item in the list, which you can tab
+" through.
+set completeopt=longest,menuone
+
+function! Smart_TabComplete()
+  let line = getline('.')                     " current line
+
+  let substr = strpart(line, -1, col('.')+1)  " from the start of the current
+                                              " line to one character right
+                                              " of the cursor
+  let substr = matchstr(substr, "[^ \t]*$")   " word till cursor
+  if (strlen(substr)==0)                      " nothing to match on empty string
     return "\<tab>"
   endif
-  let has_period = match(substr, '\.') != -1      " position of period, if any
-  let has_slash = match(substr, '\/') != -1       " position of slash, if any
+  let has_period = match(substr, '\.') != -1  " position of period, if any
+  let has_slash = match(substr, '\/') != -1   " position of slash, if any
   if (!has_period && !has_slash)
-    return "\<C-X>\<C-P>"                         " existing text matching
+    return "\<C-X>\<C-P>"                     " existing text matching
   elseif ( has_slash )
-    return "\<C-X>\<C-F>"                         " file matching
+    return "\<C-X>\<C-F>"                     " file matching
   else
-    return "\<C-X>\<C-O>"                         " plugin matching
+    return "\<C-X>\<C-O>"                     " plugin matching
   endif
 endfunction
 
@@ -131,29 +161,14 @@ inoremap <S-Tab> <C-R>=Shift_Tab_Or_Complete()<CR>
 " By default it acts like enter
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" Removes searching through all the included files from CTRL-N completion
-" which can signifintly slow down autocompletion`
-set complete-=i
-
-" Sets autocomplete tab to only complete common characters for the first tab.
-" By default it autocompletes to the first item in the list, which you can tab
-" through.
-set completeopt=longest,menuone
-
-" Search settings
-set incsearch
-set hlsearch
-
-" Colors column 81 background so I can see what column is beyond the typical
-" line limit
-set colorcolumn=81
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Folding settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Folding code defaults
 set foldmethod=syntax
 
-
 autocmd cpp Filetype cpp set foldmethod=indent
-"set foldnestmax=1
 
 function! NeatFoldText() "{{{2
   let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
@@ -168,22 +183,12 @@ endfunction
 set foldtext=NeatFoldText()
 " }}}2
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Utility functions and commands
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Make ctags
 command! MakeTags !ctags -R .
-
-" Sets the path to include the files in this subdirectory
-set path+=**
-set wildmenu
-
-" Vim mappings
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-let mapleader = ' '
-
-set updatetime=100
 
 " Make json readable in buffer
 noremap <leader>j :%!python -m json.tool<CR>
@@ -313,9 +318,6 @@ let g:lightline = {
 
 let g:lightline.colorscheme = 'base16_classic_dark'
 
-"let g:lightline.separator = { 'left': '⮀', 'right': '⮂' }
-"let g:lightline.subseparator = { 'left': '⮁', 'right': '⮃' }
-
 " Ale lightline settings
 if v:version >= 800
   let g:lightline.component_expand = {
@@ -366,12 +368,6 @@ let g:startify_custom_header = [
       " \ "        `888.8'      888   888   888   888  ",
       " \ "         `888'       888   888   888   888  ",
       " \ "          `8'       o888o o888o o888o o888o ",
-      " \ "        █       ",
-      " \ "    █ █         ",
-      " \ "    █ █ █ █████ ",
-      " \ "    █ █ █ █ █ █ ",
-      " \ "    █ █ █ █ █ █ ",
-      " \ "     █  █ █ █ █ ",
 
 " vint: +ProhibitUnnecessaryDoubleQuote
 
@@ -486,17 +482,23 @@ let NERDTreeShowHidden=1
 
 " autocmd NERDTree vimenter * NERDTree " Open by default
 " autocmd NERDTree StdinReadPre * let s:std_in=1 " Open if no file is specified
-" autocmd NERDTree VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd NERDTree VimEnter * if argc() == 0 &&
+"                                \ !exists("s:std_in") | NERDTree | endif
 
 " autocmd NERDTree StdinReadPre * let s:std_in=1 " Open on directory
-" autocmd NERDTree VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+" autocmd NERDTree VimEnter * if argc() == 1 &&
+"                              \ isdirectory(argv()[0]) &&
+"                              \ !exists("s:std_in")
+"                              \   | exe 'NERDTree' argv()[0]
+"                              \   | wincmd p | ene | endif
 
 " Close vim if left window is nerdtree
-autocmd NERDTree bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd NERDTree bufenter * if (winnr("$") == 1 &&
+                              \ exists("b:NERDTree") &&
+                              \ b:NERDTree.isTabTree())
+                              \   | q | endif
 
 " arrow keys
-" let g:NERDTreeDirArrowExpandable = '>'
-" let g:NERDTreeDirArrowCollapsible = '|'
 " CTL+n is now nerdtree toggle
 map <C-n> :NERDTreeToggle<CR>
 
