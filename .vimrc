@@ -105,7 +105,7 @@ set complete-=i
 " Sets autocomplete tab to only complete common characters for the first tab.
 " By default it autocompletes to the first item in the list, which you can tab
 " through.
-set completeopt=longest,menuone
+set completeopt=longest,menuone,popup
 
 function! Smart_TabComplete()
   let line = getline('.')                     " current line

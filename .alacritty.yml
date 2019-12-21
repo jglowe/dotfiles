@@ -89,7 +89,8 @@ font:
   normal:
       #family: Menlo for Powerline
       #family: Menlo Regular
-    family: Meslo LG S DZ
+    # family: Meslo LG S DZ
+    family: SourceCodePro
     #family: monospace
     # The `style` can be specified to pick a specific face.
     # style: Regular

@@ -111,8 +111,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 5%- unmut
 bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 # increase screen brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id sudo light -A 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id sudo light -U 5 # decrease screen brightness
 
 # touchpad on and off controller on laptop with Fn+<touchpad control functional key>
 bindsym XF86TouchpadOn exec --no-startup-id synclient Touchpadoff=0
@@ -246,13 +246,13 @@ mode "$mode_system" {
 
 
 # Theme colors
-client.focused          #272827 #272827 #657b83 #272827 #272827
-client.focused_inactive #272827 #272827 #657b83 #272827 #272827
-client.unfocused        #272827 #272827 #657b83 #272827 #272827
-client.urgent           #272827 #272827 #657b83 #272827 #272827
-client.placeholder      #272827 #272827 #657b83 #272827 #272827
+client.focused #707880 #1d1f21 #707880 #8c9440 #8c9440
+client.focused_inactive #707880 #1d1f21 #707880 #5f819d #5f819d
+client.unfocused #707880 #1d1f21 #707880 #5f819d #5f819d
+client.urgent #707880 #1d1f21 #707880 #5f819d #5f819d
+client.placeholder #707880 #1d1f21 #707880 #5f819d #5f819d
 
-client.background       #272827
+client.background #1d1f21
 
 # Gaps
 gaps inner 10
@@ -297,8 +297,15 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
-
-#client.background       #000000
+for_window [class="^Steam$" title="^Friends$"] floating enable
+for_window [class="^Steam$" title="Steam - Update News"] floating enable
+for_window [class="^Steam$" title=".* - Chat"] floating enable
+for_window [class="^Steam$" title="^Settings$"] floating enable
+for_window [class="^Steam$" title=".* - event started"] floating enable
+for_window [class="^Steam$" title=".* CD key"] floating enable
+for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
+for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
+for_window [class="^Steam$" title="Steam"] floating enable
 
 default_border pixel 0
 default_floating_border pixel 0
@@ -314,10 +321,8 @@ default_floating_border pixel 0
 
 # Add this to your .xinitrc or whatever file starts programs on startup.
 #exec --no-startup-id pywal -i "$(< "${HOME}/.cache/wal/wal")"
-#exec --no-startup-id compton -b -f --backend glx -cCfFbG -I 0.05 -D 6 -r5 -l-6 -t-5 -o.99 --vsync opengl-mswc
-exec --no-startup-id feh --bg-scale ~/Pictures/tyler-lastovich-616849-unsplash.jpg
+#exec --no-startup-id feh --bg-scale ~/Pictures/tyler-lastovich-616849-unsplash.jpg
 exec --no-startup-id libinput-gestures-setup start
-exec --no-startup-id compton
 
 # set power-manager and volume control
 exec --no-startup-id mate-power-manager
@@ -331,3 +336,4 @@ exec --no-startup-id clipit
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id /$HOME/.config/polybar/i3wmthemer_bar_launch.sh
+#exec --no-startup-id /usr/bin/xfce4-power-manager
