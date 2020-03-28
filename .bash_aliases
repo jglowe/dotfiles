@@ -12,6 +12,7 @@
 
 alias :q="exit"
 
+alias vi=vim
 alias config='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dgit='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 

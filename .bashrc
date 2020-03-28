@@ -34,7 +34,7 @@ fi
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # User defined Below
-export PATH="$PATH:/home/jonathanl/.cargo/bin"
+export PATH="$PATH:$HOME/.cargo/bin"
 
 # Opam config
 eval "$(opam config env)"
@@ -76,6 +76,8 @@ if test -t 1 && test -n "$ncolors" && test "$ncolors" -ge 8; then
 else
 	export PS1="[\u@\h \W]\$(parse_git_branch) \\$ "
 fi
+
+export PATH="$PATH:$HOME/bin"
 
 export EDITOR=vim
 export TERM=xterm-256color
