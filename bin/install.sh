@@ -2,14 +2,12 @@
 
 set -eo pipefail
 
-DOTFILES_REPO="git@github.com:jglowe/dotfiles.git"
-
 function dgit () {
 	git --git-dir "$HOME/.dotfiles/" --work-tree="$HOME" "$@"
 }
 
 if [ ! -d "$HOME/.dotfiles/" ]; then
-	git clone --bare "DOTFILES_REPO" "$HOME/.dotfiles"
+	git clone --bare "git@github.com:jglowe/dotfiles.git" "$HOME/.dotfiles"
 fi
 
 if ! files=$(dgit checkout master 2>&1); then
