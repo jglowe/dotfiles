@@ -58,6 +58,10 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 
+if !has('nvim')
+  set ttymouse=xterm2
+endif
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autocmd groups
 "
@@ -105,7 +109,11 @@ set complete-=i
 " Sets autocomplete tab to only complete common characters for the first tab.
 " By default it autocompletes to the first item in the list, which you can tab
 " through.
-set completeopt=longest,menuone,popup
+if !has('nvim')
+  set completeopt=longest,menuone,popup
+else
+  set completeopt=longest,menuone
+endif
 
 function! Smart_TabComplete()
   let line = getline('.')                     " current line
