@@ -227,6 +227,8 @@ if has('packages')
   packadd! vim-fugitive
   packadd! vim-trailing-whitespace
 
+  packadd! salt-vim
+
   " packadd! vim-gutentags
   " packadd! poppy.vim
   " packadd! rust.vim
