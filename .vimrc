@@ -62,17 +62,22 @@ if !has('nvim')
   set ttymouse=xterm2
 endif
 
+set mouse=a
+
+set nopaste
+set pastetoggle=<F2>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autocmd groups
 "
 " These are the non plugin related autocmd groups
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" augroup AutoSaveFolds
-"   autocmd!
-"   autocmd BufWinLeave * silent! mkview
-"   autocmd BufWinEnter * silent! loadview
-" augroup END
+augroup AutoSaveFolds
+  autocmd!
+  autocmd BufWinLeave * silent! mkview
+  autocmd BufWinEnter * silent! loadview
+augroup END
 
 augroup indendation
   autocmd!
@@ -227,11 +232,14 @@ if has('packages')
   packadd! vim-fugitive
   packadd! vim-trailing-whitespace
 
+  " if has('nvim')
+  "   packadd! nvim-lspconfig
+  " endif
   packadd! salt-vim
 
   " packadd! vim-gutentags
   " packadd! poppy.vim
-  " packadd! rust.vim
+  packadd! rust.vim
   " packadd! vim-reason-plus
 else
   call plug#begin('~/.vim/plugged')
@@ -521,8 +529,12 @@ if v:version >= 800
     packadd! lightline-ale
   endif
 
+  " if has('nvim')
+  "   lua require'nvim_lsp'.rust_analyzer.setup{}
+  " endif
   "let g:ale_set_highlights = 0
   let g:airline#extensions#ale#enabled = 1
+  let g:ale_linters = {'rust': ['analyzer']}
 
   highlight ALEError ctermbg=none cterm=underline
   highlight ALEWarning ctermbg=none cterm=underline
