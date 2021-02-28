@@ -252,7 +252,7 @@ shell:
   args:
     - -l
     - -c
-    - "tmux a || tmux new -s new || exec /bin/bash"
+    - "tmux new -A -s default || exec /bin/bash"
 
 # Key bindings
 #

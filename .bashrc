@@ -27,30 +27,6 @@ if [ -f .bash_functions ]; then
 fi
 
 ################################################################################
-# Application Settings
-################################################################################
-
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# User defined Below
-export PATH="$PATH:$HOME/.cargo/bin"
-
-# Opam config
-eval "$(opam config env)"
-
-# colored GCC warnings and errors
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# Base16 Shell colors
-BASE16_SHELL="$HOME/.config/base16-shell/"
-[ -n "$PS1" ] && \
-    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-        eval "$("$BASE16_SHELL/profile_helper.sh")"
-
-base16_classic-dark
-
-################################################################################
 # Shell Customization
 ################################################################################
 
@@ -81,4 +57,38 @@ export PATH="$PATH:$HOME/bin"
 
 export EDITOR=vim
 export TERM=xterm-256color
+
+################################################################################
+# Application Settings
+################################################################################
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# User defined Below
+export PATH="$PATH:$HOME/.cargo/bin"
+
+source "$HOME/.cargo/env"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Opam config
+# if [ -x opam ]; then
+eval "$(opam config env)"
+# fi
+
+if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
+    . /opt/local/etc/profile.d/bash_completion.sh
+fi
+
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# Base16 Shell colors
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"
+
+base16_classic-dark
 
