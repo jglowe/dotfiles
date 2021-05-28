@@ -66,19 +66,46 @@ export TERM=xterm-256color
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # User defined Below
-export PATH="$PATH:$HOME/.cargo/bin"
+if [ -f "$HOME/.cargo/env" ] || [ -x "$(which cargo)" ]; then
+	echo "[✅ cargo rust]"
+	if [ -f "$HOME/.cargo/env" ]; then
+		export PATH="$PATH:$HOME/.cargo/bin"
 
-source "$HOME/.cargo/env"
+		source "$HOME/.cargo/env"
+	fi
+else
+	echo "[❌ cargo rust]"
+fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# Opam config
-# if [ -x opam ]; then
-eval "$(opam config env)"
-# fi
+if [ -f /opt/homebrew/bin/brew ]; then
+	echo "[✅ homebrew]"
+	eval $(/opt/homebrew/bin/brew shellenv)
 
-if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
-    . /opt/local/etc/profile.d/bash_completion.sh
+	export PATH="/opt/homebrew/bin:$PATH"
+else
+	echo "[❌ homebrew]"
+fi
+
+# Opam config
+if [ -x "$(which opam)" ]; then
+	echo "[✅ opam ocaml] "
+	eval "$(opam config env)"
+else
+	echo "[❌ opam ocaml] "
+fi
+
+if [ -f /opt/local/etc/profile.d/bash_completion.sh ] || [ -f /opt/homebrew/etc/profile.d/bash_completion.sh ]; then
+	echo "[✅ bash completion] "
+	if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
+		. /opt/local/etc/profile.d/bash_completion.sh
+	fi
+	if [ -f /opt/homebrew/etc/profile.d/bash_completion.sh ]; then
+		. /opt/homebrew/etc/profile.d/bash_completion.sh
+	fi
+else
+	echo "[❌ bash completion] "
 fi
 
 # colored GCC warnings and errors
