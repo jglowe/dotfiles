@@ -63,7 +63,12 @@ export TERM=xterm-256color
 ################################################################################
 
 # make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+if [ -x /usr/bin/lesspipe ]; then
+	echo "[✅ lesspipe]"
+	eval "$(SHELL=/bin/sh lesspipe)"
+else
+	echo "[❌ lesspipe]"
+fi
 
 # User defined Below
 if [ -f "$HOME/.cargo/env" ] || [ -x "$(which cargo)" ]; then
@@ -77,7 +82,12 @@ else
 	echo "[❌ cargo rust]"
 fi
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+if [ -f ~/.fzf.bash ] && [ -x "$(which fzf)" ]; then
+	echo "[✅ fzf]"
+	source ~/.fzf.bash
+else
+	echo "[❌ fzf]"
+fi
 
 if [ -f /opt/homebrew/bin/brew ]; then
 	echo "[✅ homebrew]"
@@ -113,9 +123,13 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 
 # Base16 Shell colors
 BASE16_SHELL="$HOME/.config/base16-shell/"
-[ -n "$PS1" ] && \
-    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-        eval "$("$BASE16_SHELL/profile_helper.sh")"
+if [ -n "$PS1" ] && [ -s "$BASE16_SHELL/profile_helper.sh" ]; then
+	echo "[✅ base16 shell] "
 
-base16_classic-dark
+    eval "$("$BASE16_SHELL/profile_helper.sh")"
+	base16_classic-dark
+else
+	echo "[❌ base16 shell] "
+fi
+
 
