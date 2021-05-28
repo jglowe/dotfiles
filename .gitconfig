@@ -1,9 +1,9 @@
 [user]
-	email = jonathanglowe@gmail.com
+	email = me@jonathanlowe.dev
 	name = Jonathan Lowe
 
 [core]
-    editor = vim
+    editor = nvim
 	excludesfile = ~/.gitignore_global
 
 [alias]
