@@ -64,22 +64,22 @@ export TERM=xterm-256color
 
 # make less more friendly for non-text input files, see lesspipe(1)
 if [ -x /usr/bin/lesspipe ]; then
-	printf "[  ${GREEN}OK${NC}  ] lesspipe\n"
+	print_module_status "lesspipe" "true"
 	eval "$(SHELL=/bin/sh lesspipe)"
 else
-	printf "[${RED}FAILED${NC}] lesspipe\n"
+	print_module_status "lesspipe" "false"
 fi
 
 # User defined Below
 if [ -f "$HOME/.cargo/env" ] || [ -x "$(which cargo)" ]; then
-	printf "[  ${GREEN}OK${NC}  ] cargo rust\n"
+	print_module_status "cargo rust" "true"
 	if [ -f "$HOME/.cargo/env" ]; then
 		export PATH="$PATH:$HOME/.cargo/bin"
 
 		source "$HOME/.cargo/env"
 	fi
 else
-	printf "[${RED}FAILED${NC}] cargo rust\n"
+	print_module_status "cargo rust" "false"
 fi
 
 if [ -f ~/.fzf.bash ] && [ -x "$(which fzf)" ]; then
@@ -90,24 +90,24 @@ else
 fi
 
 if [ -f /opt/homebrew/bin/brew ]; then
-	printf "[  ${GREEN}OK${NC}  ] homebrew\n"
+	print_module_status "homebrew" "true"
 	eval $(/opt/homebrew/bin/brew shellenv)
 
 	export PATH="/opt/homebrew/bin:$PATH"
 else
-	printf "[${RED}FAILED${NC}] homebrew\n"
+	print_module_status "homebrew" "false"
 fi
 
 # Opam config
 if [ -x "$(which opam)" ]; then
-	printf "[  ${GREEN}OK${NC}  ] opam ocaml\n"
+	print_module_status "opam ocaml" "true"
 	eval "$(opam config env)"
 else
-	printf "[${RED}FAILED${NC}] opam ocaml\n"
+	print_module_status "opam ocaml" "false"
 fi
 
 if [ -f /opt/local/etc/profile.d/bash_completion.sh ] || [ -f /opt/homebrew/etc/profile.d/bash_completion.sh ]; then
-	printf "[  ${GREEN}OK${NC}  ] bash completion\n"
+	print_module_status "bash completion" "true"
 	if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
 		. /opt/local/etc/profile.d/bash_completion.sh
 	fi
@@ -115,7 +115,7 @@ if [ -f /opt/local/etc/profile.d/bash_completion.sh ] || [ -f /opt/homebrew/etc/
 		. /opt/homebrew/etc/profile.d/bash_completion.sh
 	fi
 else
-	printf "[${RED}FAILED${NC}] bash completion\n"
+	print_module_status "bash completion" "false"
 fi
 
 # colored GCC warnings and errors
@@ -124,12 +124,11 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 # Base16 Shell colors
 BASE16_SHELL="$HOME/.config/base16-shell/"
 if [ -n "$PS1" ] && [ -s "$BASE16_SHELL/profile_helper.sh" ]; then
-	printf "[  ${GREEN}OK${NC}  ] base16 shell\n"
+	print_module_status "base16 shell" "true"
 
 	eval "$("$BASE16_SHELL/profile_helper.sh")"
 	# base16_classic-dark
 else
-	printf "[${RED}FAILED${NC}] base16 shell\n"
+	print_module_status "base16 shell" "false"
 fi
-
 
