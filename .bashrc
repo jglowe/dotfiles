@@ -18,12 +18,12 @@ cd "$HOME" || echo "$HOME variable is not set"
 
 # Bash aliases
 if [ -f .bash_aliases ]; then
-    source .bash_aliases
+	source .bash_aliases
 fi
 
 # Bash functions
 if [ -f .bash_functions ]; then
-    source .bash_functions
+	source .bash_functions
 fi
 
 ################################################################################
@@ -64,50 +64,50 @@ export TERM=xterm-256color
 
 # make less more friendly for non-text input files, see lesspipe(1)
 if [ -x /usr/bin/lesspipe ]; then
-	echo "[✅ lesspipe]"
+	printf "[  ${GREEN}OK${NC}  ] lesspipe\n"
 	eval "$(SHELL=/bin/sh lesspipe)"
 else
-	echo "[❌ lesspipe]"
+	printf "[${RED}FAILED${NC}] lesspipe\n"
 fi
 
 # User defined Below
 if [ -f "$HOME/.cargo/env" ] || [ -x "$(which cargo)" ]; then
-	echo "[✅ cargo rust]"
+	printf "[  ${GREEN}OK${NC}  ] cargo rust\n"
 	if [ -f "$HOME/.cargo/env" ]; then
 		export PATH="$PATH:$HOME/.cargo/bin"
 
 		source "$HOME/.cargo/env"
 	fi
 else
-	echo "[❌ cargo rust]"
+	printf "[${RED}FAILED${NC}] cargo rust\n"
 fi
 
 if [ -f ~/.fzf.bash ] && [ -x "$(which fzf)" ]; then
-	echo "[✅ fzf]"
+	printf "[  ${GREEN}OK${NC}  ] fzf\n"
 	source ~/.fzf.bash
 else
-	echo "[❌ fzf]"
+	printf "[${RED}FAILED${NC}] fzf\n"
 fi
 
 if [ -f /opt/homebrew/bin/brew ]; then
-	echo "[✅ homebrew]"
+	printf "[  ${GREEN}OK${NC}  ] homebrew\n"
 	eval $(/opt/homebrew/bin/brew shellenv)
 
 	export PATH="/opt/homebrew/bin:$PATH"
 else
-	echo "[❌ homebrew]"
+	printf "[${RED}FAILED${NC}] homebrew\n"
 fi
 
 # Opam config
 if [ -x "$(which opam)" ]; then
-	echo "[✅ opam ocaml] "
+	printf "[  ${GREEN}OK${NC}  ] opam ocaml\n"
 	eval "$(opam config env)"
 else
-	echo "[❌ opam ocaml] "
+	printf "[${RED}FAILED${NC}] opam ocaml\n"
 fi
 
 if [ -f /opt/local/etc/profile.d/bash_completion.sh ] || [ -f /opt/homebrew/etc/profile.d/bash_completion.sh ]; then
-	echo "[✅ bash completion] "
+	printf "[  ${GREEN}OK${NC}  ] bash completion\n"
 	if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
 		. /opt/local/etc/profile.d/bash_completion.sh
 	fi
@@ -115,7 +115,7 @@ if [ -f /opt/local/etc/profile.d/bash_completion.sh ] || [ -f /opt/homebrew/etc/
 		. /opt/homebrew/etc/profile.d/bash_completion.sh
 	fi
 else
-	echo "[❌ bash completion] "
+	printf "[${RED}FAILED${NC}] bash completion\n"
 fi
 
 # colored GCC warnings and errors
@@ -124,12 +124,12 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 # Base16 Shell colors
 BASE16_SHELL="$HOME/.config/base16-shell/"
 if [ -n "$PS1" ] && [ -s "$BASE16_SHELL/profile_helper.sh" ]; then
-	echo "[✅ base16 shell] "
+	printf "[  ${GREEN}OK${NC}  ] base16 shell\n"
 
-    eval "$("$BASE16_SHELL/profile_helper.sh")"
-	base16_classic-dark
+	eval "$("$BASE16_SHELL/profile_helper.sh")"
+	# base16_classic-dark
 else
-	echo "[❌ base16 shell] "
+	printf "[${RED}FAILED${NC}] base16 shell\n"
 fi
 
 
