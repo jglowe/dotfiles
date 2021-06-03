@@ -23,7 +23,7 @@ print_module_status() {
 	local name=$1
 	local succeeded=$2
 
-	if [ "$succeeded" = "true" ]; then
+	if "$succeeded"; then
 		printf "[  ${GREEN}OK${NC}  ] %s\n" "$name"
 	else
 		printf "[${RED}FAILED${NC}] %s\n" "$name"
