@@ -1,6 +1,6 @@
 # Setup fzf
 # ---------
-if [[ ! "$PATH" == */opt/homebrew/opt/fzf/bin* ]]; then
+if [[ ! "$PATH" == */opt/homebrew/opt/fzf/bin* ]] && [ -d /opt/homebrew/opt/fzf/bin ]; then
 	export PATH="${PATH:+${PATH}:}/opt/homebrew/opt/fzf/bin"
 	# Auto-completion
 	# ---------------
@@ -11,7 +11,7 @@ if [[ ! "$PATH" == */opt/homebrew/opt/fzf/bin* ]]; then
 	source "/opt/homebrew/opt/fzf/shell/key-bindings.bash"
 fi
 
-if [[ ! "$PATH" == */usr/share/fzf* ]]; then
+if [[ ! "$PATH" == */usr/share/fzf* ]] && [ -d /usr/share/fzf ]; then
 	export PATH="${PATH:+${PATH}:}/usr/share/fzf"
 	# Auto-completion
 	# ---------------
