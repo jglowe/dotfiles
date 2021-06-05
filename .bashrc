@@ -62,14 +62,6 @@ export TERM=xterm-256color
 # Application Settings
 ################################################################################
 
-# make less more friendly for non-text input files, see lesspipe(1)
-if [ -x /usr/bin/lesspipe ]; then
-	print_module_status "lesspipe" true
-	eval "$(SHELL=/bin/sh lesspipe)"
-else
-	print_module_status "lesspipe" false
-fi
-
 # User defined Below
 if [ -f "$HOME/.cargo/env" ] || [ -x "$(which cargo)" ]; then
 	print_module_status "cargo rust" true
