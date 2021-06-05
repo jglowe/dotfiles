@@ -98,13 +98,20 @@ else
 	print_module_status "opam ocaml" false
 fi
 
-if [ -f /opt/local/etc/profile.d/bash_completion.sh ] || [ -f /opt/homebrew/etc/profile.d/bash_completion.sh ]; then
+if [ -f /opt/local/etc/profile.d/bash_completion.sh ] ||
+	[ -f /opt/homebrew/etc/profile.d/bash_completion.sh ] ||
+	[ -f /usr/share/bash-completion/bash_completion ]; then
+
 	print_module_status "bash completion" true
 	if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
 		. /opt/local/etc/profile.d/bash_completion.sh
 	fi
 	if [ -f /opt/homebrew/etc/profile.d/bash_completion.sh ]; then
 		. /opt/homebrew/etc/profile.d/bash_completion.sh
+	fi
+
+	if [ -f /usr/share/bash-completion/bash_completion ]; then
+		. /usr/share/bash-completion/bash_completion
 	fi
 else
 	print_module_status "bash completion" false
