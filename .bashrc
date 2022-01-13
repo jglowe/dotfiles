@@ -55,19 +55,32 @@ fi
 
 export PATH="$PATH:$HOME/bin"
 
-export EDITOR=nvim
 export TERM=xterm-256color
 
 ################################################################################
 # Application Settings
 ################################################################################
 
+if [ -x "$(which nvim)" ]; then
+	print_module_status "neovim" true
+	alias vi=nvim
+	alias vim=nvim
+	export EDITOR=nvim
+else
+	print_module_status "neovim" false
+	alias vi=vim
+	export EDITOR=vim
+fi
+
 # User defined Below
 if [ -f "$HOME/.cargo/env" ] || [ -x "$(which cargo)" ]; then
 	print_module_status "cargo rust" true
-	if [ -f "$HOME/.cargo/env" ]; then
-		export PATH="$PATH:$HOME/.cargo/bin"
 
+	if [ -d "$HOME/.cargo/bin" ]; then
+		export PATH="$PATH:$HOME/.cargo/bin"
+	fi
+
+	if [ -f "$HOME/.cargo/env" ]; then
 		source "$HOME/.cargo/env"
 	fi
 else
@@ -96,6 +109,13 @@ if [ -x "$(which opam)" ]; then
 	eval "$(opam config env)"
 else
 	print_module_status "opam ocaml" false
+fi
+
+if [ -x "$(which doctl)" ]; then
+	print_module_status "digitalocean ctl" true
+	source .doctl.bash
+else
+	print_module_status "digitalocean ctl" false
 fi
 
 if [ -f /opt/local/etc/profile.d/bash_completion.sh ] ||
@@ -131,3 +151,12 @@ else
 	print_module_status "base16 shell" false
 fi
 
+# LSPs
+if [ -x "$(which shellcheck)" ]; then
+	print_module_status "shellcheck" true
+else
+	print_module_status "shellcheck" false
+fi
+
+
+. "$HOME/.cargo/env"

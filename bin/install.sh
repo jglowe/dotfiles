@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eo pipefail
+set -euo pipefail
 
 function dgit () {
 	git --git-dir "$HOME/.dotfiles/" --work-tree="$HOME" "$@"

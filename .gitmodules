@@ -1,87 +1,93 @@
 [submodule "lightline.vim"]
-    path = .vim/pack/all/opt/lightline.vim
+	path = .config/nvim/pack/all/opt/lightline.vim
     url = https://github.com/itchyny/lightline.vim.git
 [submodule "vim-gitbranch"]
-    path = .vim/pack/all/opt/vim-gitbranch
+	path = .config/nvim/pack/all/opt/vim-gitbranch
     url = https://github.com/itchyny/vim-gitbranch.git
 [submodule "vim-lightline-base16"]
-    path = .vim/pack/all/opt/vim-lightline-base16
+	path = .config/nvim/pack/all/opt/vim-lightline-base16
     url = https://github.com/mark-westerhof/vim-lightline-base16.git
 [submodule "vim-gitgutter"]
-    path = .vim/pack/all/opt/vim-gitgutter
+	path = .config/nvim/pack/all/opt/vim-gitgutter
     url = https://github.com/airblade/vim-gitgutter.git
 [submodule "vim-eunuch"]
-    path = .vim/pack/all/opt/vim-eunuch
+	path = .config/nvim/pack/all/opt/vim-eunuch
     url = https://github.com/tpope/vim-eunuch.git
 [submodule "vim-fugitive"]
-    path = .vim/pack/all/opt/vim-fugitive
+	path = .config/nvim/pack/all/opt/vim-fugitive
     url = https://github.com/tpope/vim-fugitive.git
 [submodule "nerdtree"]
-    path = .vim/pack/all/opt/nerdtree
+	path = .config/nvim/pack/all/opt/nerdtree
     url = https://github.com/scrooloose/nerdtree.git
 [submodule "nerdtree-git-plugin"]
-    path = .vim/pack/all/opt/nerdtree-git-plugin
+	path = .config/nvim/pack/all/opt/nerdtree-git-plugin
     url = https://github.com/Xuyuanp/nerdtree-git-plugin.git
 [submodule "vim-trailing-whitespace"]
-    path = .vim/pack/all/opt/vim-trailing-whitespace
+	path = .config/nvim/pack/all/opt/vim-trailing-whitespace
     url = https://github.com/bronson/vim-trailing-whitespace.git
 [submodule "tagbar"]
-    path = .vim/pack/all/opt/tagbar
+	path = .config/nvim/pack/all/opt/tagbar
     url = https://github.com/majutsushi/tagbar.git
 [submodule "vim-reason-plus"]
-    path = .vim/pack/all/opt/vim-reason-plus
+	path = .config/nvim/pack/all/opt/vim-reason-plus
     url = https://github.com/reasonml-editor/vim-reason-plus.git
 [submodule "base16-vim"]
-    path = .vim/pack/all/opt/base16-vim
+	path = .config/nvim/pack/all/opt/base16-vim
     url = https://github.com/chriskempson/base16-vim.git
 [submodule "tmuxline.vim"]
-    path = .vim/pack/all/opt/tmuxline.vim
+	path = .config/nvim/pack/all/opt/tmuxline.vim
     url = https://github.com/edkolev/tmuxline.vim.git
 [submodule "vim-smooth-scroll"]
-    path = .vim/pack/all/opt/vim-smooth-scroll
+	path = .config/nvim/pack/all/opt/vim-smooth-scroll
     url = https://github.com/terryma/vim-smooth-scroll.git
 [submodule "lh-vim-lib"]
-    path = .vim/pack/all/opt/lh-vim-lib
+	path = .config/nvim/pack/all/opt/lh-vim-lib
     url = https://github.com/LucHermitte/lh-vim-lib.git
 [submodule "local_vimrc"]
-    path = .vim/pack/all/opt/local_vimrc
+	path = .config/nvim/pack/all/opt/local_vimrc
     url = https://github.com/LucHermitte/local_vimrc.git
 [submodule "vim-gutentags"]
-    path = .vim/pack/all/opt/vim-gutentags
+	path = .config/nvim/pack/all/opt/vim-gutentags
     url = https://github.com/ludovicchabant/vim-gutentags.git
 [submodule "vim-tmux-navigator"]
-    path = .vim/pack/all/opt/vim-tmux-navigator
+	path = .config/nvim/pack/all/opt/vim-tmux-navigator
     url = https://github.com/christoomey/vim-tmux-navigator.git
 [submodule "CurtineIncSw.vim"]
-    path = .vim/pack/all/opt/CurtineIncSw.vim
+	path = .config/nvim/pack/all/opt/CurtineIncSw.vim
     url = https://github.com/ericcurtin/CurtineIncSw.vim.git
 [submodule "vim-ocaml"]
-    path = .vim/pack/all/opt/vim-ocaml
+	path = .config/nvim/pack/all/opt/vim-ocaml
     url = https://github.com/rgrinberg/vim-ocaml.git
 [submodule "vim-commentary"]
-    path = .vim/pack/all/opt/vim-commentary
+	path = .config/nvim/pack/all/opt/vim-commentary
     url = https://github.com/tpope/vim-commentary.git
 [submodule "rust.vim"]
-    path = .vim/pack/all/opt/rust.vim
+	path = .config/nvim/pack/all/opt/rust.vim
     url = https://github.com/rust-lang/rust.vim.git
 [submodule "vim-silicon"]
-    path = .vim/pack/all/opt/vim-silicon
+	path = .config/nvim/pack/all/opt/vim-silicon
     url = https://github.com/segeljakt/vim-silicon.git
 [submodule "ale"]
-    path = .vim/pack/all/opt/ale
+	path = .config/nvim/pack/all/opt/ale
     url = https://github.com/dense-analysis/ale.git
 [submodule "lightline-ale"]
-    path = .vim/pack/all/opt/lightline-ale
+	path = .config/nvim/pack/all/opt/lightline-ale
     url = https://github.com/maximbaz/lightline-ale.git
 [submodule "poppy.vim"]
-    path = .vim/pack/all/opt/poppy.vim
+	path = .config/nvim/pack/all/opt/poppy.vim
     url = https://github.com/bounceme/poppy.vim.git
 [submodule "vim-startify"]
-    path = .vim/pack/all/opt/vim-startify
+	path = .config/nvim/pack/all/opt/vim-startify
     url = git@github.com:mhinz/vim-startify.git
 [submodule "salt-vim"]
-	path = .vim/pack/all/opt/salt-vim
+	path = .config/nvim/pack/all/opt/salt-vim
 	url = git@github.com:saltstack/salt-vim.git
 [submodule "base16-shell"]
     path = .config/base16-shell
     url = https://github.com/chriskempson/base16-shell.git
+[submodule ".vim/pack/all/opt/nvim-lspconfig"]
+	path = .config/nvim/pack/all/opt/nvim-lspconfig
+	url = https://github.com/neovim/nvim-lspconfig.git
+[submodule ".vim/pack/all/opt/vim-crystal"]
+	path = .config/nvim/pack/all/opt/vim-crystal
+	url = https://github.com/vim-crystal/vim-crystal.git
