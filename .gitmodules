@@ -91,3 +91,6 @@
 [submodule ".vim/pack/all/opt/vim-crystal"]
 	path = .config/nvim/pack/all/opt/vim-crystal
 	url = https://github.com/vim-crystal/vim-crystal.git
+[submodule ".config/nvim/pack/all/opt/trouble.nvim"]
+	path = .config/nvim/pack/all/opt/trouble.nvim
+	url = https://github.com/folke/trouble.nvim.git
