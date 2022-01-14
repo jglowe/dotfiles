@@ -14,9 +14,7 @@
 -- figlet font : big
 --
 -- This file contains all the plugin packadd!s and settings
---------------------------------------------------------------------------------
-
---------------------------------------------------------------------------------
+--
 -- plugins without configuration
 --------------------------------------------------------------------------------
 
@@ -35,13 +33,13 @@ vim.cmd("packadd! vim-crystal")
 -- color scheme settings
 --------------------------------------------------------------------------------
 
+vim.opt.termguicolors = true
+
 vim.cmd("packadd! base16-vim")
 
 vim.g.base16colorspace = 256
 
 vim.cmd("colorscheme base16-classic-dark")
-
-vim.opt.termguicolors = true
 
 --------------------------------------------------------------------------------
 -- Lightline settings
@@ -115,7 +113,7 @@ vim.g.startify_custom_header = {
 
 vim.cmd("packadd! vim-commentary")
 
--- autocmd cpp FileType cpp setlocal commentstring=//%s
+vim.cmd("autocmd FileType cpp setlocal commentstring=//%s")
 vim.api.nvim_set_keymap("", "<leader>/", ":Commentary<CR>", {})
 
 --------------------------------------------------------------------------------
@@ -255,7 +253,6 @@ vim.api.nvim_set_keymap("", "<F5>", ":call CurtineIncSw()<CR>", { noremap = true
 vim.cmd("packadd! ale")
 vim.cmd("packadd! lightline-ale")
 
-
 --   "let g:ale_set_highlights = 0
 vim.cmd("highlight ALEError ctermbg=none cterm=underline")
 vim.cmd("highlight ALEWarning ctermbg=none cterm=underline")
@@ -311,7 +308,7 @@ vim.g.ocaml_folding = 1
 -- ocaml merlin and other plugin settings
 --------------------------------------------------------------------------------
 
-if vim.fn.executable("opam") then
+if vim.fn.executable("opam") == 1 then
     local opamshare = vim.fn.substitute(vim.fn.system("opam var share"), "[\r\n]*$", "", "")
 
     vim.fn.execute(
