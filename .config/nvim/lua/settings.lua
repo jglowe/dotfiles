@@ -49,11 +49,6 @@ vim.api.nvim_set_keymap("n", "<C-H>", "<C-W><C-H>", { noremap = true })
 -- Sets the update time to be more responsive
 vim.opt.updatetime = 100
 
--- Deals with tab sillyness for default settings
-vim.opt.expandtab = true
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-
 vim.opt.mouse = "a"
 
 vim.opt.paste = false

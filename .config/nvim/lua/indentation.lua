@@ -14,6 +14,11 @@
 -- Autocommands used for establishing indentation and spellchecking rules
 --------------------------------------------------------------------------------
 
+-- Deals with tab sillyness for default settings
+vim.opt.expandtab = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+
 vim.cmd([[augroup indendation
   autocmd!
 augroup END]])
