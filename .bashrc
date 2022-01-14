@@ -55,11 +55,20 @@ fi
 
 export PATH="$PATH:$HOME/bin"
 
-export TERM=xterm-256color
+export TERM=screen-256color
 
 ################################################################################
 # Application Settings
 ################################################################################
+
+if [ -f /opt/homebrew/bin/brew ]; then
+	print_module_status "homebrew" true
+	eval $(/opt/homebrew/bin/brew shellenv)
+
+	export PATH="/opt/homebrew/bin:$PATH"
+else
+	print_module_status "homebrew" false
+fi
 
 if [ -x "$(which nvim)" ]; then
 	print_module_status "neovim" true
@@ -92,15 +101,6 @@ if [ -f ~/.fzf.bash ] && [ -x "$(which fzf)" ]; then
 	source ~/.fzf.bash
 else
 	print_module_status "fzf" false
-fi
-
-if [ -f /opt/homebrew/bin/brew ]; then
-	print_module_status "homebrew" true
-	eval $(/opt/homebrew/bin/brew shellenv)
-
-	export PATH="/opt/homebrew/bin:$PATH"
-else
-	print_module_status "homebrew" false
 fi
 
 # Opam config
