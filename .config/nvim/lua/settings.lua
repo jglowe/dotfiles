@@ -1,4 +1,4 @@
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 --
 --                       _   _   _                   _
 --                      | | | | (_)                 | |
@@ -15,7 +15,7 @@
 --
 -- This file contains the non plugin settings that aren't associated with
 -- another logical unit of my config
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 -- turn absolute line numbers on
 vim.opt.number = true
@@ -60,7 +60,7 @@ vim.opt.hlsearch = true
 
 -- Colors column 81 background to show the line limit
 vim.opt.colorcolumn = focused_colorcolumn
-vim.opt.textwidth = 80
+vim.opt.textwidth = 81
 
 -- Sets the path to include the files in this subdirectory
 vim.opt.path = vim.opt.path + "**"
