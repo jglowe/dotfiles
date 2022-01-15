@@ -12,6 +12,7 @@
           - cmake
           - jedi-language-server
           - pyright
+          - autopep8
   when: ansible_os_family == "Darwin"
 
 - name: Install pacman python3
@@ -27,6 +28,7 @@
           - cmake
           - jedi-language-server
           - pyright
+          - autopep8
   when: ansible_os_family == "Archlinux"
 
 - name: Install pacman packages
@@ -43,5 +45,6 @@
           - cmake
           - jedi-language-server
           - pyright
+          - autopep8
   when: ansible_os_family == "RedHat"
 
