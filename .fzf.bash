@@ -1,13 +1,30 @@
 # Setup fzf
 # ---------
-if [[ ! "$PATH" == */opt/homebrew/opt/fzf/bin* ]]; then
-  export PATH="${PATH:+${PATH}:}/opt/homebrew/opt/fzf/bin"
+
+if [ "$(uname)" == "Darwin" ]; then
+	if [[ ! "$PATH" == */opt/homebrew/opt/fzf/bin* ]]; then
+		export PATH="${PATH:+${PATH}:}/opt/homebrew/opt/fzf/bin"
+	fi
+
+	# Auto-completion
+	# ---------------
+	[[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.bash" 2> /dev/null
+
+	# Key bindings
+	# ------------
+	source "/opt/homebrew/opt/fzf/shell/key-bindings.bash"
 fi
 
-# Auto-completion
-# ---------------
-[[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.bash" 2> /dev/null
+if [ "$(uname)" == "Linux" ]; then
 
-# Key bindings
-# ------------
-source "/opt/homebrew/opt/fzf/shell/key-bindings.bash"
+	# Manjaro settings
+	if [ -d "/usr/share/fzf" ]; then
+		# Auto-completion
+		# ---------------
+		[[ $- == *i* ]] && source "/usr/share/fzf/completion.bash" 2> /dev/null
+
+		# Key bindings
+		# ------------
+		source "/usr/share/fzf/key-bindings.bash"
+	fi
+fi
