@@ -103,21 +103,21 @@
 [submodule "neoformat"]
     path = .config/nvim/pack/all/opt/neoformat
     url = https://github.com/sbdchd/neoformat.git
-[submodule ".config/nvim/pack/all/opt/nvim-cmp"]
+[submodule "nvim-cmp"]
 	path = .config/nvim/pack/all/opt/nvim-cmp
 	url = https://github.com/hrsh7th/nvim-cmp.git
-[submodule ".config/nvim/pack/all/opt/cmp-nvim-lsp"]
+[submodule "cmp-nvim-lsp"]
 	path = .config/nvim/pack/all/opt/cmp-nvim-lsp
 	url = https://github.com/hrsh7th/cmp-nvim-lsp.git
-[submodule ".config/nvim/pack/all/opt/cmp-buffer"]
+[submodule "cmp-buffer"]
 	path = .config/nvim/pack/all/opt/cmp-buffer
 	url = https://github.com/hrsh7th/cmp-buffer.git
-[submodule ".config/nvim/pack/all/opt/cmp-nvim-lua"]
+[submodule "cmp-nvim-lua"]
 	path = .config/nvim/pack/all/opt/cmp-nvim-lua
 	url = https://github.com/hrsh7th/cmp-nvim-lua.git
-[submodule ".config/nvim/pack/all/opt/cmp-path"]
+[submodule "cmp-path"]
 	path = .config/nvim/pack/all/opt/cmp-path
 	url = https://github.com/hrsh7th/cmp-path.git
-[submodule ".config/nvim/pack/all/opt/luasnip"]
+[submodule "luasnip"]
 	path = .config/nvim/pack/all/opt/luasnip
 	url = https://github.com/L3MON4D3/LuaSnip.git

@@ -185,7 +185,7 @@ require("gitsigns").setup({
 --------------------------------------------------------------------------------
 -- LSP and autocomplete settings
 --------------------------------------------------------------------------------
---
+
 vim.cmd("packadd! nvim-lspconfig")
 vim.cmd("packadd! nvim-cmp")
 vim.cmd("packadd! cmp-nvim-lsp")
@@ -333,6 +333,20 @@ cmp.setup({
             i = cmp.mapping.abort(),
             c = cmp.mapping.close()
         }),
+        ["<Tab>"] = function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            else
+                fallback()
+            end
+        end,
+        ["<S-Tab>"] = function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            else
+                fallback()
+            end
+        end,
         ['<CR>'] = cmp.mapping.confirm({select = true})
     },
     sources = cmp.config.sources({
