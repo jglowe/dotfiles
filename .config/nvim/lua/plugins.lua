@@ -183,10 +183,16 @@ require("gitsigns").setup({
 })
 
 --------------------------------------------------------------------------------
--- LSP settings
+-- LSP and autocomplete settings
 --------------------------------------------------------------------------------
-
+--
 vim.cmd("packadd! nvim-lspconfig")
+vim.cmd("packadd! nvim-cmp")
+vim.cmd("packadd! cmp-nvim-lsp")
+vim.cmd("packadd! cmp-buffer")
+vim.cmd("packadd! cmp-nvim-lua")
+vim.cmd("packadd! cmp-path")
+vim.cmd("packadd! luasnip")
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -234,6 +240,10 @@ local on_attach = function(_, bufnr)
                    opts)
 end
 
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp
+                                                                     .protocol
+                                                                     .make_client_capabilities())
+
 if vim.fn.executable("lua-language-server") == 1 then
     local runtime_path = vim.split(package.path, ";")
     table.insert(runtime_path, "lua/?.lua")
@@ -241,6 +251,7 @@ if vim.fn.executable("lua-language-server") == 1 then
 
     require("lspconfig").sumneko_lua.setup({
         on_attach = on_attach,
+        capabilities = capabilities,
         settings = {
             Lua = {
                 runtime = {
@@ -266,28 +277,73 @@ if vim.fn.executable("lua-language-server") == 1 then
 end
 
 if vim.fn.executable("clangd") == 1 then
-    require("lspconfig").clangd.setup({on_attach = on_attach})
+    require("lspconfig").clangd.setup({
+        on_attach = on_attach,
+        capabilities = capabilities
+    })
 end
 
 if vim.fn.executable("ocamllsp") == 1 then
-    require("lspconfig").ocamllsp.setup({on_attach = on_attach})
+    require("lspconfig").ocamllsp.setup({
+        on_attach = on_attach,
+        capabilities = capabilities
+    })
 end
 
 if vim.fn.executable("rust-analyzer") == 1 then
-    require("lspconfig").rust_analyzer.setup({on_attach = on_attach})
+    require("lspconfig").rust_analyzer.setup({
+        on_attach = on_attach,
+        capabilities = capabilities
+    })
 end
 
 if vim.fn.executable("pyright") == 1 then
-    require("lspconfig").pyright.setup({on_attach = on_attach})
+    require("lspconfig").pyright.setup({
+        on_attach = on_attach,
+        capabilities = capabilities
+    })
 end
 
 -- if vim.fn.executable("jedi-language-server") == 1 then
---     require("lspconfig").jedi_language_server.setup({on_attach = on_attach})
+--     require("lspconfig").jedi_language_server.setup({
+--         on_attach = on_attach,
+--         capabilities = capabilities
+--     })
 -- end
 
 if vim.fn.executable("pyright") == 1 then
-    require("lspconfig").pyright.setup({on_attach = on_attach})
+    require("lspconfig").pyright.setup({
+        on_attach = on_attach,
+        capabilities = capabilities
+    })
 end
+
+local cmp = require('cmp')
+
+cmp.setup({
+    snippet = {
+        expand = function(args) require('luasnip').lsp_expand(args.body) end
+    },
+    mapping = {
+        ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), {'i', 'c'}),
+        ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), {'i', 'c'}),
+        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), {'i', 'c'}),
+        ['<C-y>'] = cmp.config.disable,
+        ['<C-e>'] = cmp.mapping({
+            i = cmp.mapping.abort(),
+            c = cmp.mapping.close()
+        }),
+        ['<CR>'] = cmp.mapping.confirm({select = true})
+    },
+    sources = cmp.config.sources({
+        {name = "nvim_lua"}, {name = 'nvim_lsp'}, {name = 'path'},
+        {name = 'buffer', keyword_length = 5}
+    })
+})
+
+cmp.setup.cmdline(':', {
+    sources = cmp.config.sources({{name = 'path'}}, {{name = 'cmdline'}})
+})
 
 --------------------------------------------------------------------------------
 -- neovim trouble settings
