@@ -23,9 +23,7 @@ vim.cmd("packadd! vim-trailing-whitespace")
 vim.cmd("packadd! salt-vim")
 vim.cmd("packadd! rust.vim")
 vim.cmd("packadd! vim-crystal")
--- vim.cmd("packadd! vim-fugitive")
--- vim.cmd("packadd! vim-gutentags")
--- vim.cmd("packadd! poppy.vim")
+vim.cmd("packadd! vim-fugitive")
 -- vim.cmd("packadd! vim-reason-plus")
 
 --------------------------------------------------------------------------------

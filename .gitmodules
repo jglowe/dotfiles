@@ -31,15 +31,6 @@
 [submodule "vim-smooth-scroll"]
     path = .config/nvim/pack/all/opt/vim-smooth-scroll
     url = https://github.com/terryma/vim-smooth-scroll.git
-[submodule "lh-vim-lib"]
-    path = .config/nvim/pack/all/opt/lh-vim-lib
-    url = https://github.com/LucHermitte/lh-vim-lib.git
-[submodule "local_vimrc"]
-    path = .config/nvim/pack/all/opt/local_vimrc
-    url = https://github.com/LucHermitte/local_vimrc.git
-[submodule "vim-gutentags"]
-    path = .config/nvim/pack/all/opt/vim-gutentags
-    url = https://github.com/ludovicchabant/vim-gutentags.git
 [submodule "vim-tmux-navigator"]
     path = .config/nvim/pack/all/opt/vim-tmux-navigator
     url = https://github.com/christoomey/vim-tmux-navigator.git
@@ -64,9 +55,6 @@
 [submodule "lightline-ale"]
     path = .config/nvim/pack/all/opt/lightline-ale
     url = https://github.com/maximbaz/lightline-ale.git
-[submodule "poppy.vim"]
-    path = .config/nvim/pack/all/opt/poppy.vim
-    url = https://github.com/bounceme/poppy.vim.git
 [submodule "vim-startify"]
     path = .config/nvim/pack/all/opt/vim-startify
     url = git@github.com:mhinz/vim-startify.git
