@@ -100,3 +100,6 @@
 [submodule "plenary.nvim"]
     path = .config/nvim/pack/all/opt/plenary.nvim
     url = https://github.com/nvim-lua/plenary.nvim.git
+[submodule "neoformat"]
+    path = .config/nvim/pack/all/opt/neoformat
+    url = https://github.com/sbdchd/neoformat.git
