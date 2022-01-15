@@ -18,7 +18,6 @@
 -- plugins without configuration
 --------------------------------------------------------------------------------
 
-vim.cmd("packadd! vim-gitgutter")
 vim.cmd("packadd! vim-eunuch")
 vim.cmd("packadd! vim-trailing-whitespace")
 vim.cmd("packadd! salt-vim")
@@ -92,20 +91,23 @@ vim.g.lightline.active.right = {
 }
 
 --------------------------------------------------------------------------------
--- vim-startify settings
+-- alpha-nvim settings
 --------------------------------------------------------------------------------
 
-vim.cmd("packadd! vim-startify")
+vim.cmd("packadd! nvim-web-devicons")
+vim.cmd("packadd! nvim-tree.lua")
 
-vim.g.startify_custom_header = {
-    "    oooooo     oooo  o8o",
-    "     `888.     .8'   `\"'",
-    "      `888.   .8'   oooo  ooo. .oo.  .oo.",
-    '       `888. .8\'    `888  `888P"Y88bP"Y88b',
-    "        `888.8'      888   888   888   888",
-    "         `888'       888   888   888   888",
-    "          `8'       o888o o888o o888o o888o",
-}
+require('nvim-tree').setup({})
+vim.api.nvim_set_keymap("n", "<C-n>", ":NvimTreeFindFileToggle<CR>", {})
+
+--------------------------------------------------------------------------------
+-- alpha-nvim settings
+--------------------------------------------------------------------------------
+
+-- requires nvim-web-devicons included above
+vim.cmd("packadd! alpha-nvim")
+
+require('alpha').setup(require('alpha.themes.startify').opts)
 
 --------------------------------------------------------------------------------
 -- vim-commentary settings
@@ -128,6 +130,23 @@ vim.api.nvim_set_keymap("n", "<C-H>", ":TmuxNavigateLeft<cr>", { noremap = true,
 vim.api.nvim_set_keymap("n", "<C-J>", ":TmuxNavigateDown<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-K>", ":TmuxNavigateUp<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-L>", ":TmuxNavigateRight<cr>", { noremap = true, silent = true })
+
+--------------------------------------------------------------------------------
+-- gitsigns.nvim settings
+--------------------------------------------------------------------------------
+
+vim.cmd("packadd! plenary.nvim")
+vim.cmd("packadd! gitsigns.nvim")
+
+require('gitsigns').setup({
+  signs = {
+    add          = {hl = 'GitSignsAdd'   , text = '+', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
+    change       = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+    delete       = {hl = 'GitSignsDelete', text = '-', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+    topdelete    = {hl = 'GitSignsDelete', text = '-', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+    changedelete = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+  },
+})
 
 --------------------------------------------------------------------------------
 -- LSP settings

@@ -27,8 +27,14 @@ vim.opt.undodir = vim.env.HOME .. "/.config/nvim/undodir"
 
 -- Makes backspace to behave like most text editors
 vim.opt.backspace = "indent,eol,start"
+
+-- Search settings
+vim.opt.incsearch = true
+vim.opt.hlsearch = true
+
+-- Colors columns beyond the textwidth background to show the line limit
 local focused_colorcolumn = '+' .. table.concat({
-  '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12',
+  '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12',
   '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23',
   '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34',
   '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45',
@@ -54,13 +60,8 @@ local focused_colorcolumn = '+' .. table.concat({
   '241', '242', '243', '244', '245', '246', '247', '248', '249', '250',
   '251', '252', '253', '254'
 }, ',+')
--- Search settings
-vim.opt.incsearch = true
-vim.opt.hlsearch = true
-
--- Colors column 81 background to show the line limit
 vim.opt.colorcolumn = focused_colorcolumn
-vim.opt.textwidth = 81
+vim.opt.textwidth = 80
 
 -- Sets the path to include the files in this subdirectory
 vim.opt.path = vim.opt.path + "**"

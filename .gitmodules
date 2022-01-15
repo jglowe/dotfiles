@@ -7,9 +7,6 @@
 [submodule "vim-lightline-base16"]
     path = .config/nvim/pack/all/opt/vim-lightline-base16
     url = https://github.com/mark-westerhof/vim-lightline-base16.git
-[submodule "vim-gitgutter"]
-    path = .config/nvim/pack/all/opt/vim-gitgutter
-    url = https://github.com/airblade/vim-gitgutter.git
 [submodule "vim-eunuch"]
     path = .config/nvim/pack/all/opt/vim-eunuch
     url = https://github.com/tpope/vim-eunuch.git
@@ -88,3 +85,18 @@
 [submodule "trouble.nvim"]
     path = .config/nvim/pack/all/opt/trouble.nvim
     url = https://github.com/folke/trouble.nvim.git
+[submodule "alpha-nvim"]
+    path = .config/nvim/pack/all/opt/alpha-nvim
+    url = https://github.com/goolord/alpha-nvim.git
+[submodule "nvim-web-devicons"]
+    path = .config/nvim/pack/all/opt/nvim-web-devicons
+    url = https://github.com/kyazdani42/nvim-web-devicons.git
+[submodule "nvim-tree.lua"]
+    path = .config/nvim/pack/all/opt/nvim-tree.lua
+    url = https://github.com/kyazdani42/nvim-tree.lua.git
+[submodule "gitsigns.nvim"]
+    path = .config/nvim/pack/all/opt/gitsigns.nvim
+    url = https://github.com/lewis6991/gitsigns.nvim.git
+[submodule "plenary.nvim"]
+    path = .config/nvim/pack/all/opt/plenary.nvim
+    url = https://github.com/nvim-lua/plenary.nvim.git
