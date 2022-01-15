@@ -31,7 +31,6 @@
           - shellcheck
           - terraform
           - wget
-          - rust
           - python3
           - clang-format
           - make
@@ -57,7 +56,6 @@
           - shellcheck
           - terraform
           - wget
-          - rust
           - python3
           - make
           - doctl
@@ -82,7 +80,6 @@
           - shellcheck
           - terraform
           - wget
-          - rust
           - python3
           - make
           # - clang-format

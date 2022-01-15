@@ -158,5 +158,3 @@ else
 	print_module_status "shellcheck" false
 fi
 
-
-. "$HOME/.cargo/env"

@@ -1,0 +1,27 @@
+- name: Install rustup with homebrew
+  become: yes
+  homebrew:
+    state: present
+    name:
+      - rustup-init
+  when: ansible_os_family == "Darwin"
+
+- name: Install rustup with pacman
+  become: yes
+  pacman:
+    state: present
+    name:
+      - rustup
+  when: ansible_os_family == "Archlinux"
+
+- name: Install rustup on Redhat
+  become: yes
+  shell: |
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  when: ansible_os_family == "Redhat"
+
+- name: Install dev tools
+  shell: |
+    rustup +nightly component add rust-analyzer-preview
+    rustup component add rustfmt --toolchain nightly
+
