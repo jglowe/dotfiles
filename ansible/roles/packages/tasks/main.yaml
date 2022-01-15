@@ -1,0 +1,88 @@
+- name: homebrew
+  block:
+    - name: Check for brew
+      stat:
+        path: /opt/homebrew/bin/brew
+      register: brew_exists
+
+    - name: Install brew if not present
+      shell: |
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      when: not brew_exists.stat.exists
+
+    - name: Update brew if present
+      homebrew:
+        update_homebrew: yes
+      when: brew_exists.stat.exists
+
+    - name: Install brew packages
+      homebrew:
+        state: present
+        name:
+          - tmux
+          - vim
+          - neovim
+          - bash
+          - bash-completion
+          - figlet
+          - fzf
+          - git
+          - htop
+          - shellcheck
+          - terraform
+          - wget
+          - rust
+          - python3
+          - clang-format
+          - make
+  when: ansible_os_family == "Darwin"
+
+- name: pacman
+  block:
+    - name: Install pacman packages
+      become: yes
+      pacman:
+        state: present
+        name:
+          - tmux
+          - vim
+          - neovim
+          - bash
+          - bash-completion
+          - figlet
+          - fzf
+          - git
+          - htop
+          - shellcheck
+          - terraform
+          - wget
+          - rust
+          - python3
+          - make
+          # - clang-format
+  when: ansible_os_family == "Archlinux"
+
+- name: dnf
+  block:
+    - name: Install dnf packages
+      become: yes
+      dnf:
+        state: present
+        name:
+          - tmux
+          - vim
+          - neovim # TODO -- Compile latest version from source
+          - bash-completion
+          - figlet
+          - fzf
+          - git
+          - htop
+          - shellcheck
+          - terraform
+          - wget
+          - rust
+          - python3
+          - make
+          # - clang-format
+  when: ansible_os_family == "RedHat"
+

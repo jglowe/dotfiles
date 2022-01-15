@@ -1,0 +1,33 @@
+- name: Install brew packages on Darwin
+  homebrew:
+    state: present
+    name:
+      - luarocks
+      - lua-language-server
+  when: ansible_os_family == "Darwin"
+
+- name: Install packages on Arch
+  become: yes
+  pacman:
+    state: present
+    name:
+      - luarocks
+      - lua-language-server
+  when: ansible_os_family == "Archlinux"
+
+- name: Install packages on Redhat
+  become: yes
+  dnf:
+    state: present
+    name:
+      - luarocks
+  when: ansible_os_family == "RedHat"
+
+# TODO -- Build lua-language-server for RHEL
+
+- name: Install luaformatter packages
+  become: yes
+  shell: |
+    luarocks install --server=https://luarocks.org/dev luaformatter
+
+

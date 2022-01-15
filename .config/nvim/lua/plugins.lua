@@ -281,6 +281,10 @@ if vim.fn.executable("pyright") == 1 then
     require("lspconfig").pyright.setup({on_attach = on_attach})
 end
 
+if vim.fn.executable("jedi-language-server") == 1 then
+    require("lspconfig").jedi_language_server.setup({on_attach = on_attach})
+end
+
 --------------------------------------------------------------------------------
 -- neovim trouble settings
 --------------------------------------------------------------------------------

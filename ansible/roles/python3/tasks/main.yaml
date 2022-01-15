@@ -1,0 +1,44 @@
+- name: Install homebrew python3
+  block:
+    - homebrew:
+        state: present
+        name:
+          - python3
+    - become: yes
+      pip:
+        executable: /opt/homebrew/bin/pip3
+        name:
+          - neovim
+          - cmake
+          - jedi-language-server
+  when: ansible_os_family == "Darwin"
+
+- name: Install pacman python3
+  become: yes
+  block:
+    - pacman:
+        state: present
+        name:
+          - python
+    - pip:
+        name:
+          - neovim
+          - cmake
+          - jedi-language-server
+  when: ansible_os_family == "Archlinux"
+
+- name: Install pacman packages
+  become: yes
+  block:
+    - dnf:
+        state: present
+        name:
+          - python3
+    - pip:
+        executable: /usr/local/bin/pip3
+        name:
+          - neovim
+          - cmake
+          - jedi-language-server
+  when: ansible_os_family == "RedHat"
+

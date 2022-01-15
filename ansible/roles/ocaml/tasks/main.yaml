@@ -1,0 +1,38 @@
+- name: Install brew packages on Darwin
+  homebrew:
+    state: present
+    name:
+      - ocaml
+      - opam
+      - gpatch
+  when: ansible_os_family == "Darwin"
+
+- name: Install packages on Arch
+  become: yes
+  pacman:
+    state: present
+    name:
+      - ocaml
+      - opam
+      - patch
+  when: ansible_os_family == "Archlinux"
+
+- name: Install packages on Redhat
+  become: yes
+  dnf:
+    state: present
+    name:
+      - ocaml
+      - opam
+      - patch
+  when: ansible_os_family == "RedHat"
+
+- name: Setup ocaml switch
+  shell: |
+    yes | opam init || true
+    opam switch create 4.12.0 || true
+    opam switch set 4.12.0
+
+- name: Install ocaml libraries
+  shell: |
+    opam install -y ocamlformat dune merlin ocaml-lsp-server

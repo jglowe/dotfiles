@@ -1,0 +1,39 @@
+- name: Check if dotfiles exists
+  stat:
+    path: "~/.dotfiles"
+  register: dotfiles
+
+- name: Setup dotfiles
+  block:
+  - name: Setup dotfiles
+    shell: |
+      set -euo pipefail
+
+      ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+
+      function dgit () {
+          git --git-dir "$HOME/.dotfiles/" --work-tree="$HOME" "$@"
+      }
+
+      if [ ! -d "$HOME/.dotfiles/" ]; then
+        git clone --bare "git@github.com:jglowe/dotfiles.git" "$HOME/.dotfiles"
+      fi
+
+      if ! files=$(dgit checkout master 2>&1); then
+          echo "Backing up files to $HOME/.dotfiles-backup"
+          mkdir -p "$HOME/.dotfiles-backup"
+          echo "$files" | grep -P "^\t" | xargs -I % sh -c "mv % $HOME/.dotfiles-backup"
+          echo "Moved all the conflicting files to $HOME/.dotfiles-backup"
+          dgit checkout
+      fi
+
+      dgit submodule update --init
+
+      dgit config --local status.showUntrackedFiles no
+      dgit config --local core.bare false
+
+      chmod 700 ~/.ssh
+      # chmod 600 ~/.ssh/config
+  when: not dotfiles.stat.exists
+
+
