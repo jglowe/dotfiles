@@ -91,3 +91,5 @@ vim.opt.mouse = "a"
 vim.opt.paste = false
 vim.opt.pastetoggle = "<F2>"
 vim.opt.clipboard = vim.opt.clipboard + "unnamedplus"
+
+

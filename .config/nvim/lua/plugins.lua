@@ -45,7 +45,7 @@ vim.cmd("colorscheme base16-classic-dark")
 --
 -- vim.cmd('highlight EndOfBuffer ctermbg=g:base16_cterm01
 --                              \ guibg=g:base16_gui01')
-vim.cmd('highlight EndOfBuffer ctermbg=18 guibg=#202020')
+vim.cmd("highlight EndOfBuffer ctermbg=18 guibg=#202020")
 
 --------------------------------------------------------------------------------
 -- Lightline settings
@@ -61,13 +61,12 @@ vim.opt.showmode = false
 
 vim.g.lightline = {
     ["active"] = {
-        ["left"] = { { "mode", "paste" },
-                     { "gitbranch", "readonly", "filename", "modified" } },
+        ["left"] = {
+            {"mode", "paste"}, {"gitbranch", "readonly", "filename", "modified"}
+        }
     },
-    ["component_function"] = {
-        ["gitbranch"] = "gitbranch#name",
-    },
-    ["colorscheme"] = "base16_classic_dark",
+    ["component_function"] = {["gitbranch"] = "gitbranch#name"},
+    ["colorscheme"] = "base16_classic_dark"
 }
 
 -- Lua can't update global values internals like you would expect
@@ -81,21 +80,19 @@ vim.g.lightline.component_expand = {
     ["linter_checking"] = "lightline#ale#checking",
     ["linter_warnings"] = "lightline#ale#warnings",
     ["linter_errors"] = "lightline#ale#errors",
-    ["linter_ok"] = "lightline#ale#ok",
+    ["linter_ok"] = "lightline#ale#ok"
 }
 
 vim.g.lightline.component_type = {
     ["linter_checking"] = "left",
     ["linter_warnings"] = "warning",
     ["linter_errors"] = "error",
-    ["linter_ok"] = "left",
+    ["linter_ok"] = "left"
 }
 
 vim.g.lightline.active.right = {
-    { "linter_checking", "linter_errors", "linter_warnings", "linter_ok" },
-    { "percent" },
-    { "fileformat", "fileencoding", "filetype" },
-    { "lineinfo" },
+    {"linter_checking", "linter_errors", "linter_warnings", "linter_ok"},
+    {"percent"}, {"fileformat", "fileencoding", "filetype"}, {"lineinfo"}
 }
 
 --------------------------------------------------------------------------------
@@ -105,7 +102,7 @@ vim.g.lightline.active.right = {
 vim.cmd("packadd! nvim-web-devicons")
 vim.cmd("packadd! nvim-tree.lua")
 
-require('nvim-tree').setup({})
+require("nvim-tree").setup({})
 vim.api.nvim_set_keymap("n", "<C-n>", ":NvimTreeFindFileToggle<CR>", {})
 
 --------------------------------------------------------------------------------
@@ -115,7 +112,7 @@ vim.api.nvim_set_keymap("n", "<C-n>", ":NvimTreeFindFileToggle<CR>", {})
 -- requires nvim-web-devicons included above
 vim.cmd("packadd! alpha-nvim")
 
-require('alpha').setup(require('alpha.themes.startify').opts)
+require("alpha").setup(require("alpha.themes.startify").opts)
 
 --------------------------------------------------------------------------------
 -- vim-commentary settings
@@ -134,10 +131,14 @@ vim.cmd("packadd! vim-tmux-navigator")
 
 vim.g.tmux_navigator_no_mappings = 1
 
-vim.api.nvim_set_keymap("n", "<C-H>", ":TmuxNavigateLeft<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-J>", ":TmuxNavigateDown<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-K>", ":TmuxNavigateUp<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-L>", ":TmuxNavigateRight<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-H>", ":TmuxNavigateLeft<cr>",
+                        {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<C-J>", ":TmuxNavigateDown<cr>",
+                        {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<C-K>", ":TmuxNavigateUp<cr>",
+                        {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<C-L>", ":TmuxNavigateRight<cr>",
+                        {noremap = true, silent = true})
 
 --------------------------------------------------------------------------------
 -- gitsigns.nvim settings
@@ -146,14 +147,39 @@ vim.api.nvim_set_keymap("n", "<C-L>", ":TmuxNavigateRight<cr>", { noremap = true
 vim.cmd("packadd! plenary.nvim")
 vim.cmd("packadd! gitsigns.nvim")
 
-require('gitsigns').setup({
-  signs = {
-    add          = {hl = 'GitSignsAdd'   , text = '+', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
-    change       = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
-    delete       = {hl = 'GitSignsDelete', text = '-', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
-    topdelete    = {hl = 'GitSignsDelete', text = '-', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
-    changedelete = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
-  },
+require("gitsigns").setup({
+    signs = {
+        add = {
+            hl = "GitSignsAdd",
+            text = "+",
+            numhl = "GitSignsAddNr",
+            linehl = "GitSignsAddLn"
+        },
+        change = {
+            hl = "GitSignsChange",
+            text = "~",
+            numhl = "GitSignsChangeNr",
+            linehl = "GitSignsChangeLn"
+        },
+        delete = {
+            hl = "GitSignsDelete",
+            text = "-",
+            numhl = "GitSignsDeleteNr",
+            linehl = "GitSignsDeleteLn"
+        },
+        topdelete = {
+            hl = "GitSignsDelete",
+            text = "-",
+            numhl = "GitSignsDeleteNr",
+            linehl = "GitSignsDeleteLn"
+        },
+        changedelete = {
+            hl = "GitSignsChange",
+            text = "~",
+            numhl = "GitSignsChangeNr",
+            linehl = "GitSignsChangeLn"
+        }
+    }
 })
 
 --------------------------------------------------------------------------------
@@ -161,82 +187,98 @@ require('gitsigns').setup({
 --------------------------------------------------------------------------------
 
 vim.cmd("packadd! nvim-lspconfig")
-local nvim_lsp = require('lspconfig')
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(_, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+    local function buf_set_keymap(...)
+        vim.api.nvim_buf_set_keymap(bufnr, ...)
+    end
+    local function buf_set_option(...)
+        vim.api.nvim_buf_set_option(bufnr, ...)
+    end
 
-  -- Enable completion triggered by <c-x><c-o>
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+    -- Enable completion triggered by <c-x><c-o>
+    buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
-  -- Mappings.
-  local opts = { noremap=true, silent=true }
+    -- Mappings.
+    local opts = {noremap = true, silent = true}
 
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+    buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+    buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+    buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>",
+                   opts)
+    buf_set_keymap("n", "<space>wa",
+                   "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
+    buf_set_keymap("n", "<space>wr",
+                   "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
+    buf_set_keymap("n", "<space>wl",
+                   "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
+                   opts)
+    buf_set_keymap("n", "<space>D",
+                   "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+    buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+    buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>",
+                   opts)
+    buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+    buf_set_keymap("n", "<space>e", "<cmd>lua vim.diagnostic.open_float()<CR>",
+                   opts)
+    buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+    buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+    buf_set_keymap("n", "<space>q", "<cmd>lua vim.diagnostic.setloclist()<CR>",
+                   opts)
+    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>",
+                   opts)
 end
 
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
+if vim.fn.executable("lua-language-server") == 1 then
+    local runtime_path = vim.split(package.path, ";")
+    table.insert(runtime_path, "lua/?.lua")
+    table.insert(runtime_path, "lua/?/init.lua")
 
-require'lspconfig'.sumneko_lua.setup {
-  on_attach = on_attach,
-  settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-        -- Setup your lua path
-        path = runtime_path,
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
-        disable = {"lowercase-global"}
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
-    },
-  },
-}
+    require("lspconfig").sumneko_lua.setup({
+        on_attach = on_attach,
+        settings = {
+            Lua = {
+                runtime = {
+                    -- Tell the language server which version of Lua you're using
+                    version = "LuaJIT",
+                    -- Setup your lua path
+                    path = runtime_path
+                },
+                diagnostics = {
+                    -- Get the language server to recognize the `vim` global
+                    globals = {"vim"},
+                    disable = {"lowercase-global"}
+                },
+                workspace = {
+                    -- Make the server aware of Neovim runtime files
+                    library = vim.api.nvim_get_runtime_file("", true)
+                },
+                -- Do not send telemetry data containing a randomized but unique identifier
+                telemetry = {enable = false}
+            }
+        }
+    })
+end
 
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'rust_analyzer' }
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    }
-  }
+if vim.fn.executable("clangd") == 1 then
+    require("lspconfig").clangd.setup({on_attach = on_attach})
+end
+
+if vim.fn.executable("ocamllsp") == 1 then
+    require("lspconfig").ocamllsp.setup({on_attach = on_attach})
+end
+
+if vim.fn.executable("rust-analyzer") == 1 then
+    require("lspconfig").rust_analyzer.setup({on_attach = on_attach})
+end
+
+if vim.fn.executable("pyright") == 1 then
+    require("lspconfig").pyright.setup({on_attach = on_attach})
 end
 
 --------------------------------------------------------------------------------
@@ -266,12 +308,12 @@ vim.g.tmuxline_powerline_separators = 0
 vim.g.tmuxline_preset = {
     ["a"] = "#S",
     ["b"] = "#W",
-    ["c"] = { "#(whoami)", "#H" },
+    ["c"] = {"#(whoami)", "#H"},
     ["win"] = "#I #W",
     ["cwin"] = "#I #W",
     ["x"] = "%a",
     ["y"] = "#W %R",
-    ["z"] = "#H",
+    ["z"] = "#H"
 }
 
 --------------------------------------------------------------------------------
@@ -280,7 +322,8 @@ vim.g.tmuxline_preset = {
 
 vim.cmd("packadd! CurtineIncSw.vim")
 
-vim.api.nvim_set_keymap("", "<F5>", ":call CurtineIncSw()<CR>", { noremap = true })
+vim.api
+    .nvim_set_keymap("", "<F5>", ":call CurtineIncSw()<CR>", {noremap = true})
 
 --------------------------------------------------------------------------------
 -- Ale settings
@@ -306,31 +349,18 @@ vim.api.nvim_set_keymap("n", "<S-t>", ":TagbarToggle<CR>", {})
 --------------------------------------------------------------------------------
 
 vim.cmd("packadd! vim-smooth-scroll")
-
-vim.api.nvim_set_keymap(
-    "n",
-    "<c-u>",
-    ":call smooth_scroll#up(&scroll, 10, 2)<CR>",
-    { noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-    "n",
-    "<c-d>",
-    ":call smooth_scroll#down(&scroll, 10, 2)<CR>",
-    { noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-    "n",
-    "<c-b>",
-    ":call smooth_scroll#up(&scroll*2, 20, 4)<CR>",
-    { noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-    "n",
-    "<c-f>",
-    ":call smooth_scroll#down(&scroll*2, 20, 4)<CR>",
-    { noremap = true, silent = true }
-)
+vim.api.nvim_set_keymap("n", "<c-u>",
+                        ":call smooth_scroll#up(&scroll, 10, 2)<CR>",
+                        {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<c-d>",
+                        ":call smooth_scroll#down(&scroll, 10, 2)<CR>",
+                        {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<c-b>",
+                        ":call smooth_scroll#up(&scroll*2, 20, 4)<CR>",
+                        {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<c-f>",
+                        ":call smooth_scroll#down(&scroll*2, 20, 4)<CR>",
+                        {noremap = true, silent = true})
 
 --------------------------------------------------------------------------------
 -- vim-ocaml settings
@@ -339,22 +369,4 @@ vim.api.nvim_set_keymap(
 vim.cmd("packadd! vim-ocaml")
 
 vim.g.ocaml_folding = 1
-
---------------------------------------------------------------------------------
--- ocaml merlin and other plugin settings
---------------------------------------------------------------------------------
-
-if vim.fn.executable("opam") == 1 then
-    local opamshare = vim.fn.substitute(vim.fn.system("opam var share"), "[\r\n]*$", "", "")
-
-    vim.fn.execute(
-        "set rtp+="
-            .. opamshare
-            .. "/ocp-indent/vim,"
-            .. opamshare
-            .. "/ocp-index/vim,"
-            .. opamshare
-            .. "/merlin/vim"
-    )
-end
 

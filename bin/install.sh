@@ -24,4 +24,4 @@ dgit config --local status.showUntrackedFiles no
 dgit config --local core.bare false
 
 chmod 700 ~/.ssh
-chmod 600 ~/.ssh/config
+# chmod 600 ~/.ssh/config
