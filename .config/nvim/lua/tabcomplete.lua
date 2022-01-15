@@ -38,7 +38,12 @@ _G.tab_or_complete = function()
         return vim.api.nvim_replace_termcodes("<Tab>", true, false, true)
     else
         if vim.fn.pumvisible() == 0 and vim.opt.omnifunc:get() ~= "" then
-            return vim.api.nvim_replace_termcodes("<C-x><C-o>", true, false, true)
+            return vim.api.nvim_replace_termcodes(
+                       "<C-x><C-o>",
+                       true,
+                       false,
+                       true
+                   )
         else
             return vim.api.nvim_replace_termcodes("<C-n>", true, false, true)
         end

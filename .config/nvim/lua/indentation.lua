@@ -31,7 +31,7 @@ vim.cmd([[autocmd indendation Filetype ocaml,ruby,vim setlocal expandtab
 
 -- Enables spell checking for text files
 vim.cmd([[autocmd indendation Filetype markdown,text set spell |
-                                     \ highlight clear SpellBad |
-                                     \ highlight SpellBad cterm=underline,bold]])
+                              \ highlight clear SpellBad |
+                              \ highlight SpellBad cterm=underline,bold]])
 
 vim.cmd("autocmd indendation Filetype markdown setlocal textwidth=80")

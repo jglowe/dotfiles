@@ -43,7 +43,8 @@ vim.cmd("colorscheme base16-classic-dark")
 -- If the color scheme changes, you will have to find these in the color scheme
 -- to update the EndOfBuffer Colors
 --
--- vim.cmd('highlight EndOfBuffer ctermbg=g:base16_cterm01 guibg=g:base16_gui01')
+-- vim.cmd('highlight EndOfBuffer ctermbg=g:base16_cterm01
+--                              \ guibg=g:base16_gui01')
 vim.cmd('highlight EndOfBuffer ctermbg=18 guibg=#202020')
 
 --------------------------------------------------------------------------------
@@ -60,7 +61,8 @@ vim.opt.showmode = false
 
 vim.g.lightline = {
     ["active"] = {
-        ["left"] = { { "mode", "paste" }, { "gitbranch", "readonly", "filename", "modified" } },
+        ["left"] = { { "mode", "paste" },
+                     { "gitbranch", "readonly", "filename", "modified" } },
     },
     ["component_function"] = {
         ["gitbranch"] = "gitbranch#name",
