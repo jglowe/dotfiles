@@ -94,7 +94,7 @@ vim.g.lightline.active.right = {
 }
 
 --------------------------------------------------------------------------------
--- alpha-nvim settings
+-- nvim-tree settings
 --------------------------------------------------------------------------------
 
 vim.cmd("packadd! nvim-web-devicons")
@@ -113,13 +113,84 @@ vim.cmd("packadd! alpha-nvim")
 require("alpha").setup(require("alpha.themes.startify").opts)
 
 --------------------------------------------------------------------------------
--- vim-commentary settings
+-- Comment.nvim settings
 --------------------------------------------------------------------------------
 
-vim.cmd("packadd! vim-commentary")
+vim.cmd("packadd! Comment.nvim")
 
-vim.cmd("autocmd FileType cpp setlocal commentstring=//%s")
-vim.api.nvim_set_keymap("", "<leader>/", ":Commentary<CR>", {})
+require('Comment').setup({
+    ---Add a space b/w comment and the line
+    ---@type boolean
+    padding = true,
+
+    ---Whether the cursor should stay at its position
+    ---NOTE: This only affects NORMAL mode mappings and doesn't work with dot-repeat
+    ---@type boolean
+    sticky = true,
+
+    ---Lines to be ignored while comment/uncomment.
+    ---Could be a regex string or a function that returns a regex string.
+    ---Example: Use '^$' to ignore empty lines
+    ---@type string|fun():string
+    ignore = nil,
+
+    ---LHS of toggle mappings in NORMAL + VISUAL mode
+    ---@type table
+    toggler = {
+        ---Line-comment toggle keymap
+        line = 'gcc',
+        ---Block-comment toggle keymap
+        block = 'gbc',
+    },
+
+    ---LHS of operator-pending mappings in NORMAL + VISUAL mode
+    ---@type table
+    opleader = {
+        ---Line-comment keymap
+        line = 'gc',
+        ---Block-comment keymap
+        block = 'gb',
+    },
+
+    ---LHS of extra mappings
+    ---@type table
+    extra = {
+        ---Add comment on the line above
+        above = 'gcO',
+        ---Add comment on the line below
+        below = 'gco',
+        ---Add comment at the end of line
+        eol = 'gcA',
+    },
+
+    ---Create basic (operator-pending) and extended mappings for NORMAL + VISUAL mode
+    ---@type table
+    mappings = {
+        ---Operator-pending mapping
+        ---Includes `gcc`, `gbc`, `gc[count]{motion}` and `gb[count]{motion}`
+        ---NOTE: These mappings can be changed individually by `opleader` and `toggler` config
+        basic = true,
+        ---Extra mapping
+        ---Includes `gco`, `gcO`, `gcA`
+        extra = true,
+        ---Extended mapping
+        ---Includes `g>`, `g<`, `g>[count]{motion}` and `g<[count]{motion}`
+        extended = false,
+    },
+
+    ---Pre-hook, called before commenting the line
+    ---@type fun(ctx: Ctx):string
+    pre_hook = nil,
+
+    ---Post-hook, called after commenting is done
+    ---@type fun(ctx: Ctx)
+    post_hook = nil,
+})
+
+-- vim.cmd("packadd! vim-commentary")
+
+-- vim.cmd("autocmd FileType cpp setlocal commentstring=//%s")
+-- vim.api.nvim_set_keymap("", "<leader>/", ":Commentary<CR>", {})
 
 --------------------------------------------------------------------------------
 -- vim-tmux-navigator settings
@@ -242,6 +313,8 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp
                                                                      .protocol
                                                                      .make_client_capabilities())
 
+local standard_lsp_options = {on_attach = on_attach, capabilities = capabilities}
+
 if vim.fn.executable("lua-language-server") == 1 then
     local runtime_path = vim.split(package.path, ";")
     table.insert(runtime_path, "lua/?.lua")
@@ -275,45 +348,31 @@ if vim.fn.executable("lua-language-server") == 1 then
 end
 
 if vim.fn.executable("clangd") == 1 then
-    require("lspconfig").clangd.setup({
-        on_attach = on_attach,
-        capabilities = capabilities
-    })
+    require("lspconfig").clangd.setup(standard_lsp_options)
 end
 
 if vim.fn.executable("ocamllsp") == 1 then
-    require("lspconfig").ocamllsp.setup({
-        on_attach = on_attach,
-        capabilities = capabilities
-    })
+    require("lspconfig").ocamllsp.setup(standard_lsp_options)
 end
 
 if vim.fn.executable("rust-analyzer") == 1 then
-    require("lspconfig").rust_analyzer.setup({
-        on_attach = on_attach,
-        capabilities = capabilities
-    })
+    require("lspconfig").rust_analyzer.setup(standard_lsp_options)
 end
 
 if vim.fn.executable("pyright") == 1 then
-    require("lspconfig").pyright.setup({
-        on_attach = on_attach,
-        capabilities = capabilities
-    })
+    require("lspconfig").pyright.setup(standard_lsp_options)
+end
+
+if vim.fn.executable("bash-language-server") == 1 then
+    require('lspconfig').bashls.setup(standard_lsp_options)
 end
 
 -- if vim.fn.executable("jedi-language-server") == 1 then
---     require("lspconfig").jedi_language_server.setup({
---         on_attach = on_attach,
---         capabilities = capabilities
---     })
+--     require("lspconfig").jedi_language_server.setup(standard_lsp_options)
 -- end
 
 if vim.fn.executable("pyright") == 1 then
-    require("lspconfig").pyright.setup({
-        on_attach = on_attach,
-        capabilities = capabilities
-    })
+    require("lspconfig").pyright.setup(standard_lsp_options)
 end
 
 local cmp = require('cmp')
@@ -354,9 +413,9 @@ cmp.setup({
     })
 })
 
-cmp.setup.cmdline(':', {
-    sources = cmp.config.sources({{name = 'path'}}, {{name = 'cmdline'}})
-})
+-- cmp.setup.cmdline(':', {
+--     sources = cmp.config.sources({{name = 'path'}}, {{name = 'cmdline'}})
+-- })
 
 --------------------------------------------------------------------------------
 -- neovim trouble settings

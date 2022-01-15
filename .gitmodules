@@ -92,20 +92,23 @@
     path = .config/nvim/pack/all/opt/neoformat
     url = https://github.com/sbdchd/neoformat.git
 [submodule "nvim-cmp"]
-	path = .config/nvim/pack/all/opt/nvim-cmp
-	url = https://github.com/hrsh7th/nvim-cmp.git
+    path = .config/nvim/pack/all/opt/nvim-cmp
+    url = https://github.com/hrsh7th/nvim-cmp.git
 [submodule "cmp-nvim-lsp"]
-	path = .config/nvim/pack/all/opt/cmp-nvim-lsp
-	url = https://github.com/hrsh7th/cmp-nvim-lsp.git
+    path = .config/nvim/pack/all/opt/cmp-nvim-lsp
+    url = https://github.com/hrsh7th/cmp-nvim-lsp.git
 [submodule "cmp-buffer"]
-	path = .config/nvim/pack/all/opt/cmp-buffer
-	url = https://github.com/hrsh7th/cmp-buffer.git
+    path = .config/nvim/pack/all/opt/cmp-buffer
+    url = https://github.com/hrsh7th/cmp-buffer.git
 [submodule "cmp-nvim-lua"]
-	path = .config/nvim/pack/all/opt/cmp-nvim-lua
-	url = https://github.com/hrsh7th/cmp-nvim-lua.git
+    path = .config/nvim/pack/all/opt/cmp-nvim-lua
+    url = https://github.com/hrsh7th/cmp-nvim-lua.git
 [submodule "cmp-path"]
-	path = .config/nvim/pack/all/opt/cmp-path
-	url = https://github.com/hrsh7th/cmp-path.git
+    path = .config/nvim/pack/all/opt/cmp-path
+    url = https://github.com/hrsh7th/cmp-path.git
 [submodule "luasnip"]
-	path = .config/nvim/pack/all/opt/luasnip
-	url = https://github.com/L3MON4D3/LuaSnip.git
+    path = .config/nvim/pack/all/opt/luasnip
+    url = https://github.com/L3MON4D3/LuaSnip.git
+[submodule "Comment.nvim"]
+    path = .config/nvim/pack/all/opt/Comment.nvim
+    url = https://github.com/numToStr/Comment.nvim.git
