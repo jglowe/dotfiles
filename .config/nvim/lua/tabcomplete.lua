@@ -38,12 +38,8 @@ _G.tab_or_complete = function()
         return vim.api.nvim_replace_termcodes("<Tab>", true, false, true)
     else
         if vim.fn.pumvisible() == 0 and vim.opt.omnifunc:get() ~= "" then
-            return vim.api.nvim_replace_termcodes(
-                       "<C-x><C-o>",
-                       true,
-                       false,
-                       true
-                   )
+            return vim.api.nvim_replace_termcodes("<C-x><C-o>", true, false,
+                                                  true)
         else
             return vim.api.nvim_replace_termcodes("<C-n>", true, false, true)
         end
@@ -62,26 +58,16 @@ _G.shift_tab_or_complete = function()
 end
 
 -- Tab will now autocomplete if there is leading chars
-vim.api.nvim_set_keymap(
-    "i",
-    "<TAB>",
-    "<C-R>=v:lua.tab_or_complete()<CR>",
-    { noremap = true, silent = true }
-)
+vim.api.nvim_set_keymap("i", "<TAB>", "<C-R>=v:lua.tab_or_complete()<CR>",
+                        {noremap = true, silent = true})
 
-vim.api.nvim_set_keymap(
-    "i",
-    "<S-TAB>",
-    "<C-R>=v:lua.shift_tab_or_complete()<CR>",
-    { noremap = true, silent = true }
-)
+vim.api.nvim_set_keymap("i", "<S-TAB>",
+                        "<C-R>=v:lua.shift_tab_or_complete()<CR>",
+                        {noremap = true, silent = true})
 
 -- Makes enter act as autocomplete select if an item is selected.
 -- By default it acts like enter
-vim.api.nvim_set_keymap(
-    "i",
-    "<CR>",
-    'pumvisible() ? "\\<C-y>" : "\\<C-g>u\\<CR>"',
-    { noremap = true, silent = true, expr = true }
-)
+vim.api.nvim_set_keymap("i", "<CR>",
+                        'pumvisible() ? "\\<C-y>" : "\\<C-g>u\\<CR>"',
+                        {noremap = true, silent = true, expr = true})
 

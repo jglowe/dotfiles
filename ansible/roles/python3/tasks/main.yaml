@@ -11,6 +11,7 @@
           - neovim
           - cmake
           - jedi-language-server
+          - pyright
   when: ansible_os_family == "Darwin"
 
 - name: Install pacman python3
@@ -25,6 +26,7 @@
           - neovim
           - cmake
           - jedi-language-server
+          - pyright
   when: ansible_os_family == "Archlinux"
 
 - name: Install pacman packages
@@ -40,5 +42,6 @@
           - neovim
           - cmake
           - jedi-language-server
+          - pyright
   when: ansible_os_family == "RedHat"
 

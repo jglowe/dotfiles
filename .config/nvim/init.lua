@@ -20,9 +20,7 @@ require("tabcomplete")
 require("indentation")
 require("folding")
 
-if vim.opt.loadplugins then
-    require("plugins")
-end
+if vim.opt.loadplugins then require("plugins") end
 
 -- Automatic, language-dependent indentation, syntax coloring and other
 -- functionality.
