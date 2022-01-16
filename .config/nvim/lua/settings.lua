@@ -25,6 +25,9 @@ vim.opt.number = true
 vim.opt.undofile = true
 vim.opt.undodir = vim.env.HOME .. "/.config/nvim/undodir"
 
+-- Sets up the dir for swap files under neovim config
+vim.opt.dir = vim.env.HOME .. "/.config/nvim/swap"
+
 -- Makes backspace to behave like most text editors
 vim.opt.backspace = "indent,eol,start"
 

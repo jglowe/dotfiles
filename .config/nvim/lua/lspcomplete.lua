@@ -18,13 +18,15 @@
 -- autocompletion (which uses lsp as a source)
 --------------------------------------------------------------------------------
 
-vim.cmd("packadd! nvim-lspconfig")
-vim.cmd("packadd! nvim-cmp")
-vim.cmd("packadd! cmp-nvim-lsp")
-vim.cmd("packadd! cmp-buffer")
-vim.cmd("packadd! cmp-nvim-lua")
-vim.cmd("packadd! cmp-path")
-vim.cmd("packadd! luasnip")
+local plugin = require("plugin")
+
+plugin.load("nvim-lspconfig")
+plugin.load("nvim-cmp")
+plugin.load("cmp-nvim-lsp")
+plugin.load("cmp-buffer")
+plugin.load("cmp-nvim-lua")
+plugin.load("cmp-path")
+plugin.load("luasnip")
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer

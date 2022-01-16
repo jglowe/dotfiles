@@ -18,20 +18,22 @@
 -- plugins without configuration
 --------------------------------------------------------------------------------
 
-vim.cmd("packadd! vim-eunuch")
-vim.cmd("packadd! vim-trailing-whitespace")
-vim.cmd("packadd! salt-vim")
-vim.cmd("packadd! rust.vim")
-vim.cmd("packadd! vim-crystal")
-vim.cmd("packadd! vim-fugitive")
--- vim.cmd("packadd! vim-reason-plus")
+local plugin = require("plugin")
+
+plugin.load("vim-eunuch")
+plugin.load("vim-trailing-whitespace")
+plugin.load("salt-vim")
+plugin.load("rust.vim")
+plugin.load("vim-crystal")
+plugin.load("vim-fugitive")
+-- plugin.load("vim-reason-plus")
 
 --------------------------------------------------------------------------------
 -- nvim-tree settings
 --------------------------------------------------------------------------------
 
-vim.cmd("packadd! nvim-web-devicons")
-vim.cmd("packadd! nvim-tree.lua")
+plugin.load("nvim-web-devicons")
+plugin.load("nvim-tree.lua")
 
 require("nvim-tree").setup({})
 vim.api.nvim_set_keymap("n", "<C-n>", ":NvimTreeFindFileToggle<CR>", {})
@@ -41,7 +43,7 @@ vim.api.nvim_set_keymap("n", "<C-n>", ":NvimTreeFindFileToggle<CR>", {})
 --------------------------------------------------------------------------------
 
 -- requires nvim-web-devicons included above
-vim.cmd("packadd! alpha-nvim")
+plugin.load("alpha-nvim")
 
 require("alpha").setup(require("alpha.themes.startify").opts)
 
@@ -49,7 +51,7 @@ require("alpha").setup(require("alpha.themes.startify").opts)
 -- Comment.nvim settings
 --------------------------------------------------------------------------------
 
-vim.cmd("packadd! Comment.nvim")
+plugin.load("Comment.nvim")
 
 require('Comment').setup({
     ---Add a space b/w comment and the line
@@ -120,7 +122,7 @@ require('Comment').setup({
     post_hook = nil,
 })
 
--- vim.cmd("packadd! vim-commentary")
+-- plugin.load("vim-commentary")
 
 -- vim.cmd("autocmd FileType cpp setlocal commentstring=//%s")
 -- vim.api.nvim_set_keymap("", "<leader>/", ":Commentary<CR>", {})
@@ -129,7 +131,7 @@ require('Comment').setup({
 -- vim-tmux-navigator settings
 --------------------------------------------------------------------------------
 
-vim.cmd("packadd! vim-tmux-navigator")
+plugin.load("vim-tmux-navigator")
 
 vim.g.tmux_navigator_no_mappings = 1
 
@@ -146,8 +148,8 @@ vim.api.nvim_set_keymap("n", "<C-L>", ":TmuxNavigateRight<cr>",
 -- gitsigns.nvim settings
 --------------------------------------------------------------------------------
 
-vim.cmd("packadd! plenary.nvim")
-vim.cmd("packadd! gitsigns.nvim")
+plugin.load("plenary.nvim")
+plugin.load("gitsigns.nvim")
 
 require("gitsigns").setup({
     signs = {
@@ -188,7 +190,8 @@ require("gitsigns").setup({
 -- telescope.nvim settings
 --------------------------------------------------------------------------------
 
-vim.cmd("packadd! telescope.nvim")
+plugin.load("plenary.nvim")
+plugin.load("telescope.nvim")
 
 require('telescope').setup{
   defaults = {
@@ -230,14 +233,14 @@ vim.api.nvim_set_keymap("n", "<leader>fh", ":lua require('telescope.builtin').he
 -- neovim trouble settings
 --------------------------------------------------------------------------------
 
-vim.cmd("packadd! trouble.nvim")
+plugin.load("trouble.nvim")
 require("trouble").setup({})
 
 --------------------------------------------------------------------------------
 -- neoformat settings
 --------------------------------------------------------------------------------
 
-vim.cmd("packadd! neoformat")
+plugin.load("neoformat")
 
 vim.api.nvim_set_keymap("", "<leader>k", ":Neoformat<cr>",
                         {noremap = true, silent = true})
@@ -246,7 +249,7 @@ vim.api.nvim_set_keymap("", "<leader>k", ":Neoformat<cr>",
 -- tmuxline settings
 --------------------------------------------------------------------------------
 
-vim.cmd("packadd! tmuxline.vim")
+plugin.load("tmuxline.vim")
 
 -- Generate current theme by :Tmuxline lightline_insert
 vim.g.tmuxline_powerline_separators = 0
@@ -265,7 +268,7 @@ vim.g.tmuxline_preset = {
 -- CurtineIncSw cpp-h file navigator settings
 --------------------------------------------------------------------------------
 
-vim.cmd("packadd! CurtineIncSw.vim")
+plugin.load("CurtineIncSw.vim")
 
 vim.api
     .nvim_set_keymap("", "<F5>", ":call CurtineIncSw()<CR>", {noremap = true})
@@ -274,8 +277,8 @@ vim.api
 -- Ale settings
 --------------------------------------------------------------------------------
 
-vim.cmd("packadd! ale")
-vim.cmd("packadd! lightline-ale")
+plugin.load("ale")
+plugin.load("lightline-ale")
 
 --   "let g:ale_set_highlights = 0
 vim.cmd("highlight ALEError ctermbg=none cterm=underline")
@@ -285,7 +288,7 @@ vim.cmd("highlight ALEWarning ctermbg=none cterm=underline")
 -- TAGBAR settings
 --------------------------------------------------------------------------------
 
-vim.cmd("packadd! tagbar")
+plugin.load("tagbar")
 
 vim.api.nvim_set_keymap("n", "<S-t>", ":TagbarToggle<CR>", {})
 
@@ -293,7 +296,7 @@ vim.api.nvim_set_keymap("n", "<S-t>", ":TagbarToggle<CR>", {})
 -- vim-smooth-scroll settings
 --------------------------------------------------------------------------------
 
-vim.cmd("packadd! vim-smooth-scroll")
+plugin.load("vim-smooth-scroll")
 vim.api.nvim_set_keymap("n", "<c-u>",
                         ":call smooth_scroll#up(&scroll, 10, 2)<CR>",
                         {noremap = true, silent = true})
@@ -311,7 +314,7 @@ vim.api.nvim_set_keymap("n", "<c-f>",
 -- vim-ocaml settings
 --------------------------------------------------------------------------------
 
-vim.cmd("packadd! vim-ocaml")
+plugin.load("vim-ocaml")
 
 vim.g.ocaml_folding = 1
 

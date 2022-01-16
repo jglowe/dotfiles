@@ -17,10 +17,12 @@
 -- code
 --------------------------------------------------------------------------------
 
-vim.cmd("packadd! base16-vim")
-vim.cmd("packadd! lightline.vim")
-vim.cmd("packadd! vim-gitbranch")
-vim.cmd("packadd! vim-lightline-base16")
+local plugin = require("plugin")
+
+plugin.load("base16-vim")
+plugin.load("lightline.vim")
+plugin.load("vim-gitbranch")
+plugin.load("vim-lightline-base16")
 
 vim.g.base16colorspace = 256
 vim.opt.termguicolors = true

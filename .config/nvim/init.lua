@@ -20,10 +20,10 @@ require("tabcomplete")
 require("indentation")
 require("folding")
 
-if vim.opt.loadplugins then
+if vim.opt.loadplugins:get() then
     require("appearence")
     require("lspcomplete")
-    require("plugins")
+    require("misc")
 end
 
 -- Automatic, language-dependent indentation, syntax coloring and other
