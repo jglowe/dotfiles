@@ -16,6 +16,8 @@
 -- This file contains all the folding settings
 --------------------------------------------------------------------------------
 
+vim.opt.viewdir = vim.env.HOME .. "/.config/nvim/view"
+
 vim.cmd([[augroup AutoSaveFolds
   autocmd!
   autocmd BufWinLeave * silent! mkview
