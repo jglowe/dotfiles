@@ -36,9 +36,10 @@ if vim.opt.loadplugins:get() then
     })
     require("appearence")
     require("navigation")
+    require("language")
+    require("utils")
     require("lspcomplete")
     require("debugger")
-    require("misc")
 end
 
 -- Automatic, language-dependent indentation, syntax coloring and other

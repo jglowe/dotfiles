@@ -1,30 +1,21 @@
 --------------------------------------------------------------------------------
 --
---                     _             _             _
---                    | |           (_)           | |
---               _ __ | |_   _  __ _ _ _ __  ___  | |_   _  __ _
---              | '_ \| | | | |/ _` | | '_ \/ __| | | | | |/ _` |
---              | |_) | | |_| | (_| | | | | \__ \_| | |_| | (_| |
---              | .__/|_|\__,_|\__, |_|_| |_|___(_)_|\__,_|\__,_|
---              | |             __/ |
---              |_|            |___/
+--                            _   _ _       _
+--                           | | (_) |     | |
+--                      _   _| |_ _| |___  | |_   _  __ _
+--                     | | | | __| | / __| | | | | |/ _` |
+--                     | |_| | |_| | \__ \_| | |_| | (_| |
+--                      \__,_|\__|_|_|___(_)_|\__,_|\__,_|
 --
 -- Jonathan Lowe
 -- github : https://github.com/jglowe
 -- figlet font : big
---
--- This file contains all the plugin packadd!s and settings
---
--- plugins without configuration
 --------------------------------------------------------------------------------
 
 local plugin = require("plugin")
 
 plugin.load("vim-eunuch")
 plugin.load("vim-trailing-whitespace")
-plugin.load("salt-vim")
-plugin.load("rust.vim")
-plugin.load("vim-crystal")
 plugin.load("vim-fugitive")
 
 --------------------------------------------------------------------------------
@@ -162,12 +153,4 @@ plugin.load("ale")
 --   "let g:ale_set_highlights = 0
 vim.cmd("highlight ALEError ctermbg=none cterm=underline")
 vim.cmd("highlight ALEWarning ctermbg=none cterm=underline")
-
---------------------------------------------------------------------------------
--- vim-ocaml settings
---------------------------------------------------------------------------------
-
-plugin.load("vim-ocaml")
-
-vim.g.ocaml_folding = 1
 
