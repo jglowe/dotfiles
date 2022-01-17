@@ -61,7 +61,7 @@ export TERM=screen-256color
 # Application Settings
 ################################################################################
 
-if [ -f /opt/homebrew/bin/brew ]; then
+if [ -x "$(command -v brew)" ]; then
 	print_module_status "homebrew" true
 	eval $(/opt/homebrew/bin/brew shellenv)
 
@@ -70,7 +70,7 @@ else
 	print_module_status "homebrew" false
 fi
 
-if [ -x "$(which nvim)" ]; then
+if [ -x "$(command -v nvim)" ]; then
 	print_module_status "neovim" true
 	alias vi=nvim
 	alias vim=nvim
@@ -82,7 +82,7 @@ else
 fi
 
 # User defined Below
-if [ -f "$HOME/.cargo/env" ] || [ -x "$(which cargo)" ]; then
+if [ -f "$HOME/.cargo/env" ] || [ -x "$(command -v cargo)" ]; then
 	print_module_status "cargo rust" true
 
 	if [ -d "$HOME/.cargo/bin" ]; then
@@ -96,7 +96,7 @@ else
 	print_module_status "cargo rust" false
 fi
 
-if [ -f ~/.fzf.bash ] && [ -x "$(which fzf)" ]; then
+if [ -f ~/.fzf.bash ] && [ -x "$(command -v fzf)" ]; then
 	print_module_status "fzf" true
 	source ~/.fzf.bash
 else
@@ -104,14 +104,14 @@ else
 fi
 
 # Opam config
-if [ -x "$(which opam)" ]; then
+if [ -x "$(command -v opam)" ]; then
 	print_module_status "opam ocaml" true
 	eval "$(opam config env)"
 else
 	print_module_status "opam ocaml" false
 fi
 
-if [ -x "$(which doctl)" ]; then
+if [ -x "$(command -v doctl)" ]; then
 	print_module_status "digitalocean ctl" true
 	source .doctl.bash
 else
@@ -152,7 +152,7 @@ else
 fi
 
 # LSPs
-if [ -x "$(which shellcheck)" ]; then
+if [ -x "$(command -v shellcheck)" ]; then
 	print_module_status "shellcheck" true
 else
 	print_module_status "shellcheck" false
