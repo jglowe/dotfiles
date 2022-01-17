@@ -1,0 +1,27 @@
+- name: Compile neovim from source for RHEL
+  block:
+    - name: compile neovim from source
+      shell: |
+        mkdir -p ~/opensource
+        pushd ~/opensource
+
+        if [ ! -d "neovim" ]; then
+            git clone https://github.com/neovim/neovim.git
+        fi
+        pushd neovim
+
+        git co v0.6.1
+        make CMAKE_BUILD_TYPE=RelWithDebInfo
+
+        popd
+        popd
+    - name: compile neovim from source
+      become: yes
+      args:
+        creates: /usr/local/bin/nvim
+      shell: |
+        pushd ~/opensource/neovim
+        make install
+        popd
+
+  when: ansible_os_family == "RedHat"
