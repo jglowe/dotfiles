@@ -61,7 +61,7 @@ export TERM=screen-256color
 # Application Settings
 ################################################################################
 
-if [ -x "$(command -v brew)" ]; then
+if [ "$(uname)" = "Darwin" ]  && [ -f /opt/homebrew/bin/brew ]; then
 	print_module_status "homebrew" true
 	eval $(/opt/homebrew/bin/brew shellenv)
 
@@ -146,7 +146,7 @@ if [ -n "$PS1" ] && [ -s "$BASE16_SHELL/profile_helper.sh" ]; then
 	print_module_status "base16 shell" true
 
 	eval "$("$BASE16_SHELL/profile_helper.sh")"
-	# base16_classic-dark
+	bash "$HOME/.config/base16-shell/scripts/base16-classic-dark.sh" base16_classic-dark
 else
 	print_module_status "base16 shell" false
 fi

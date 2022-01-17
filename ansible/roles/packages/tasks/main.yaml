@@ -72,6 +72,7 @@
         state: present
         name:
           - epel-release
+      when: ansible_distribution != "Fedora"
     - name: Install dnf packages
       become: yes
       dnf:
@@ -85,6 +86,7 @@
           - htop
           - wget
           - python3
+          - python3-pip
           - make
           - gcc
           - gcc-c++
