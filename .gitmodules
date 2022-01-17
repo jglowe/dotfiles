@@ -115,3 +115,6 @@
 [submodule "telescope.nvim"]
     path = .config/nvim/pack/all/opt/telescope.nvim
     url = https://github.com/nvim-telescope/telescope.nvim.git
+[submodule "nvim-dap"]
+    path = .config/nvim/pack/all/opt/nvim-dap
+    url = https://github.com/mfussenegger/nvim-dap.git

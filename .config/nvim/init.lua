@@ -21,6 +21,13 @@ require("indentation")
 require("folding")
 
 if vim.opt.loadplugins:get() then
+    require("plugin").setup({
+        git = {
+            executable = "git",
+            options = "--git-dir=$HOME/.dotfiles/ --work-tree=$HOME",
+            command = "submodule add"
+        }
+    })
     require("appearence")
     require("lspcomplete")
     require("misc")
