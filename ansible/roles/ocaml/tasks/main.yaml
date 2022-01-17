@@ -35,4 +35,4 @@
 
 - name: Install ocaml libraries
   shell: |
-    opam install -y ocamlformat dune merlin ocaml-lsp-server ocaml-dap
+    opam install -y ocamlformat dune merlin ocaml-lsp-server earlybird

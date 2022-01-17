@@ -12,8 +12,10 @@
 -- Jonathan Lowe
 -- github : https://github.com/jglowe
 -- figlet font : big
---------------------------------------------------------------------------------
 --
+-- This is currently experimental not yet working
+--------------------------------------------------------------------------------
+
 local plugin = require("plugin")
 
 plugin.load("nvim-dap")
@@ -46,6 +48,24 @@ dap.configurations.python = {
     }
 }
 
+dap.adapters.ocaml = {
+    type = 'executable',
+    command = 'ocamlearlybird',
+    args = {'debug'}
+}
+
+dap.configurations.ocaml = {
+    {
+        type = 'ocaml',
+        request = 'launch',
+        name = "Launch file",
+        program = function()
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/',
+                                'file')
+        end
+    }
+}
+
 vim.api.nvim_set_keymap("n", "<F5>", ":lua require'dap'.continue()<CR>",
                         {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<F10>", ":lua require'dap'.step_over()<CR>",
@@ -68,4 +88,5 @@ vim.api.nvim_set_keymap("n", "<leader>dr", ":lua require'dap'.repl.open()<CR>",
 vim.api.nvim_set_keymap("n", "<leader>dl", ":lua require'dap'.run_last()<CR>",
                         {noremap = true, silent = true})
 
-vim.fn.sign_define('DapBreakpoint', {text='🛑', texthl='', linehl='', numhl=''})
+vim.fn.sign_define('DapBreakpoint',
+                   {text = '🛑', texthl = '', linehl = '', numhl = ''})
