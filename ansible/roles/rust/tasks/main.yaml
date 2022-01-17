@@ -1,5 +1,4 @@
 - name: Install rustup with homebrew
-  become: yes
   homebrew:
     state: present
     name:
@@ -18,7 +17,7 @@
   become: yes
   shell: |
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-  when: ansible_os_family == "Redhat"
+  when: ansible_os_family == "RedHat"
 
 - name: Install dev tools
   shell: |

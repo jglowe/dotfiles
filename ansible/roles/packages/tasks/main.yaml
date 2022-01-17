@@ -35,6 +35,7 @@
           - clang-format
           - make
           - doctl
+          - pkg-config
   when: ansible_os_family == "Darwin"
 
 - name: pacman
@@ -59,7 +60,8 @@
           - python3
           - make
           - doctl
-          # - clang-format
+          - pkg-config
+          - clang
   when: ansible_os_family == "Archlinux"
 
 - name: dnf
@@ -69,19 +71,24 @@
       dnf:
         state: present
         name:
+          - epel-release
+    - name: Install dnf packages
+      become: yes
+      dnf:
+        state: present
+        name:
           - tmux
           - vim
-          - neovim # TODO -- Compile latest version from source
           - bash-completion
           - figlet
-          - fzf
           - git
           - htop
-          - shellcheck
-          - terraform
           - wget
           - python3
           - make
-          # - clang-format
+          - gcc
+          - gcc-c++
+          - pkg-config
+          - libtool
   when: ansible_os_family == "RedHat"
 

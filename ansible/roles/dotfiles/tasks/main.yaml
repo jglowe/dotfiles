@@ -1,11 +1,8 @@
-- name: Check if dotfiles exists
-  stat:
-    path: "~/.dotfiles"
-  register: dotfiles
-
 - name: Setup dotfiles
   block:
   - name: Setup dotfiles
+    args:
+      creates: "~/.dotfiles"
     shell: |
       set -euo pipefail
 
@@ -34,6 +31,5 @@
 
       chmod 700 ~/.ssh
       # chmod 600 ~/.ssh/config
-  when: not dotfiles.stat.exists
 
 

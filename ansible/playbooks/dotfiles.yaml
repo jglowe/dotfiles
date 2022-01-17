@@ -9,3 +9,4 @@
     - { name: lua, ignore_errors: yes }
     - { name: ocaml, ignore_errors: yes }
     - { name: rust, ignore_errors: yes }
+    - { name: neovim, ignore_errors: yes }
