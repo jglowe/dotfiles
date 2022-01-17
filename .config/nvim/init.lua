@@ -24,8 +24,14 @@ if vim.opt.loadplugins:get() then
     require("plugin").setup({
         git = {
             executable = "git",
-            options = "--git-dir=$HOME/.dotfiles/ --work-tree=$HOME",
-            command = "submodule add"
+            add = {
+                command = "submodule add",
+                options = "--git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+            },
+            update = {
+                command = "pull",
+                options = ""
+            }
         }
     })
     require("appearence")

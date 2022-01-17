@@ -23,8 +23,8 @@ local add = function(plugin)
 
     if vim.fn.isdirectory(plugin_destination) == 0 then
         local git_executable = settings.git.executable
-        local git_options = settings.git.options
-        local git_command = settings.git.command
+        local git_options = settings.git.add.options
+        local git_command = settings.git.add.command
         local plugin_url = "https://github.com/" .. plugin .. ".git"
         local output = vim.fn.system(
                            git_executable .. " " .. git_options .. " " ..

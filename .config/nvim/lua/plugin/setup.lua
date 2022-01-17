@@ -20,21 +20,21 @@ local setup = function(settings)
     local defaults = {
         git = {
             executable = "git",
-            options = "",
-            command = "clone"
+            add = {command = "clone", options = ""},
+            update = {command = "pull", options = ""}
         }
     }
 
     if settings ~= nil then
-        for key, value in pairs(settings) do
-            defaults[key] = value
-        end
+        for key, value in pairs(settings) do defaults[key] = value end
     end
 
     _G.plugin__settings = defaults
 
-    vim.cmd("command! -nargs=1 PluginAdd   lua require('plugin').add(<f-args>)")
-    vim.cmd("command!          PluginList  lua require('plugin').list()")
+    vim.cmd("command! -nargs=1 PluginAdd    lua require('plugin').add(<f-args>)")
+    vim.cmd(
+        "command! -nargs=? PluginUpdate lua require('plugin').update(<f-args>)")
+    vim.cmd("command!          PluginList   lua require('plugin').list()")
 end
 
 return setup
