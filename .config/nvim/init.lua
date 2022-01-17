@@ -30,6 +30,7 @@ if vim.opt.loadplugins:get() then
     })
     require("appearence")
     require("lspcomplete")
+    require("debugger")
     require("misc")
 end
 

@@ -278,7 +278,6 @@ vim.api
 --------------------------------------------------------------------------------
 
 plugin.load("ale")
-plugin.load("lightline-ale")
 
 --   "let g:ale_set_highlights = 0
 vim.cmd("highlight ALEError ctermbg=none cterm=underline")

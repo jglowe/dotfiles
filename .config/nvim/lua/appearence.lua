@@ -20,9 +20,8 @@
 local plugin = require("plugin")
 
 plugin.load("base16-vim")
-plugin.load("lightline.vim")
-plugin.load("vim-gitbranch")
-plugin.load("vim-lightline-base16")
+plugin.load("lualine.nvim")
+plugin.load("lsp-status.nvim")
 
 -- Colors columns beyond the textwidth background to show the line limit
 local number_range = {}
@@ -41,7 +40,6 @@ vim.opt.fillchars = {
     --            (U+2503, UTF-8: E2 94 83)
 }
 
-
 vim.g.base16colorspace = 256
 vim.opt.termguicolors = true
 
@@ -58,6 +56,37 @@ vim.cmd("highlight EndOfBuffer ctermbg=18 guibg=#202020")
 vim.opt.laststatus = 2
 vim.opt.showmode = false
 
+require('lualine').setup {
+    options = {
+        icons_enabled = true,
+        theme = 'auto',
+        component_separators = {left = '|', right = '|'},
+        section_separators = {left = '', right = ''},
+        disabled_filetypes = {},
+        always_divide_middle = true
+    },
+    sections = {
+        lualine_a = {'mode'},
+        lualine_b = {'branch', 'diff', 'diagnostics'},
+        lualine_c = {'filename'},
+        lualine_x = {'encoding', 'fileformat', 'filetype'},
+        lualine_y = {'progress'},
+        lualine_z = {'require"lsp-status".status()'}
+    },
+    inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = {'filename'},
+        lualine_x = {'location'},
+        lualine_y = {},
+        lualine_z = {}
+    },
+    tabline = {},
+    extensions = {}
+}
+
+require("lsp-status").config({status_symbol = ''})
+
 vim.g.lightline = {
     ["active"] = {
         ["left"] = {
@@ -66,31 +95,5 @@ vim.g.lightline = {
     },
     ["component_function"] = {["gitbranch"] = "gitbranch#name"},
     ["colorscheme"] = "base16_classic_dark"
-}
-
--- Lua can't update global values internals like you would expect
---
--- https://github.com/neovim/neovim/issues/12544
---
--- vim.g.lightline["colorscheme"] = 'base16_classic_dark'
-
--- So what is below won't work
-vim.g.lightline.component_expand = {
-    ["linter_checking"] = "lightline#ale#checking",
-    ["linter_warnings"] = "lightline#ale#warnings",
-    ["linter_errors"] = "lightline#ale#errors",
-    ["linter_ok"] = "lightline#ale#ok"
-}
-
-vim.g.lightline.component_type = {
-    ["linter_checking"] = "left",
-    ["linter_warnings"] = "warning",
-    ["linter_errors"] = "error",
-    ["linter_ok"] = "left"
-}
-
-vim.g.lightline.active.right = {
-    {"linter_checking", "linter_errors", "linter_warnings", "linter_ok"},
-    {"percent"}, {"fileformat", "fileencoding", "filetype"}, {"lineinfo"}
 }
 

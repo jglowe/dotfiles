@@ -1,12 +1,3 @@
-[submodule "lightline.vim"]
-    path = .config/nvim/pack/all/opt/lightline.vim
-    url = https://github.com/itchyny/lightline.vim.git
-[submodule "vim-gitbranch"]
-    path = .config/nvim/pack/all/opt/vim-gitbranch
-    url = https://github.com/itchyny/vim-gitbranch.git
-[submodule "vim-lightline-base16"]
-    path = .config/nvim/pack/all/opt/vim-lightline-base16
-    url = https://github.com/mark-westerhof/vim-lightline-base16.git
 [submodule "vim-eunuch"]
     path = .config/nvim/pack/all/opt/vim-eunuch
     url = https://github.com/tpope/vim-eunuch.git
@@ -52,9 +43,6 @@
 [submodule "ale"]
     path = .config/nvim/pack/all/opt/ale
     url = https://github.com/dense-analysis/ale.git
-[submodule "lightline-ale"]
-    path = .config/nvim/pack/all/opt/lightline-ale
-    url = https://github.com/maximbaz/lightline-ale.git
 [submodule "vim-startify"]
     path = .config/nvim/pack/all/opt/vim-startify
     url = git@github.com:mhinz/vim-startify.git
@@ -118,3 +106,9 @@
 [submodule "nvim-dap"]
     path = .config/nvim/pack/all/opt/nvim-dap
     url = https://github.com/mfussenegger/nvim-dap.git
+[submodule "/Users/jonathanlowe/.config/nvim/pack/all/opt/lualine.nvim"]
+	path = /Users/jonathanlowe/.config/nvim/pack/all/opt/lualine.nvim
+	url = https://github.com/nvim-lualine/lualine.nvim.git
+[submodule "/Users/jonathanlowe/.config/nvim/pack/all/opt/lsp-status.nvim"]
+	path = /Users/jonathanlowe/.config/nvim/pack/all/opt/lsp-status.nvim
+	url = https://github.com/nvim-lua/lsp-status.nvim.git
