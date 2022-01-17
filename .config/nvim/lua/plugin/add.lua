@@ -21,8 +21,6 @@ local add = function(plugin)
     local plugin_destination = vim.fn.stdpath("config") .. "/pack/all/opt/" ..
                                    plugin_name
 
-    print(vim.inspect(settings))
-
     if vim.fn.isdirectory(plugin_destination) == 0 then
         local git_executable = settings.git.executable
         local git_options = settings.git.options

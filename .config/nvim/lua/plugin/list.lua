@@ -19,8 +19,9 @@ local load_plugin = require("plugin.load")
 load_plugin("plenary.nvim")
 
 local list = function()
+    local loaded_plugins = require("get_loaded")()
     local plugin_list = {}
-    for plugin, loaded in pairs(_G.plugin__loaded_plugins) do
+    for plugin, loaded in pairs(loaded_plugins) do
         if loaded then
             table.insert(plugin_list, plugin)
         end
