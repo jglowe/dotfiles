@@ -106,9 +106,9 @@
 [submodule "nvim-dap"]
     path = .config/nvim/pack/all/opt/nvim-dap
     url = https://github.com/mfussenegger/nvim-dap.git
-[submodule "/Users/jonathanlowe/.config/nvim/pack/all/opt/lualine.nvim"]
-	path = /Users/jonathanlowe/.config/nvim/pack/all/opt/lualine.nvim
+[submodule "lualine.nvim"]
+	path = .config/nvim/pack/all/opt/lualine.nvim
 	url = https://github.com/nvim-lualine/lualine.nvim.git
-[submodule "/Users/jonathanlowe/.config/nvim/pack/all/opt/lsp-status.nvim"]
-	path = /Users/jonathanlowe/.config/nvim/pack/all/opt/lsp-status.nvim
+[submodule "lsp-status.nvim"]
+	path = .config/nvim/pack/all/opt/lsp-status.nvim
 	url = https://github.com/nvim-lua/lsp-status.nvim.git
