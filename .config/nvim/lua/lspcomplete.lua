@@ -182,3 +182,12 @@ cmp.setup({
 --     sources = cmp.config.sources({{name = 'path'}}, {{name = 'cmdline'}})
 -- })
 
+--------------------------------------------------------------------------------
+-- neovim trouble settings
+--
+-- Trouble is a trouble/issues menu for lsp
+--------------------------------------------------------------------------------
+
+plugin.load("trouble.nvim")
+require("trouble").setup({})
+

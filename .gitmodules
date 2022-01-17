@@ -31,9 +31,6 @@
 [submodule "vim-ocaml"]
     path = .config/nvim/pack/all/opt/vim-ocaml
     url = https://github.com/rgrinberg/vim-ocaml.git
-[submodule "vim-commentary"]
-    path = .config/nvim/pack/all/opt/vim-commentary
-    url = https://github.com/tpope/vim-commentary.git
 [submodule "rust.vim"]
     path = .config/nvim/pack/all/opt/rust.vim
     url = https://github.com/rust-lang/rust.vim.git

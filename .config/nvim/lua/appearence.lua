@@ -87,13 +87,24 @@ require('lualine').setup {
 
 require("lsp-status").config({status_symbol = ''})
 
-vim.g.lightline = {
-    ["active"] = {
-        ["left"] = {
-            {"mode", "paste"}, {"gitbranch", "readonly", "filename", "modified"}
-        }
-    },
-    ["component_function"] = {["gitbranch"] = "gitbranch#name"},
-    ["colorscheme"] = "base16_classic_dark"
+--------------------------------------------------------------------------------
+-- tmuxline settings
+--
+-- Something that spits out tmux config to make it match vim theming
+--------------------------------------------------------------------------------
+
+plugin.load("tmuxline.vim")
+
+-- Generate current theme by :Tmuxline lightline_insert
+vim.g.tmuxline_powerline_separators = 0
+vim.g.tmuxline_preset = {
+    ["a"] = "#S",
+    ["b"] = "#W",
+    ["c"] = {"#(whoami)", "#H"},
+    ["win"] = "#I #W",
+    ["cwin"] = "#I #W",
+    ["x"] = "%a",
+    ["y"] = "#W %R",
+    ["z"] = "#H"
 }
 
