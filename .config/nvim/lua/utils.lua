@@ -15,7 +15,6 @@
 local plugin = require("plugin")
 
 plugin.load("vim-eunuch")
-plugin.load("vim-trailing-whitespace")
 plugin.load("vim-fugitive")
 
 --------------------------------------------------------------------------------
@@ -91,48 +90,6 @@ require('Comment').setup({
     ---Post-hook, called after commenting is done
     ---@type fun(ctx: Ctx)
     post_hook = nil,
-})
-
---------------------------------------------------------------------------------
--- gitsigns.nvim settings
---------------------------------------------------------------------------------
-
-plugin.load("plenary.nvim")
-plugin.load("gitsigns.nvim")
-
-require("gitsigns").setup({
-    signs = {
-        add = {
-            hl = "GitSignsAdd",
-            text = "+",
-            numhl = "GitSignsAddNr",
-            linehl = "GitSignsAddLn"
-        },
-        change = {
-            hl = "GitSignsChange",
-            text = "~",
-            numhl = "GitSignsChangeNr",
-            linehl = "GitSignsChangeLn"
-        },
-        delete = {
-            hl = "GitSignsDelete",
-            text = "-",
-            numhl = "GitSignsDeleteNr",
-            linehl = "GitSignsDeleteLn"
-        },
-        topdelete = {
-            hl = "GitSignsDelete",
-            text = "-",
-            numhl = "GitSignsDeleteNr",
-            linehl = "GitSignsDeleteLn"
-        },
-        changedelete = {
-            hl = "GitSignsChange",
-            text = "~",
-            numhl = "GitSignsChangeNr",
-            linehl = "GitSignsChangeLn"
-        }
-    }
 })
 
 --------------------------------------------------------------------------------

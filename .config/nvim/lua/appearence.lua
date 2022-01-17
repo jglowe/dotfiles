@@ -19,6 +19,8 @@
 
 local plugin = require("plugin")
 
+plugin.load("vim-trailing-whitespace")
+
 plugin.load("base16-vim")
 plugin.load("lualine.nvim")
 plugin.load("lsp-status.nvim")
@@ -26,9 +28,7 @@ plugin.load("lsp-status.nvim")
 -- Colors columns beyond the textwidth background to show the line limit
 local number_range = {}
 for i = 1, 254 do table.insert(number_range, tostring(i)) end
-local focused_colorcolumn = '+' .. table.concat(number_range, ',+')
-
-vim.opt.colorcolumn = focused_colorcolumn
+vim.opt.colorcolumn = '+' .. table.concat(number_range, ',+')
 vim.opt.textwidth = 80
 
 vim.opt.fillchars = {
@@ -44,13 +44,7 @@ vim.g.base16colorspace = 256
 vim.opt.termguicolors = true
 
 vim.cmd("colorscheme base16-classic-dark")
-
--- If the color scheme changes, you will have to find these in the color scheme
--- to update the EndOfBuffer Colors
---
--- vim.cmd('highlight EndOfBuffer ctermbg=g:base16_cterm01
---                              \ guibg=g:base16_gui01')
-vim.cmd("highlight EndOfBuffer ctermbg=18 guibg=#202020")
+vim.cmd("execute 'highlight EndOfBuffer ctermbg=' . g:base16_cterm01 . ' guibg=#' . g:base16_gui01")
 
 -- Shows cool status bar
 vim.opt.laststatus = 2
@@ -107,4 +101,48 @@ vim.g.tmuxline_preset = {
     ["y"] = "#W %R",
     ["z"] = "#H"
 }
+
+--------------------------------------------------------------------------------
+-- gitsigns.nvim settings
+--
+-- Shows lines modified with git
+--------------------------------------------------------------------------------
+
+plugin.load("plenary.nvim")
+plugin.load("gitsigns.nvim")
+
+require("gitsigns").setup({
+    signs = {
+        add = {
+            hl = "GitSignsAdd",
+            text = "+",
+            numhl = "GitSignsAddNr",
+            linehl = "GitSignsAddLn"
+        },
+        change = {
+            hl = "GitSignsChange",
+            text = "~",
+            numhl = "GitSignsChangeNr",
+            linehl = "GitSignsChangeLn"
+        },
+        delete = {
+            hl = "GitSignsDelete",
+            text = "-",
+            numhl = "GitSignsDeleteNr",
+            linehl = "GitSignsDeleteLn"
+        },
+        topdelete = {
+            hl = "GitSignsDelete",
+            text = "-",
+            numhl = "GitSignsDeleteNr",
+            linehl = "GitSignsDeleteLn"
+        },
+        changedelete = {
+            hl = "GitSignsChange",
+            text = "~",
+            numhl = "GitSignsChangeNr",
+            linehl = "GitSignsChangeLn"
+        }
+    }
+})
 
