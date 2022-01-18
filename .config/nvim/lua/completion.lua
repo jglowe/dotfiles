@@ -23,7 +23,7 @@ plugin.load("cmp-nvim-lsp")
 plugin.load("cmp-buffer")
 plugin.load("cmp-nvim-lua")
 plugin.load("cmp-path")
-plugin.load("luasnip")
+plugin.load("LuaSnip")
 
 -- sets the wildmenu for tab completion
 vim.opt.wildmenu = true

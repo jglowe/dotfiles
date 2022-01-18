@@ -91,8 +91,8 @@
 [submodule "cmp-path"]
     path = .config/nvim/pack/all/opt/cmp-path
     url = https://github.com/hrsh7th/cmp-path.git
-[submodule "luasnip"]
-    path = .config/nvim/pack/all/opt/luasnip
+[submodule "LuaSnip"]
+    path = .config/nvim/pack/all/opt/LuaSnip
     url = https://github.com/L3MON4D3/LuaSnip.git
 [submodule "Comment.nvim"]
     path = .config/nvim/pack/all/opt/Comment.nvim
@@ -104,8 +104,8 @@
     path = .config/nvim/pack/all/opt/nvim-dap
     url = https://github.com/mfussenegger/nvim-dap.git
 [submodule "lualine.nvim"]
-	path = .config/nvim/pack/all/opt/lualine.nvim
-	url = https://github.com/nvim-lualine/lualine.nvim.git
+    path = .config/nvim/pack/all/opt/lualine.nvim
+    url = https://github.com/nvim-lualine/lualine.nvim.git
 [submodule "lsp-status.nvim"]
-	path = .config/nvim/pack/all/opt/lsp-status.nvim
-	url = https://github.com/nvim-lua/lsp-status.nvim.git
+    path = .config/nvim/pack/all/opt/lsp-status.nvim
+    url = https://github.com/nvim-lua/lsp-status.nvim.git
