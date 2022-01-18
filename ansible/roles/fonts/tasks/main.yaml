@@ -1,0 +1,11 @@
+- name: Download Meslo font
+  get_url:
+    url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
+    dest: "{{ fonts['directory'] }}"
+
+- name: Unarchive fonts
+  unarchive:
+    src: "{{ fonts['directory'] }}/Meslo.zip"
+    dest: "{{ fonts['directory'] }}/"
+    remote_src: yes
+
