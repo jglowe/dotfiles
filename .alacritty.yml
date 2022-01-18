@@ -11,7 +11,7 @@ env:
   # check the local terminfo database and use 'alacritty' if it is
   # available, otherwise 'xterm-256color' is used.
   #
-  TERM: xterm-256color
+  TERM: screen-256color
 
 window:
   # Window dimensions (changes require restart)
@@ -69,7 +69,7 @@ font:
       #family: Menlo for Powerline
       #family: Menlo Regular
     # family: Meslo LG S DZ
-    family: SourceCodePro
+    family: "MesloLGS Nerd Font Mono"
     #family: monospace
     # The `style` can be specified to pick a specific face.
     # style: Regular
@@ -78,7 +78,7 @@ font:
   bold:
       #family: Menlo Bold for Powerline
     #family: Menlo Bold
-    family: monospace
+    family: "MesloLGS Nerd Font Mono"
     # The `style` can be specified to pick a specific face.
     # style: Bold
 
@@ -86,7 +86,7 @@ font:
   italic:
       #family: Menlo Italic for Powerline
     #family: Menlo Italic
-    family: monospace
+    family: "MesloLGS Nerd Font Mono"
     # The `style` can be specified to pick a specific face.
     # style: Italic
 

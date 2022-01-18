@@ -1,3 +1,7 @@
+fonts:
+  version: v2.1.0
+  directory: "~/.fonts"
+
 packages:
   install_become: yes
   packages:

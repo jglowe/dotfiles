@@ -15,6 +15,7 @@
   roles:
     - packages
     - dotfiles
+    - fonts
     - { name: python3, ignore_errors: yes }
     - { name: lua, ignore_errors: yes }
     - { name: ocaml, ignore_errors: yes }

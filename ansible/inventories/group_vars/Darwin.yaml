@@ -1,3 +1,6 @@
+fonts:
+  directory: "~/Library/Fonts"
+
 packages:
   install_become: no
   repos: []

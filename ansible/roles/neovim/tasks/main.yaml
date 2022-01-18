@@ -4,7 +4,7 @@
     state: present
   when: not neovim['compile_from_source']
 
-- name: Compile neovim from source for RHEL
+- name: Compile neovim from source
   block:
     - name: clone neovim
       git:
