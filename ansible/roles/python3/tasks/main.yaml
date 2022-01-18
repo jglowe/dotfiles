@@ -1,56 +1,24 @@
-- name: Install homebrew python3
-  block:
-    - homebrew:
-        state: present
-        name:
-          - python3
-    - become: yes
-      pip:
-        executable: /opt/homebrew/bin/pip3
-        name:
-          - neovim
-          - cmake
-          - jedi-language-server
-          - pyright
-          - autopep8
-          - ansible
-          - debugpy
-  when: ansible_os_family == "Darwin"
+- name: Install packages
+  become: "{{ python3['install_become'] }}"
+  package:
+    state: present
+    name: "{{ python3['packages'] }}"
 
-- name: Install pacman python3
-  become: yes
-  block:
-    - pacman:
-        state: present
-        name:
-          - python
-    - pip:
-        name:
-          - neovim
-          - cmake
-          - jedi-language-server
-          - pyright
-          - autopep8
-          - ansible
-          - debugpy
-  when: ansible_os_family == "Archlinux"
+- name: Get pip3 executable
+  shell: command -v pip3 || true
+  register: pip3
+  changed_when: false
 
-- name: Install pacman packages
+- name: Install pip packages
   become: yes
-  block:
-    - dnf:
-        state: present
-        name:
-          - python3
-    - pip:
-        executable: /usr/bin/pip3
-        name:
-          - neovim
-          - cmake
-          - jedi-language-server
-          - pyright
-          - autopep8
-          - ansible
-          - debugpy
-  when: ansible_os_family == "RedHat"
+  pip:
+    executable: "{{ pip3.stdout }}"
+    name:
+      - neovim
+      - cmake
+      - jedi-language-server
+      - pyright
+      - autopep8
+      - ansible
+      - debugpy
 

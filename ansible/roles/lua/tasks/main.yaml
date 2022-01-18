@@ -1,33 +1,19 @@
-- name: Install brew packages on Darwin
-  homebrew:
+- name: Install packages
+  become: "{{ lua['install_become'] }}"
+  package:
     state: present
-    name:
-      - luarocks
-      - lua-language-server
-  when: ansible_os_family == "Darwin"
-
-- name: Install packages on Arch
-  become: yes
-  pacman:
-    state: present
-    name:
-      - luarocks
-      - lua-language-server
-  when: ansible_os_family == "Archlinux"
-
-- name: Install packages on Redhat
-  become: yes
-  dnf:
-    state: present
-    name:
-      - luarocks
-  when: ansible_os_family == "RedHat"
+    name: "{{ lua['packages'] }}"
 
 # TODO -- Build lua-language-server for RHEL
+
+- name: Get whether or not lua-format exists
+  shell: command -v lua-format || true
+  register: lua_format
+  changed_when: lua_format.stdout == ""
 
 - name: Install luaformatter packages
   become: yes
   shell: |
     luarocks install --server=https://luarocks.org/dev luaformatter
-
+  when: lua_format.stdout == ""
 

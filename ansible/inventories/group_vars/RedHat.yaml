@@ -1,0 +1,45 @@
+packages:
+  install_become: yes
+  packages:
+    - tmux
+    - vim
+    - bash-completion
+    - figlet
+    - git
+    - htop
+    - wget
+    - python3
+    - python3-pip
+    - make
+    - gcc
+    - gcc-c++
+    - pkg-config
+    - libtool
+
+python3:
+  install_become: yes
+  packages:
+    - python3
+    - python3-pip
+
+lua:
+  install_become: yes
+  packages:
+    - luarocks
+  build_lua_language_server: true
+
+ocaml:
+  install_become: yes
+  packages:
+    - ocaml
+    - opam
+    - patch
+
+rust:
+  install_become: yes
+  packages: []
+  download_rustup: true
+
+neovim:
+  install_become: yes
+  compile_from_source: true

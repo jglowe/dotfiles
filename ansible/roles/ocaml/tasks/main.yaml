@@ -1,31 +1,7 @@
-- name: Install brew packages on Darwin
-  homebrew:
-    state: present
-    name:
-      - ocaml
-      - opam
-      - gpatch
-  when: ansible_os_family == "Darwin"
-
-- name: Install packages on Arch
-  become: yes
-  pacman:
-    state: present
-    name:
-      - ocaml
-      - opam
-      - patch
-  when: ansible_os_family == "Archlinux"
-
-- name: Install packages on Redhat
-  become: yes
-  dnf:
-    state: present
-    name:
-      - ocaml
-      - opam
-      - patch
-  when: ansible_os_family == "RedHat"
+- name: Install opam packages
+  become: "{{ ocaml['install_become'] }}"
+  package:
+    name: "{{ ocaml['packages'] }}"
 
 - name: Setup ocaml switch
   shell: |

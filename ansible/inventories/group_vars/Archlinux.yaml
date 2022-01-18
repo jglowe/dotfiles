@@ -1,0 +1,48 @@
+packages:
+  install_become: yes
+  packages:
+    - tmux
+    - vim
+    - bash
+    - bash-completion
+    - figlet
+    - fzf
+    - git
+    - htop
+    - shellcheck
+    - terraform
+    - wget
+    - python3
+    - make
+    - doctl
+    - pkg-config
+    - clang
+
+python3:
+  install_become: yes
+  packages:
+    - python3
+
+lua:
+  install_become: yes
+  packages:
+    - luarocks
+    - lua-language-server
+  build_lua_language_server: false
+
+ocaml:
+  install_become: yes
+  packages:
+    - ocaml
+    - opam
+    - patch
+
+rust:
+  install_become: yes
+  packages:
+    - rustup
+  download_rustup: false
+
+neovim:
+  install_become: yes
+  compile_from_source: false

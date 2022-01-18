@@ -1,10 +1,16 @@
+- name: Install neovim from package manager
+  package:
+    name: neovim
+    state: present
+  when: not neovim['compile_from_source']
+
 - name: Compile neovim from source for RHEL
   block:
     - name: clone neovim
       git:
         dest: ~/opensource/neovim
         repo: https://github.com/neovim/neovim.git
-        version: v0.6.1
+        version: "{{ neovim['version'] }}"
     - name: compile neovim from source
       make:
         chdir: ~/opensource/neovim
@@ -15,5 +21,4 @@
       make:
         chdir: ~/opensource/neovim
         target: install
-
-  when: ansible_os_family == "RedHat"
+  when: neovim['compile_from_source']

@@ -1,5 +1,15 @@
 ---
 
+- hosts: dotfiles
+  tasks:
+    - name: Add hosts to their os family groups
+      add_host:
+        name: "{{ inventory_hostname }}"
+        groups: "{{ ansible_os_family }},{{ ansible_distribution }}"
+      changed_when: false
+
+    - debug:
+        msg: "{{ ansible_distribution }}"
 
 - hosts: dotfiles
   roles:

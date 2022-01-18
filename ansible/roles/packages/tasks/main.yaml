@@ -14,83 +14,17 @@
       homebrew:
         update_homebrew: yes
       when: brew_exists.stat.exists
-
-    - name: Install brew packages
-      homebrew:
-        state: present
-        name:
-          - tmux
-          - vim
-          - neovim
-          - bash
-          - bash-completion
-          - figlet
-          - fzf
-          - git
-          - htop
-          - shellcheck
-          - terraform
-          - wget
-          - python3
-          - clang-format
-          - make
-          - doctl
-          - pkg-config
   when: ansible_os_family == "Darwin"
 
-- name: pacman
-  block:
-    - name: Install pacman packages
-      become: yes
-      pacman:
-        state: present
-        name:
-          - tmux
-          - vim
-          - neovim
-          - bash
-          - bash-completion
-          - figlet
-          - fzf
-          - git
-          - htop
-          - shellcheck
-          - terraform
-          - wget
-          - python3
-          - make
-          - doctl
-          - pkg-config
-          - clang
-  when: ansible_os_family == "Archlinux"
+- name: Install repos
+  become: "{{ packages['install_become'] }}"
+  package:
+    name: "{{ packages['repos'] }}"
+  when: packages['repos'] != "" and packages['repos'] != [] and package['repos'] != None
 
-- name: dnf
-  block:
-    - name: Install dnf packages
-      become: yes
-      dnf:
-        state: present
-        name:
-          - epel-release
-      when: ansible_distribution != "Fedora"
-    - name: Install dnf packages
-      become: yes
-      dnf:
-        state: present
-        name:
-          - tmux
-          - vim
-          - bash-completion
-          - figlet
-          - git
-          - htop
-          - wget
-          - python3
-          - python3-pip
-          - make
-          - gcc
-          - gcc-c++
-          - pkg-config
-          - libtool
-  when: ansible_os_family == "RedHat"
+- name: Install packages
+  become: "{{ packages['install_become'] }}"
+  package:
+    name: "{{ packages['packages'] }}"
+
 
