@@ -1,3 +1,8 @@
+- name: Ensure fonts folder exists
+  file:
+    path: "{{ fonts['directory'] }}"
+    state: directory
+
 - name: Download Meslo font
   get_url:
     url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
