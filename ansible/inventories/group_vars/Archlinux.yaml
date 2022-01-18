@@ -4,6 +4,7 @@ fonts:
 
 packages:
   install_become: yes
+  repos: []
   packages:
     - tmux
     - vim
