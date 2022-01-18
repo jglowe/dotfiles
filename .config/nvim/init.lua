@@ -16,7 +16,6 @@
 --------------------------------------------------------------------------------
 
 require("settings")
-require("tabcomplete")
 require("indentation")
 require("folding")
 
