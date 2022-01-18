@@ -38,7 +38,8 @@ if vim.opt.loadplugins:get() then
     require("navigation")
     require("language")
     require("utils")
-    require("lspcomplete")
+    require("completion")
+    require("lsp")
     require("debugger")
 end
 
