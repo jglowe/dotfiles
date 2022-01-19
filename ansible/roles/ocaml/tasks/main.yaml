@@ -1,13 +1,21 @@
+---
+
 - name: Install opam packages
   become: "{{ ocaml['install_become'] }}"
   package:
     name: "{{ ocaml['packages'] }}"
+
+- name: Get current switch
+  command: opam switch show
+  register: current_switch
+  changed_when: false
 
 - name: Setup ocaml switch
   shell: |
     opam init -y || true
     opam switch create -y 4.12.0 || true
     opam switch set 4.12.0
+  when: current_switch.stdout.strip() != "4.12.0"
 
 - name: Install ocaml libraries
   shell: |

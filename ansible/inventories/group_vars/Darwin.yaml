@@ -1,8 +1,10 @@
+---
+
 fonts:
   directory: "~/Library/Fonts"
 
 packages:
-  install_become: no
+  install_become: false
   repos: []
   packages:
     - tmux
@@ -23,30 +25,30 @@ packages:
     - pkg-config
 
 python3:
-  install_become: no
+  install_become: false
   packages:
     - python3
 
 lua:
-  install_become: no
+  install_become: false
   packages:
     - luarocks
     - lua-language-server
   build_lua_language_server: false
 
 ocaml:
-  install_become: no
+  install_become: false
   packages:
     - ocaml
     - opam
     - gpatch
 
 rust:
-  install_become: no
+  install_become: false
   packages:
     - rustup-init
   download_rustup: false
 
 neovim:
-  install_become: no
+  install_become: false
   compile_from_source: false

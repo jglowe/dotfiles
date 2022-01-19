@@ -1,3 +1,5 @@
+---
+
 - name: Install rustup packages
   become: "{{ rust['install_become'] }}"
   package:
@@ -12,4 +14,3 @@
   shell: |
     rustup +nightly component add rust-analyzer-preview
     rustup component add rustfmt --toolchain nightly
-

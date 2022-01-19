@@ -1,9 +1,11 @@
+---
+
 fonts:
   version: v2.1.0
   directory: "~/.fonts"
 
 packages:
-  install_become: yes
+  install_become: true
   repos: []
   packages:
     - tmux
@@ -24,30 +26,30 @@ packages:
     - clang
 
 python3:
-  install_become: yes
+  install_become: true
   packages:
     - python3
 
 lua:
-  install_become: yes
+  install_become: true
   packages:
     - luarocks
     - lua-language-server
   build_lua_language_server: false
 
 ocaml:
-  install_become: yes
+  install_become: true
   packages:
     - ocaml
     - opam
     - patch
 
 rust:
-  install_become: yes
+  install_become: true
   packages:
     - rustup
   download_rustup: false
 
 neovim:
-  install_become: yes
+  install_become: true
   compile_from_source: false
