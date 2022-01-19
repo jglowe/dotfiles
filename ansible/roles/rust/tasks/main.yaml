@@ -7,7 +7,8 @@
 
 - name: Install rustup on Redhat
   shell: |
-    curl --proto '=https' --tlsv1.2 -ysSf https://sh.rustup.rs | sh
+    curl --proto '=https' --tlsv1.2 -ysSf https://sh.rustup.rs > rustup.sh
+    bash rustup.sh -y
   when: rust['download_rustup']
 
 - name: Install dev tools

@@ -63,7 +63,7 @@ export TERM=screen-256color
 
 if [ "$(uname)" = "Darwin" ]  && [ -f /opt/homebrew/bin/brew ]; then
 	print_module_status "homebrew" true
-	eval $(/opt/homebrew/bin/brew shellenv)
+	eval "$(/opt/homebrew/bin/brew shellenv)"
 
 	export PATH="/opt/homebrew/bin:$PATH"
 else
@@ -135,6 +135,72 @@ if [ -f /opt/local/etc/profile.d/bash_completion.sh ] ||
 	fi
 else
 	print_module_status "bash completion" false
+fi
+
+if [ -x "$(command -v lua-language-server)" ]; then
+	print_module_status "lua-language-server" true
+else
+	print_module_status "lua-language-server" false
+fi
+
+if [ -x "$(command -v lua-format)" ]; then
+	print_module_status "lua-format" true
+else
+	print_module_status "lua-format" false
+fi
+
+if [ -x "$(command -v pyright)" ]; then
+	print_module_status "pyright" true
+else
+	print_module_status "pyright" false
+fi
+
+if [ -x "$(command -v ansible-language-server)" ]; then
+	print_module_status "ansible-language-server" true
+else
+	print_module_status "ansible-language-server" false
+fi
+
+if [ -x "$(command -v clangd)" ]; then
+	print_module_status "clangd" true
+else
+	print_module_status "clangd" false
+fi
+
+if [ -x "$(command -v rust-analyzer)" ]; then
+	print_module_status "rust-analyzer" true
+else
+	print_module_status "rust-analyzer" false
+fi
+
+if [ -x "$(command -v ocamllsp)" ]; then
+	print_module_status "ocamllsp" true
+else
+	print_module_status "ocamllsp" false
+fi
+
+if [ -x "$(command -v autopep8)" ]; then
+	print_module_status "autopep8" true
+else
+	print_module_status "autopep8" false
+fi
+
+if [ -x "$(command -v ansible-lint)" ]; then
+	print_module_status "ansible-lint" true
+else
+	print_module_status "ansible-lint" false
+fi
+
+if [ -x "$(command -v clang-format)" ]; then
+	print_module_status "clang-format" true
+else
+	print_module_status "clang-format" false
+fi
+
+if [ -x "$(command -v tmux)" ]; then
+	print_module_status "tmux" true
+else
+	print_module_status "tmux" false
 fi
 
 # colored GCC warnings and errors

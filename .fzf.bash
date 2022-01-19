@@ -19,12 +19,22 @@ if [ "$(uname)" == "Linux" ]; then
 
 	# Manjaro settings
 	if [ -d "/usr/share/fzf" ]; then
-		# Auto-completion
-		# ---------------
-		[[ $- == *i* ]] && source "/usr/share/fzf/completion.bash" 2> /dev/null
+		if [ -d "/usr/share/fzf/shell" ]; then
+			# Auto-completion
+			# ---------------
+			[[ $- == *i* ]] && source "/usr/share/fzf/shell/completion.bash" 2> /dev/null
 
-		# Key bindings
-		# ------------
-		source "/usr/share/fzf/key-bindings.bash"
+			# Key bindings
+			# ------------
+			source "/usr/share/fzf/shell/key-bindings.bash"
+		else
+			# Auto-completion
+			# ---------------
+			[[ $- == *i* ]] && source "/usr/share/fzf/completion.bash" 2> /dev/null
+
+			# Key bindings
+			# ------------
+			source "/usr/share/fzf/key-bindings.bash"
+		fi
 	fi
 fi
