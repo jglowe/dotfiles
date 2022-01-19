@@ -109,3 +109,6 @@
 [submodule "lsp-status.nvim"]
     path = .config/nvim/pack/all/opt/lsp-status.nvim
     url = https://github.com/nvim-lua/lsp-status.nvim.git
+[submodule ".config/nvim/pack/all/opt/ansible-nvim"]
+	path = .config/nvim/pack/all/opt/ansible-nvim
+	url = https://github.com/pearofducks/ansible-vim
