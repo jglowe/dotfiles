@@ -24,6 +24,7 @@ plugin.load("cmp-buffer")
 plugin.load("cmp-nvim-lua")
 plugin.load("cmp-path")
 plugin.load("LuaSnip")
+plugin.load("lspkind-nvim")
 
 -- sets the wildmenu for tab completion
 vim.opt.wildmenu = true
@@ -80,6 +81,8 @@ end
 --                         {noremap = true, silent = true, expr = true})
 
 local cmp = require('cmp')
+local lspkind = require "lspkind"
+lspkind.init()
 
 cmp.setup({
     snippet = {
@@ -112,9 +115,22 @@ cmp.setup({
     },
     documentation = {border = 'single'},
     sources = cmp.config.sources({
-        {name = "nvim_lua"}, {name = 'nvim_lsp'}, {name = 'path'},
-        {name = 'buffer', keyword_length = 5}
-    })
+        {name = "nvim_lua"}, {name = 'nvim_lsp'}, {name = "luasnip"},
+        {name = 'path'}, {name = 'buffer'}
+    }),
+    formatting = {
+        -- Youtube: How to set up nice formatting for your sources.
+        format = lspkind.cmp_format {
+            with_text = true,
+            menu = {
+                nvim_lua = "[api]",
+                nvim_lsp = "[LSP]",
+                path = "[path]",
+                buffer = "[buf]",
+                luasnip = "[snip]"
+            }
+        }
+    }
 })
 
 -- cmp.setup.cmdline(':', {

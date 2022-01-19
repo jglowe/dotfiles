@@ -1,3 +1,5 @@
+---
+
 - name: Install packages
   become: "{{ lua['install_become'] }}"
   package:
@@ -12,8 +14,7 @@
   changed_when: lua_format.stdout == ""
 
 - name: Install luaformatter packages
-  become: yes
+  become: true
   shell: |
     luarocks install --server=https://luarocks.org/dev luaformatter
   when: lua_format.stdout == ""
-

@@ -1,3 +1,5 @@
+---
+
 - name: Setup dotfiles
   block:
   - name: Setup dotfiles
@@ -31,5 +33,3 @@
 
       chmod 700 ~/.ssh
       # chmod 600 ~/.ssh/config
-
-

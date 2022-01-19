@@ -1,7 +1,10 @@
+---
+
 - name: Ensure fonts folder exists
   file:
     path: "{{ fonts['directory'] }}"
     state: directory
+    mode: "0700"
 
 - name: Download Meslo font
   get_url:
@@ -12,5 +15,4 @@
   unarchive:
     src: "{{ fonts['directory'] }}/Meslo.zip"
     dest: "{{ fonts['directory'] }}/"
-    remote_src: yes
-
+    remote_src: true

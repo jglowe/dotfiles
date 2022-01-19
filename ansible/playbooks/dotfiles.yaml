@@ -2,22 +2,26 @@
 
 - hosts: dotfiles
   tasks:
-    - name: Add hosts to their os family groups
-      add_host:
-        name: "{{ inventory_hostname }}"
-        groups: "{{ ansible_os_family }},{{ ansible_distribution }}"
+    - add_host:
+        groups: '{{ ansible_os_family }},{{ ansible_distribution }}'
+        name: '{{ inventory_hostname }}'
       changed_when: false
-
-    - debug:
-        msg: "{{ ansible_distribution }}"
-
+      name: Add hosts to their os family groups
+    - name: Print system info
+      debug:
+        msg: '{{ ansible_os_family }} : {{ ansible_distribution }}'
 - hosts: dotfiles
   roles:
     - packages
     - dotfiles
     - fonts
-    - { name: python3, ignore_errors: yes }
-    - { name: lua, ignore_errors: yes }
-    - { name: ocaml, ignore_errors: yes }
-    - { name: rust, ignore_errors: yes }
-    - { name: neovim, ignore_errors: yes }
+    - ignore_errors: true
+      name: python3
+    - ignore_errors: true
+      name: lua
+    - ignore_errors: true
+      name: ocaml
+    - ignore_errors: true
+      name: rust
+    - ignore_errors: true
+      name: neovim

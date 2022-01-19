@@ -1,3 +1,5 @@
+---
+
 - name: Install packages
   become: "{{ python3['install_become'] }}"
   package:
@@ -10,7 +12,7 @@
   changed_when: false
 
 - name: Install pip packages
-  become: yes
+  become: true
   pip:
     executable: "{{ pip3.stdout }}"
     name:
@@ -21,4 +23,6 @@
       - autopep8
       - ansible
       - debugpy
-
+      - ansible-lint
+      - yamllint
+      - pyaml

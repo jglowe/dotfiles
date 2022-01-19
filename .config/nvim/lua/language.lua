@@ -22,5 +22,8 @@ plugin.load("salt-vim")
 plugin.load("rust.vim")
 plugin.load("vim-crystal")
 plugin.load("vim-ocaml")
+plugin.load("ansible-vim")
 
 vim.g.ocaml_folding = 1
+
+vim.cmd("au BufRead,BufNewFile */playbooks/* set filetype=yaml.ansible")
