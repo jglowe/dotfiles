@@ -16,7 +16,7 @@
 -- Setup the plugin library
 --------------------------------------------------------------------------------
 
-local state = require("plugin.state")
+local state = require("yapm.state")
 
 local setup = function(settings)
     local defaults = {
@@ -37,10 +37,10 @@ local setup = function(settings)
 
     state.set_settings(defaults)
 
-    vim.cmd("command! -nargs=1 PluginAdd    lua require('plugin').add(<f-args>)")
+    vim.cmd("command! -nargs=1 YAPMAdd    lua require('yapm').add(<f-args>)")
     vim.cmd(
-        "command! -nargs=? PluginUpdate lua require('plugin').update(<f-args>)")
-    vim.cmd("command!          PluginList   lua require('plugin').list.open_popup()")
+        "command! -nargs=? YAPMUpdate lua require('yapm').update(<f-args>)")
+    vim.cmd("command!          YAPMList   lua require('yapm').list.open_popup()")
 end
 
 return setup

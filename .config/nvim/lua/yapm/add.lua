@@ -14,7 +14,7 @@
 -- Adds a plugin via git
 --------------------------------------------------------------------------------
 local add = function(plugin)
-    local settings = require("plugin.get_settings")()
+    local settings = require("yapm.get_settings")()
     local slash_index = string.find(plugin, "/")
     local plugin_name = string.sub(plugin, slash_index + 1, string.len(plugin))
     local plugin_destination = settings.git.add.packages_path .. "/" ..

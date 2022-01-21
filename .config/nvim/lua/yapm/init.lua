@@ -16,11 +16,11 @@
 
 local M = {}
 
-M.add = require("plugin.add")
-M.list = require("plugin.list")
-M.load = require("plugin.load")
-M.setup = require("plugin.setup")
-M.state = require("plugin.state")
-M.update = require("plugin.update")
+M.add = require("yapm.add")
+M.list = require("yapm.list")
+M.load = require("yapm.load")
+M.setup = require("yapm.setup")
+M.state = require("yapm.state")
+M.update = require("yapm.update")
 
 return M

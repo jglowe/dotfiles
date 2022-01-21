@@ -12,16 +12,16 @@
 -- figlet font : big
 --------------------------------------------------------------------------------
 
-local plugin = require("plugin")
+local yapm = require("yapm")
 
-plugin.load("vim-eunuch")
-plugin.load("vim-fugitive")
+yapm.load("vim-eunuch")
+yapm.load("vim-fugitive")
 
 --------------------------------------------------------------------------------
 -- Comment.nvim settings
 --------------------------------------------------------------------------------
 
-plugin.load("Comment.nvim")
+yapm.load("Comment.nvim")
 
 require('Comment').setup({
     ---Add a space b/w comment and the line
@@ -96,7 +96,7 @@ require('Comment').setup({
 -- neoformat settings
 --------------------------------------------------------------------------------
 
-plugin.load("neoformat")
+yapm.load("neoformat")
 
 vim.api.nvim_set_keymap("", "<leader>k", ":Neoformat<cr>",
                         {noremap = true, silent = true})
@@ -105,7 +105,7 @@ vim.api.nvim_set_keymap("", "<leader>k", ":Neoformat<cr>",
 -- Ale settings
 --------------------------------------------------------------------------------
 
-plugin.load("ale")
+yapm.load("ale")
 
 --   "let g:ale_set_highlights = 0
 vim.cmd("highlight ALEError ctermbg=none cterm=underline")

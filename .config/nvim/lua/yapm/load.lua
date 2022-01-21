@@ -14,7 +14,7 @@
 -- The function to load plugins
 --------------------------------------------------------------------------------
 
-local state = require("plugin.state")
+local state = require("yapm.state")
 
 local load_plugin = function(plugin)
     if vim.v.vim_did_enter == 1 then

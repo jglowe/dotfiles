@@ -16,10 +16,10 @@
 -- This file contains all the lsp related configs such as nvim-lspconfig
 --------------------------------------------------------------------------------
 
-local plugin = require("plugin")
+local yapm = require("yapm")
 
-plugin.load("nvim-lspconfig")
-plugin.load("cmp-nvim-lsp")
+yapm.load("nvim-lspconfig")
+yapm.load("cmp-nvim-lsp")
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -147,6 +147,6 @@ end
 -- Trouble is a trouble/issues menu for lsp
 --------------------------------------------------------------------------------
 
-plugin.load("trouble.nvim")
+yapm.load("trouble.nvim")
 require("trouble").setup({})
 

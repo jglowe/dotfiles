@@ -17,7 +17,7 @@
 --------------------------------------------------------------------------------
 local update = function(name)
     local plugins_folder = vim.fn.stdpath("config") .. "/pack/all/opt/"
-    local settings = require("plugin.get_settings")()
+    local settings = require("yapm.state").get_settings()
     local to_update = {}
 
     if name == nil then

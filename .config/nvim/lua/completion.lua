@@ -16,15 +16,15 @@
 -- This file contains all the autocompletion settings
 --------------------------------------------------------------------------------
 
-local plugin = require("plugin")
+local yapm = require("yapm")
 
-plugin.load("nvim-cmp")
-plugin.load("cmp-nvim-lsp")
-plugin.load("cmp-buffer")
-plugin.load("cmp-nvim-lua")
-plugin.load("cmp-path")
-plugin.load("LuaSnip")
-plugin.load("lspkind-nvim")
+yapm.load("nvim-cmp")
+yapm.load("cmp-nvim-lsp")
+yapm.load("cmp-buffer")
+yapm.load("cmp-nvim-lua")
+yapm.load("cmp-path")
+yapm.load("LuaSnip")
+yapm.load("lspkind-nvim")
 
 -- sets the wildmenu for tab completion
 vim.opt.wildmenu = true

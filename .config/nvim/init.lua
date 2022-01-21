@@ -20,7 +20,7 @@ require("indentation")
 require("folding")
 
 if vim.opt.loadplugins:get() then
-    require("plugin").setup()
+    require("yapm").setup()
     require("appearence")
     require("navigation")
     require("language")

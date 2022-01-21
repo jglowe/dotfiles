@@ -13,19 +13,19 @@
 --
 -- List the plugins that are loaded in a popup gui
 --------------------------------------------------------------------------------
-local load_plugin = require("plugin.load")
-local state = require("plugin.state")
+local load_plugin = require("yapm.load")
+local state = require("yapm.state")
 
 load_plugin("plenary.nvim")
 
 local close_popup = function()
-    pcall(vim.api.nvim_win_close, require("plugin.state").get_popup_id(), true)
+    pcall(vim.api.nvim_win_close, state.get_popup_id(), true)
     state.set_popup_id(nil)
     state.set_popup_opts(nil)
 end
 
 local open_popup = function()
-    local plugin_list = require("plugin.state").get_loaded_plugins()
+    local plugin_list = state.get_loaded_plugins()
 
     table.insert(plugin_list, 1, "Installed Plugins")
     table.insert(plugin_list, 2, "")
@@ -42,9 +42,9 @@ local open_popup = function()
     print(popup_id)
 
     vim.cmd(
-        "autocmd BufLeave <buffer> ++once lua pcall(vim.api.nvim_win_close, require('plugin.state').get_popup_id(), true)")
+        "autocmd BufLeave <buffer> ++once lua pcall(vim.api.nvim_win_close, require('yapm.state').get_popup_id(), true)")
     vim.cmd(
-        "autocmd BufLeave <buffer> ++once lua pcall(vim.api.nvim_win_close, require('plugin.state').get_popup_opts().border.win_id, true)")
+        "autocmd BufLeave <buffer> ++once lua pcall(vim.api.nvim_win_close, require('yapm.state').get_popup_opts().border.win_id, true)")
 end
 
 return {open_popup = open_popup, close_popup = close_popup}

@@ -16,14 +16,14 @@
 -- This file contains the plugins and settings used for navigation
 --------------------------------------------------------------------------------
 
-local plugin = require("plugin")
+local yapm = require("yapm")
 
 --------------------------------------------------------------------------------
 -- nvim-tree settings
 --------------------------------------------------------------------------------
 
-plugin.load("nvim-web-devicons")
-plugin.load("nvim-tree.lua")
+yapm.load("nvim-web-devicons")
+yapm.load("nvim-tree.lua")
 
 require("nvim-tree").setup({})
 vim.api.nvim_set_keymap("n", "<C-n>", ":NvimTreeFindFileToggle<CR>", {})
@@ -33,7 +33,7 @@ vim.api.nvim_set_keymap("n", "<C-n>", ":NvimTreeFindFileToggle<CR>", {})
 --------------------------------------------------------------------------------
 
 -- requires nvim-web-devicons included above
-plugin.load("alpha-nvim")
+yapm.load("alpha-nvim")
 
 require("alpha").setup(require("alpha.themes.startify").opts)
 
@@ -41,7 +41,7 @@ require("alpha").setup(require("alpha.themes.startify").opts)
 -- vim-tmux-navigator settings
 --------------------------------------------------------------------------------
 
-plugin.load("vim-tmux-navigator")
+yapm.load("vim-tmux-navigator")
 
 vim.g.tmux_navigator_no_mappings = 1
 
@@ -58,8 +58,8 @@ vim.api.nvim_set_keymap("n", "<C-L>", ":TmuxNavigateRight<cr>",
 -- telescope.nvim settings
 --------------------------------------------------------------------------------
 
-plugin.load("plenary.nvim")
-plugin.load("telescope.nvim")
+yapm.load("plenary.nvim")
+yapm.load("telescope.nvim")
 
 require('telescope').setup{
   defaults = {
@@ -101,7 +101,7 @@ vim.api.nvim_set_keymap("n", "<leader>fh", ":lua require('telescope.builtin').he
 -- TAGBAR settings
 --------------------------------------------------------------------------------
 
-plugin.load("tagbar")
+yapm.load("tagbar")
 
 vim.api.nvim_set_keymap("n", "<S-t>", ":TagbarToggle<CR>", {})
 
@@ -109,7 +109,7 @@ vim.api.nvim_set_keymap("n", "<S-t>", ":TagbarToggle<CR>", {})
 -- vim-smooth-scroll settings
 --------------------------------------------------------------------------------
 
-plugin.load("vim-smooth-scroll")
+yapm.load("vim-smooth-scroll")
 vim.api.nvim_set_keymap("n", "<c-u>",
                         ":call smooth_scroll#up(&scroll, 10, 2)<CR>",
                         {noremap = true, silent = true})
@@ -127,7 +127,7 @@ vim.api.nvim_set_keymap("n", "<c-f>",
 -- CurtineIncSw cpp-h file navigator settings
 --------------------------------------------------------------------------------
 
-plugin.load("CurtineIncSw.vim")
+yapm.load("CurtineIncSw.vim")
 
 vim.api
     .nvim_set_keymap("", "<F5>", ":call CurtineIncSw()<CR>", {noremap = true})

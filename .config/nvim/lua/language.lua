@@ -16,15 +16,15 @@
 -- This file contains all the language specific plugins
 --------------------------------------------------------------------------------
 
-local plugin = require("plugin")
+local yapm = require("yapm")
 
-plugin.load("salt-vim")
-plugin.load("rust.vim")
-plugin.load("vim-crystal")
-plugin.load("vim-ocaml")
-plugin.load("ansible-vim")
-plugin.load("vim-terraform")
-plugin.load("Jenkinsfile-vim-syntax")
+yapm.load("salt-vim")
+yapm.load("rust.vim")
+yapm.load("vim-crystal")
+yapm.load("vim-ocaml")
+yapm.load("ansible-vim")
+yapm.load("vim-terraform")
+yapm.load("Jenkinsfile-vim-syntax")
 
 vim.g.ocaml_folding = 1
 

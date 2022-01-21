@@ -16,9 +16,9 @@
 -- This is currently experimental not yet working
 --------------------------------------------------------------------------------
 
-local plugin = require("plugin")
+local yapm = require("yapm")
 
-plugin.load("nvim-dap")
+yapm.load("nvim-dap")
 
 local dap = require('dap')
 
