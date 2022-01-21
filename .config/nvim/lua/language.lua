@@ -24,6 +24,7 @@ plugin.load("vim-crystal")
 plugin.load("vim-ocaml")
 plugin.load("ansible-vim")
 plugin.load("vim-terraform")
+plugin.load("Jenkinsfile-vim-syntax")
 
 vim.g.ocaml_folding = 1
 
