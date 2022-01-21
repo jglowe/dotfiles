@@ -55,3 +55,5 @@ vim.opt.paste = false
 vim.opt.pastetoggle = "<F2>"
 vim.opt.clipboard = vim.opt.clipboard + "unnamedplus"
 
+vim.opt.list = true
+vim.opt.listchars = "tab:>>"
