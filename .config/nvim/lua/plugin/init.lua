@@ -17,10 +17,10 @@
 local M = {}
 
 M.add = require("plugin.add")
-M.get_loaded = require("plugin.get_loaded")
 M.list = require("plugin.list")
 M.load = require("plugin.load")
 M.setup = require("plugin.setup")
+M.state = require("plugin.state")
 M.update = require("plugin.update")
 
 return M

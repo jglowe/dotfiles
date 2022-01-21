@@ -13,30 +13,39 @@
 --
 -- List the plugins that are loaded in a popup gui
 --------------------------------------------------------------------------------
-
 local load_plugin = require("plugin.load")
+local state = require("plugin.state")
 
 load_plugin("plenary.nvim")
 
-local list = function()
-    local loaded_plugins = require("get_loaded")()
-    local plugin_list = {}
-    for plugin, loaded in pairs(loaded_plugins) do
-        if loaded then
-            table.insert(plugin_list, plugin)
-        end
-    end
-    table.sort(plugin_list)
+local close_popup = function()
+    pcall(vim.api.nvim_win_close, require("plugin.state").get_popup_id(), true)
+    state.set_popup_id(nil)
+    state.set_popup_opts(nil)
+end
+
+local open_popup = function()
+    local plugin_list = require("plugin.state").get_loaded_plugins()
 
     table.insert(plugin_list, 1, "Installed Plugins")
     table.insert(plugin_list, 2, "")
 
     local popup = require("plenary.popup")
-    local win_id = popup.create(plugin_list,
-                                {border = true, padding = {0, 3, 0, 3}})
+    local popup_id, popup_opts = popup.create(plugin_list, {
+        border = true,
+        padding = {0, 3, 0, 3}
+    })
 
-    print(win_id)
+    state.set_popup_id(popup_id)
+    state.set_popup_opts(popup_opts)
+
+    print(popup_id)
+
+    vim.cmd(
+        "autocmd BufLeave <buffer> ++once lua pcall(vim.api.nvim_win_close, require('plugin.state').get_popup_id(), true)")
+    vim.cmd(
+        "autocmd BufLeave <buffer> ++once lua pcall(vim.api.nvim_win_close, require('plugin.state').get_popup_opts().border.win_id, true)")
 end
 
-return list
+return {open_popup = open_popup, close_popup = close_popup}
 

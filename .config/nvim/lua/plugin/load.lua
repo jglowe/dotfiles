@@ -14,6 +14,8 @@
 -- The function to load plugins
 --------------------------------------------------------------------------------
 
+local state = require("plugin.state")
+
 local load_plugin = function(plugin)
     if vim.v.vim_did_enter == 1 then
         -- Modifies 'runtimepath' _and_ sources files.
@@ -28,18 +30,10 @@ end
 local load = function(plugin)
     -- keep track of the plugins that are loaded and prevent them from being
     -- loaded twice
-    if _G.plugin__loaded_plugins == nil then
-        _G.plugin__loaded_plugins = {plugin = true}
+    if not state.is_plugin_loaded(plugin) then
         load_plugin(plugin)
-    else
-        if _G.plugin__loaded_plugins[plugin] == nil or
-            _G.plugin__loaded_plugins[plugin] == false then
-
-            _G.plugin__loaded_plugins[plugin] = true
-            load_plugin(plugin)
-        end
+        state.add_loaded_plugin(plugin)
     end
-
 end
 
 return load
