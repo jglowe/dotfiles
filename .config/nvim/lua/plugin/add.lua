@@ -13,23 +13,23 @@
 --
 -- Adds a plugin via git
 --------------------------------------------------------------------------------
-
 local add = function(plugin)
     local settings = require("plugin.get_settings")()
     local slash_index = string.find(plugin, "/")
     local plugin_name = string.sub(plugin, slash_index + 1, string.len(plugin))
-    local plugin_destination = vim.fn.stdpath("config") .. "/pack/all/opt/" ..
+    local plugin_destination = settings.git.add.packages_path .. "/" ..
                                    plugin_name
 
     if vim.fn.isdirectory(plugin_destination) == 0 then
         local git_executable = settings.git.executable
         local git_options = settings.git.add.options
-        local git_command = settings.git.add.command
+        local repo_path = settings.git.add.repo_path
         local plugin_url = "https://github.com/" .. plugin .. ".git"
-        local output = vim.fn.system(
-                           git_executable .. " " .. git_options .. " " ..
-                               git_command .. " " .. plugin_url .. " " ..
-                               plugin_destination)
+        local output = vim.fn.system("pushd " .. repo_path .. "; " ..
+                                         git_executable .. " " .. git_options ..
+                                         " submodule add --name " .. plugin_name ..
+                                         " " .. plugin_url .. " " ..
+                                         plugin_destination)
         print(output)
     else
         print("Plugin is already there")

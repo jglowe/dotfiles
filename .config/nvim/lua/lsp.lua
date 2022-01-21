@@ -137,6 +137,10 @@ if vim.fn.executable("ansible-language-server") == 1 then
     require("lspconfig").ansiblels.setup(standard_lsp_options)
 end
 
+if vim.fn.executable("terraform-ls") == 1 then
+    require("lspconfig").terraformls.setup(standard_lsp_options)
+end
+
 --------------------------------------------------------------------------------
 -- neovim trouble settings
 --

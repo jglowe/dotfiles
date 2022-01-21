@@ -15,12 +15,15 @@
 --
 -- Setup the plugin library
 --------------------------------------------------------------------------------
-
 local setup = function(settings)
     local defaults = {
         git = {
             executable = "git",
-            add = {command = "clone", options = ""},
+            add = {
+                options = "--git-dir=$HOME/.dotfiles/ --work-tree=$HOME",
+                repo_path = vim.env.HOME,
+                packages_path = ".config/nvim/pack/all/opt"
+            },
             update = {command = "pull", options = ""}
         }
     }

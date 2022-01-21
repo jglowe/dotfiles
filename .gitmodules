@@ -1,117 +1,123 @@
 [submodule "vim-eunuch"]
-    path = .config/nvim/pack/all/opt/vim-eunuch
-    url = https://github.com/tpope/vim-eunuch.git
+	path = .config/nvim/pack/all/opt/vim-eunuch
+	url = https://github.com/tpope/vim-eunuch.git
 [submodule "vim-fugitive"]
-    path = .config/nvim/pack/all/opt/vim-fugitive
-    url = https://github.com/tpope/vim-fugitive.git
+	path = .config/nvim/pack/all/opt/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
 [submodule "vim-trailing-whitespace"]
-    path = .config/nvim/pack/all/opt/vim-trailing-whitespace
-    url = https://github.com/bronson/vim-trailing-whitespace.git
+	path = .config/nvim/pack/all/opt/vim-trailing-whitespace
+	url = https://github.com/bronson/vim-trailing-whitespace.git
 [submodule "tagbar"]
-    path = .config/nvim/pack/all/opt/tagbar
-    url = https://github.com/majutsushi/tagbar.git
+	path = .config/nvim/pack/all/opt/tagbar
+	url = https://github.com/majutsushi/tagbar.git
 [submodule "vim-reason-plus"]
-    path = .config/nvim/pack/all/opt/vim-reason-plus
-    url = https://github.com/reasonml-editor/vim-reason-plus.git
+	path = .config/nvim/pack/all/opt/vim-reason-plus
+	url = https://github.com/reasonml-editor/vim-reason-plus.git
 [submodule "base16-vim"]
-    path = .config/nvim/pack/all/opt/base16-vim
-    url = https://github.com/chriskempson/base16-vim.git
+	path = .config/nvim/pack/all/opt/base16-vim
+	url = https://github.com/chriskempson/base16-vim.git
 [submodule "tmuxline.vim"]
-    path = .config/nvim/pack/all/opt/tmuxline.vim
-    url = https://github.com/edkolev/tmuxline.vim.git
+	path = .config/nvim/pack/all/opt/tmuxline.vim
+	url = https://github.com/edkolev/tmuxline.vim.git
 [submodule "vim-smooth-scroll"]
-    path = .config/nvim/pack/all/opt/vim-smooth-scroll
-    url = https://github.com/terryma/vim-smooth-scroll.git
+	path = .config/nvim/pack/all/opt/vim-smooth-scroll
+	url = https://github.com/terryma/vim-smooth-scroll.git
 [submodule "vim-tmux-navigator"]
-    path = .config/nvim/pack/all/opt/vim-tmux-navigator
-    url = https://github.com/christoomey/vim-tmux-navigator.git
+	path = .config/nvim/pack/all/opt/vim-tmux-navigator
+	url = https://github.com/christoomey/vim-tmux-navigator.git
 [submodule "CurtineIncSw.vim"]
-    path = .config/nvim/pack/all/opt/CurtineIncSw.vim
-    url = https://github.com/ericcurtin/CurtineIncSw.vim.git
+	path = .config/nvim/pack/all/opt/CurtineIncSw.vim
+	url = https://github.com/ericcurtin/CurtineIncSw.vim.git
 [submodule "vim-ocaml"]
-    path = .config/nvim/pack/all/opt/vim-ocaml
-    url = https://github.com/rgrinberg/vim-ocaml.git
+	path = .config/nvim/pack/all/opt/vim-ocaml
+	url = https://github.com/rgrinberg/vim-ocaml.git
 [submodule "rust.vim"]
-    path = .config/nvim/pack/all/opt/rust.vim
-    url = https://github.com/rust-lang/rust.vim.git
+	path = .config/nvim/pack/all/opt/rust.vim
+	url = https://github.com/rust-lang/rust.vim.git
 [submodule "vim-silicon"]
-    path = .config/nvim/pack/all/opt/vim-silicon
-    url = https://github.com/segeljakt/vim-silicon.git
+	path = .config/nvim/pack/all/opt/vim-silicon
+	url = https://github.com/segeljakt/vim-silicon.git
 [submodule "ale"]
-    path = .config/nvim/pack/all/opt/ale
-    url = https://github.com/dense-analysis/ale.git
+	path = .config/nvim/pack/all/opt/ale
+	url = https://github.com/dense-analysis/ale.git
 [submodule "vim-startify"]
-    path = .config/nvim/pack/all/opt/vim-startify
-    url = git@github.com:mhinz/vim-startify.git
+	path = .config/nvim/pack/all/opt/vim-startify
+	url = git@github.com:mhinz/vim-startify.git
 [submodule "salt-vim"]
-    path = .config/nvim/pack/all/opt/salt-vim
-    url = git@github.com:saltstack/salt-vim.git
+	path = .config/nvim/pack/all/opt/salt-vim
+	url = git@github.com:saltstack/salt-vim.git
 [submodule "base16-shell"]
-    path = .config/base16-shell
-    url = https://github.com/chriskempson/base16-shell.git
+	path = .config/base16-shell
+	url = https://github.com/chriskempson/base16-shell.git
 [submodule "nvim-lspconfig"]
-    path = .config/nvim/pack/all/opt/nvim-lspconfig
-    url = https://github.com/neovim/nvim-lspconfig.git
+	path = .config/nvim/pack/all/opt/nvim-lspconfig
+	url = https://github.com/neovim/nvim-lspconfig.git
 [submodule "vim-crystal"]
-    path = .config/nvim/pack/all/opt/vim-crystal
-    url = https://github.com/vim-crystal/vim-crystal.git
+	path = .config/nvim/pack/all/opt/vim-crystal
+	url = https://github.com/vim-crystal/vim-crystal.git
 [submodule "trouble.nvim"]
-    path = .config/nvim/pack/all/opt/trouble.nvim
-    url = https://github.com/folke/trouble.nvim.git
+	path = .config/nvim/pack/all/opt/trouble.nvim
+	url = https://github.com/folke/trouble.nvim.git
 [submodule "alpha-nvim"]
-    path = .config/nvim/pack/all/opt/alpha-nvim
-    url = https://github.com/goolord/alpha-nvim.git
+	path = .config/nvim/pack/all/opt/alpha-nvim
+	url = https://github.com/goolord/alpha-nvim.git
 [submodule "nvim-web-devicons"]
-    path = .config/nvim/pack/all/opt/nvim-web-devicons
-    url = https://github.com/kyazdani42/nvim-web-devicons.git
+	path = .config/nvim/pack/all/opt/nvim-web-devicons
+	url = https://github.com/kyazdani42/nvim-web-devicons.git
 [submodule "nvim-tree.lua"]
-    path = .config/nvim/pack/all/opt/nvim-tree.lua
-    url = https://github.com/kyazdani42/nvim-tree.lua.git
+	path = .config/nvim/pack/all/opt/nvim-tree.lua
+	url = https://github.com/kyazdani42/nvim-tree.lua.git
 [submodule "gitsigns.nvim"]
-    path = .config/nvim/pack/all/opt/gitsigns.nvim
-    url = https://github.com/lewis6991/gitsigns.nvim.git
+	path = .config/nvim/pack/all/opt/gitsigns.nvim
+	url = https://github.com/lewis6991/gitsigns.nvim.git
 [submodule "plenary.nvim"]
-    path = .config/nvim/pack/all/opt/plenary.nvim
-    url = https://github.com/nvim-lua/plenary.nvim.git
+	path = .config/nvim/pack/all/opt/plenary.nvim
+	url = https://github.com/nvim-lua/plenary.nvim.git
 [submodule "neoformat"]
-    path = .config/nvim/pack/all/opt/neoformat
-    url = https://github.com/sbdchd/neoformat.git
+	path = .config/nvim/pack/all/opt/neoformat
+	url = https://github.com/sbdchd/neoformat.git
 [submodule "nvim-cmp"]
-    path = .config/nvim/pack/all/opt/nvim-cmp
-    url = https://github.com/hrsh7th/nvim-cmp.git
+	path = .config/nvim/pack/all/opt/nvim-cmp
+	url = https://github.com/hrsh7th/nvim-cmp.git
 [submodule "cmp-nvim-lsp"]
-    path = .config/nvim/pack/all/opt/cmp-nvim-lsp
-    url = https://github.com/hrsh7th/cmp-nvim-lsp.git
+	path = .config/nvim/pack/all/opt/cmp-nvim-lsp
+	url = https://github.com/hrsh7th/cmp-nvim-lsp.git
 [submodule "cmp-buffer"]
-    path = .config/nvim/pack/all/opt/cmp-buffer
-    url = https://github.com/hrsh7th/cmp-buffer.git
+	path = .config/nvim/pack/all/opt/cmp-buffer
+	url = https://github.com/hrsh7th/cmp-buffer.git
 [submodule "cmp-nvim-lua"]
-    path = .config/nvim/pack/all/opt/cmp-nvim-lua
-    url = https://github.com/hrsh7th/cmp-nvim-lua.git
+	path = .config/nvim/pack/all/opt/cmp-nvim-lua
+	url = https://github.com/hrsh7th/cmp-nvim-lua.git
 [submodule "cmp-path"]
-    path = .config/nvim/pack/all/opt/cmp-path
-    url = https://github.com/hrsh7th/cmp-path.git
+	path = .config/nvim/pack/all/opt/cmp-path
+	url = https://github.com/hrsh7th/cmp-path.git
 [submodule "LuaSnip"]
-    path = .config/nvim/pack/all/opt/LuaSnip
-    url = https://github.com/L3MON4D3/LuaSnip.git
+	path = .config/nvim/pack/all/opt/LuaSnip
+	url = https://github.com/L3MON4D3/LuaSnip.git
 [submodule "Comment.nvim"]
-    path = .config/nvim/pack/all/opt/Comment.nvim
-    url = https://github.com/numToStr/Comment.nvim.git
+	path = .config/nvim/pack/all/opt/Comment.nvim
+	url = https://github.com/numToStr/Comment.nvim.git
 [submodule "telescope.nvim"]
-    path = .config/nvim/pack/all/opt/telescope.nvim
-    url = https://github.com/nvim-telescope/telescope.nvim.git
+	path = .config/nvim/pack/all/opt/telescope.nvim
+	url = https://github.com/nvim-telescope/telescope.nvim.git
 [submodule "nvim-dap"]
-    path = .config/nvim/pack/all/opt/nvim-dap
-    url = https://github.com/mfussenegger/nvim-dap.git
+	path = .config/nvim/pack/all/opt/nvim-dap
+	url = https://github.com/mfussenegger/nvim-dap.git
 [submodule "lualine.nvim"]
-    path = .config/nvim/pack/all/opt/lualine.nvim
-    url = https://github.com/nvim-lualine/lualine.nvim.git
+	path = .config/nvim/pack/all/opt/lualine.nvim
+	url = https://github.com/nvim-lualine/lualine.nvim.git
 [submodule "lsp-status.nvim"]
-    path = .config/nvim/pack/all/opt/lsp-status.nvim
-    url = https://github.com/nvim-lua/lsp-status.nvim.git
+	path = .config/nvim/pack/all/opt/lsp-status.nvim
+	url = https://github.com/nvim-lua/lsp-status.nvim.git
 [submodule "ansible-vim"]
-    path = .config/nvim/pack/all/opt/ansible-vim
-    url = https://github.com/pearofducks/ansible-vim
-[submodule ".config/nvim/pack/all/opt/lspkind-nvim"]
-    path = .config/nvim/pack/all/opt/lspkind-nvim
-    url = https://github.com/onsails/lspkind-nvim.git
+	path = .config/nvim/pack/all/opt/ansible-vim
+	url = https://github.com/pearofducks/ansible-vim
+[submodule "lspkind-nvim"]
+	path = .config/nvim/pack/all/opt/lspkind-nvim
+	url = https://github.com/onsails/lspkind-nvim.git
+[submodule "vim-terraform"]
+	path = .config/nvim/pack/all/opt/vim-terraform
+	url = https://github.com/hashivim/vim-terraform.git
+[submodule "Jenkinsfile-vim-syntax"]
+	path = .config/nvim/pack/all/opt/Jenkinsfile-vim-syntax
+	url = https://github.com/martinda/Jenkinsfile-vim-syntax.git

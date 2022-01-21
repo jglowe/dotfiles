@@ -23,6 +23,7 @@ plugin.load("rust.vim")
 plugin.load("vim-crystal")
 plugin.load("vim-ocaml")
 plugin.load("ansible-vim")
+plugin.load("vim-terraform")
 
 vim.g.ocaml_folding = 1
 
