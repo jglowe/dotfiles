@@ -121,3 +121,6 @@
 [submodule "Jenkinsfile-vim-syntax"]
 	path = .config/nvim/pack/all/opt/Jenkinsfile-vim-syntax
 	url = https://github.com/martinda/Jenkinsfile-vim-syntax.git
+[submodule ".config/nvim/pack/all/start/yapm.nvim"]
+	path = .config/nvim/pack/all/start/yapm.nvim
+	url = git@github.com:jglowe/yapm.nvim.git
