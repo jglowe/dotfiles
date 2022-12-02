@@ -42,7 +42,6 @@ _G.tab_or_complete = function()
     local column = vim.api.nvim_win_get_cursor(0)[2]
     local line = vim.api.nvim_get_current_line()
     local before_curser = line:sub(0, column)
-    print(before_curser)
     if column == 0 or before_curser:match("^%s*$") then
         return vim.api.nvim_replace_termcodes("<Tab>", true, false, true)
     else

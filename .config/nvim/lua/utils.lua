@@ -14,14 +14,14 @@
 
 local yapm = require("yapm")
 
-yapm.load("vim-eunuch")
-yapm.load("vim-fugitive")
+yapm.load("tpope/vim-eunuch")
+yapm.load("tpope/vim-fugitive")
 
 --------------------------------------------------------------------------------
 -- Comment.nvim settings
 --------------------------------------------------------------------------------
 
-yapm.load("Comment.nvim")
+yapm.load("numToStr/Comment.nvim")
 
 require('Comment').setup({
     ---Add a space b/w comment and the line
@@ -96,7 +96,7 @@ require('Comment').setup({
 -- neoformat settings
 --------------------------------------------------------------------------------
 
-yapm.load("neoformat")
+yapm.load("sbdchd/neoformat")
 
 vim.api.nvim_set_keymap("", "<leader>k", ":Neoformat<cr>",
                         {noremap = true, silent = true})
@@ -105,7 +105,7 @@ vim.api.nvim_set_keymap("", "<leader>k", ":Neoformat<cr>",
 -- Ale settings
 --------------------------------------------------------------------------------
 
-yapm.load("ale")
+yapm.load("dense-analysis/ale")
 
 --   "let g:ale_set_highlights = 0
 vim.cmd("highlight ALEError ctermbg=none cterm=underline")

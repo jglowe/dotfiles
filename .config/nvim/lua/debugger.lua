@@ -18,7 +18,7 @@
 
 local yapm = require("yapm")
 
-yapm.load("nvim-dap")
+yapm.load("mfussengger/nvim-dap")
 
 local dap = require('dap')
 

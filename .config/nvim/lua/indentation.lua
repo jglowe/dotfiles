@@ -13,25 +13,36 @@
 --
 -- Autocommands used for establishing indentation and spellchecking rules
 --------------------------------------------------------------------------------
-
 -- Deals with tab sillyness for default settings
 vim.opt.expandtab = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 
-vim.cmd([[augroup indendation
-  autocmd!
-augroup END]])
+local indentation_group = vim.api.nvim_create_augroup("indentation",
+                                                      {clear = true})
+
+vim.api.nvim_create_autocmd("Filetype", {
+    pattern = {"sh"},
+    command = "set expandtab&",
+    group = indentation_group
+})
 
 -- Changes tab settings for specific languages
-vim.cmd("autocmd indendation Filetype sh set expandtab&")
-vim.cmd([[autocmd indendation Filetype ocaml,ruby,vim setlocal expandtab
-                                                             \ tabstop=2
-                                                             \ shiftwidth=2]])
+vim.api.nvim_create_autocmd("Filetype", {
+    pattern = {"ocaml", "ruby", "vim"},
+    command = "setlocal expandtab tabstop=2 shiftwidth=2",
+    group = indentation_group
+})
 
 -- Enables spell checking for text files
-vim.cmd([[autocmd indendation Filetype markdown,text set spell |
-                              \ highlight clear SpellBad |
-                              \ highlight SpellBad cterm=underline,bold]])
+vim.api.nvim_create_autocmd("Filetype", {
+    pattern = {"markdown", "text"},
+    command = "set spell | highlight clear SpellBad | highlight SpellBad cterm=underline,bold",
+    group = indentation_group
+})
 
-vim.cmd("autocmd indendation Filetype markdown setlocal textwidth=80")
+vim.api.nvim_create_autocmd("Filetype", {
+    pattern = {"markdown"},
+    command = "setlocal textwidth=80",
+    group = indentation_group
+})

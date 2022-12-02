@@ -15,14 +15,22 @@
 --
 -- This file contains all the folding settings
 --------------------------------------------------------------------------------
-
 vim.opt.viewdir = vim.env.HOME .. "/.config/nvim/view"
 
-vim.cmd([[augroup AutoSaveFolds
-  autocmd!
-  autocmd BufWinLeave * silent! mkview
-  autocmd BufWinEnter * silent! loadview
-augroup END]])
+local save_folds_group = vim.api.nvim_create_augroup("AutoSaveFolds",
+                                                     {clear = true})
+
+vim.api.nvim_create_autocmd("BufWinLeave", {
+    pattern = {"*"},
+    command = "silent! mkview",
+    group = save_folds_group
+})
+
+vim.api.nvim_create_autocmd("BufWinEnter", {
+    pattern = {"*"},
+    command = "silent! loadview",
+    group = save_folds_group
+})
 
 -- Folding code defaults
 vim.opt.foldmethod = "syntax"

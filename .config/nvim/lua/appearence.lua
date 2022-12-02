@@ -19,11 +19,11 @@
 
 local yapm = require("yapm")
 
-yapm.load("vim-trailing-whitespace")
+yapm.load("bronson/vim-trailing-whitespace")
 
-yapm.load("base16-vim")
-yapm.load("lualine.nvim")
-yapm.load("lsp-status.nvim")
+yapm.load("chriskempson/base16-vim")
+yapm.load("nvim-lualine/lualine.nvim")
+yapm.load("nvim-lua/lsp-status.nvim")
 
 -- Colors columns beyond the textwidth background to show the line limit
 local number_range = {}
@@ -87,7 +87,7 @@ require("lsp-status").config({status_symbol = ''})
 -- Something that spits out tmux config to make it match vim theming
 --------------------------------------------------------------------------------
 
-yapm.load("tmuxline.vim")
+yapm.load("edkolev/tmuxline.vim")
 
 -- Generate current theme by :Tmuxline lightline_insert
 vim.g.tmuxline_powerline_separators = 0
@@ -108,8 +108,8 @@ vim.g.tmuxline_preset = {
 -- Shows lines modified with git
 --------------------------------------------------------------------------------
 
-yapm.load("plenary.nvim")
-yapm.load("gitsigns.nvim")
+yapm.load("nvim-lua/plenary.nvim")
+yapm.load("lewis6991/gitsigns.nvim")
 
 require("gitsigns").setup({
     signs = {

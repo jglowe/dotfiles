@@ -15,17 +15,19 @@
 --
 -- This file contains all the language specific plugins
 --------------------------------------------------------------------------------
-
 local yapm = require("yapm")
 
-yapm.load("salt-vim")
-yapm.load("rust.vim")
-yapm.load("vim-crystal")
-yapm.load("vim-ocaml")
-yapm.load("ansible-vim")
-yapm.load("vim-terraform")
-yapm.load("Jenkinsfile-vim-syntax")
+yapm.load("saltstack/salt-vim")
+yapm.load("rust-lang/rust.vim")
+yapm.load("vim-crystal/vim-crystal")
+yapm.load("rgrinberg/vim-ocaml")
+yapm.load("pearofducks/ansible-vim")
+yapm.load("hashivim/vim-terraform")
+yapm.load("martinda/Jenkinsfile-vim-syntax")
 
 vim.g.ocaml_folding = 1
 
-vim.cmd("au BufRead,BufNewFile */playbooks/* set filetype=yaml.ansible")
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+    pattern = {"*/playbooks/*"},
+    command = "set filetype=yaml.ansible"
+})

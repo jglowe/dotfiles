@@ -57,3 +57,4 @@ vim.opt.clipboard = vim.opt.clipboard + "unnamedplus"
 
 vim.opt.list = true
 vim.opt.listchars = "tab:>>"
+

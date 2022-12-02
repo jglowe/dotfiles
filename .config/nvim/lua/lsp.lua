@@ -18,8 +18,8 @@
 
 local yapm = require("yapm")
 
-yapm.load("nvim-lspconfig")
-yapm.load("cmp-nvim-lsp")
+yapm.load("neovim/nvim-lspconfig")
+yapm.load("hrsh7th/cmp-nvim-lsp")
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -147,6 +147,6 @@ end
 -- Trouble is a trouble/issues menu for lsp
 --------------------------------------------------------------------------------
 
-yapm.load("trouble.nvim")
+yapm.load("folke/trouble.nvim")
 require("trouble").setup({})
 

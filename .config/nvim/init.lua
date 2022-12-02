@@ -12,7 +12,7 @@
 -- github : https://github.com/jglowe
 -- figlet font : roman
 --
--- Non plugin settings
+-- Settings for neovim
 --------------------------------------------------------------------------------
 
 require("settings")
