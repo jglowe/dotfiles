@@ -15,19 +15,11 @@
 -- Settings for neovim
 --------------------------------------------------------------------------------
 
-require("settings")
-require("indentation")
-require("folding")
+require("base")
 
 if vim.opt.loadplugins:get() then
     require("yapm").setup()
-    require("appearence")
-    require("navigation")
-    require("language")
-    require("utils")
-    require("completion")
-    require("lsp")
-    require("debugger")
+    require("plugin")
 end
 
 -- Automatic, language-dependent indentation, syntax coloring and other

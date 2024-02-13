@@ -249,10 +249,6 @@ live_config_reload: true
 #
 shell:
   program: /bin/bash
-  args:
-    - -l
-    - -c
-    - "tmux new -A -s default || exec /bin/bash"
 
 # Key bindings
 #

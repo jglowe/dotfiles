@@ -106,7 +106,8 @@ fi
 # Opam config
 if [ -x "$(command -v opam)" ]; then
 	print_module_status "opam ocaml" true
-	eval "$(opam config env)"
+
+	eval "$(opam env)"
 else
 	print_module_status "opam ocaml" false
 fi
@@ -203,19 +204,35 @@ else
 	print_module_status "tmux" false
 fi
 
+export DOTNET_ROOT=$HOME/.dotnet
+export PATH=$PATH:$HOME/.dotnet:$HOME/.dotnet/tools
+
+if [ -x "$(command -v dotnet)" ]; then
+	print_module_status "dotnet" true
+else
+	print_module_status "dotnet" false
+fi
+
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # Base16 Shell colors
-BASE16_SHELL="$HOME/.config/base16-shell/"
-if [ -n "$PS1" ] && [ -s "$BASE16_SHELL/profile_helper.sh" ]; then
-	print_module_status "base16 shell" true
+# BASE16_SHELL="$HOME/.config/base16-shell"
+# if [ -n "$PS1" ] && [ -s "$BASE16_SHELL/profile_helper.sh" ]; then
+# 	print_module_status "base16 shell" true
+#
+# 	eval "$("$BASE16_SHELL/profile_helper.sh")"
+# 	bash "$HOME/.config/base16-shell/scripts/base16-classic-dark.sh" base16_classic-dark
+# else
+# 	print_module_status "base16 shell" false
+# fi
 
-	eval "$("$BASE16_SHELL/profile_helper.sh")"
-	bash "$HOME/.config/base16-shell/scripts/base16-classic-dark.sh" base16_classic-dark
-else
-	print_module_status "base16 shell" false
-fi
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        source "$BASE16_SHELL/profile_helper.sh"
+
+base16_classic-dark
 
 # LSPs
 if [ -x "$(command -v shellcheck)" ]; then
