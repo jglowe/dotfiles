@@ -25,14 +25,6 @@ local yapm = require("yapm")
 -- Adds annoying red for trailing whitespace
 yapm.load("bronson/vim-trailing-whitespace")
 
--- Base16 Color schemes
--- It is quite nifty to have them
-yapm.load("chriskempson/base16-vim")
-
--- Adds a status line below
-yapm.load("nvim-lualine/lualine.nvim")
-yapm.load("nvim-lua/lsp-status.nvim")
-
 -- Colors columns beyond the textwidth background to show the line limit
 local number_range = {}
 for i = 1, 254 do table.insert(number_range, tostring(i)) end
@@ -51,13 +43,24 @@ vim.opt.fillchars = {
 vim.g.base16colorspace = 256
 vim.opt.termguicolors = true
 
+-- Base16 Color schemes
+-- It is quite nifty to have them
+yapm.load("chriskempson/base16-vim")
 vim.cmd.colorscheme("base16-classic-dark")
 vim.cmd(
     "execute 'highlight EndOfBuffer ctermbg=' . g:base16_cterm01 . ' guibg=#' . g:base16_gui01")
 
+-- Lualine takes this name and emits a warning thinking that it is a base16-nvim
+-- theme which it isn't.
+vim.g.colors_name = "classic-dark"
+
 -- Shows cool status bar
 vim.opt.laststatus = 2
 vim.opt.showmode = false
+
+-- Adds a status line below
+yapm.load("nvim-lualine/lualine.nvim")
+yapm.load("nvim-lua/lsp-status.nvim")
 
 require('lualine').setup {
     options = {
@@ -474,6 +477,7 @@ cmp.setup({
     snippet = {
         expand = function(args) require('luasnip').lsp_expand(args.body) end
     },
+    window = {},
     mapping = {
         ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), {'i', 'c'}),
         ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), {'i', 'c'}),
@@ -499,7 +503,6 @@ cmp.setup({
         end,
         ['<CR>'] = cmp.mapping.confirm({select = true})
     },
-    documentation = {border = 'single'},
     sources = cmp.config.sources({
         {name = "nvim_lua"}, {name = 'nvim_lsp'}, {name = "luasnip"},
         {name = 'path'}, {name = 'buffer'}
@@ -529,38 +532,35 @@ yapm.load("hrsh7th/cmp-nvim-lsp")
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd('LspAttach', {
-  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-  callback = function(ev)
-    -- Enable completion triggered by <c-x><c-o>
-    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+    group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+    callback = function(ev)
+        -- Enable completion triggered by <c-x><c-o>
+        vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
-    -- Buffer local mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local opts = { buffer = ev.buf }
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-    vim.keymap.set('n', '<C-i>', vim.lsp.buf.signature_help, opts)
-    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
-    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
-    vim.keymap.set('n', '<space>wl', function()
-      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, opts)
-    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-    vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-    vim.keymap.set('n', '<space>f', function()
-      vim.lsp.buf.format { async = true }
-    end, opts)
-  end,
+        -- Buffer local mappings.
+        -- See `:help vim.lsp.*` for documentation on any of the below functions
+        local opts = {buffer = ev.buf}
+        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+        vim.keymap.set('n', '<C-i>', vim.lsp.buf.signature_help, opts)
+        vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+        vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder,
+                       opts)
+        vim.keymap.set('n', '<space>wl', function()
+            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+        end, opts)
+        vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+        vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
+        vim.keymap.set({'n', 'v'}, '<space>ca', vim.lsp.buf.code_action, opts)
+        vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+        vim.keymap.set('n', '<space>f',
+                       function() vim.lsp.buf.format {async = true} end, opts)
+    end
 })
 
-
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp
-                                                                     .protocol
-                                                                     .make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local standard_lsp_options = {capabilities = capabilities}
 
@@ -569,7 +569,7 @@ if vim.fn.executable("lua-language-server") == 1 then
     table.insert(runtime_path, "lua/?.lua")
     table.insert(runtime_path, "lua/?/init.lua")
 
-    require("lspconfig").sumneko_lua.setup({
+    require("lspconfig").lua_ls.setup({
         capabilities = capabilities,
         settings = {
             Lua = {
@@ -600,7 +600,7 @@ end
 -- end
 
 if vim.fn.executable("crystalline") == 1 then
-    require'lspconfig'.crystalline.setup{standard_lsp_options}
+    require'lspconfig'.crystalline.setup {standard_lsp_options}
 end
 
 if vim.fn.executable("ocamllsp") == 1 then
@@ -632,7 +632,7 @@ if vim.fn.executable("ansible-language-server") == 1 then
 end
 
 if vim.fn.executable("fsautocomplete") == 1 then
-    require'lspconfig'.fsautocomplete.setup{}
+    require'lspconfig'.fsautocomplete.setup {}
 end
 
 if vim.fn.executable("terraform-ls") == 1 then

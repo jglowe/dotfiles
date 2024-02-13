@@ -127,3 +127,6 @@
 [submodule ".config/nvim/pack/all/opt/ron.vim"]
 	path = .config/nvim/pack/all/opt/ron.vim
 	url = git@github.com:ron-rs/ron.vim.git
+[submodule ".config/nvim/pack/all/opt/base16-nvim"]
+	path = .config/nvim/pack/all/opt/base16-nvim
+	url = git@github.com:RRethy/base16-nvim.git
