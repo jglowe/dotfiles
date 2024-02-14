@@ -342,14 +342,6 @@ require('Comment').setup({
         ---Includes `g>`, `g<`, `g>[count]{motion}` and `g<[count]{motion}`
         extended = false
     },
-
-    ---Pre-hook, called before commenting the line
-    ---@type fun(ctx: Ctx):string
-    pre_hook = nil,
-
-    ---Post-hook, called after commenting is done
-    ---@type fun(ctx: Ctx)
-    post_hook = nil
 })
 
 --------------------------------------------------------------------------------
@@ -505,6 +497,9 @@ yapm.load("hrsh7th/cmp-nvim-lsp")
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
     callback = function(ev)
+        local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        client.server_capabilities.semanticTokensProvider = nil
+
         -- Enable completion triggered by <c-x><c-o>
         vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
@@ -638,10 +633,11 @@ require('nvim-treesitter.configs').setup({
     auto_install = true,
 
     -- List of parsers to ignore installing (or "all")
-    ignore_install = {"javascript"},
+    ignore_install = {},
 
     ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
     -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
+    modules = {},
 
     highlight = {
         enable = true,
