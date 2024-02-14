@@ -197,7 +197,7 @@ hi.TabLineSel = {
     ctermfg = terminal_colors.cterm0B,
     ctermbg = terminal_colors.cterm01
 }
--- " Standard syntax highlighting
+-- Standard syntax highlighting
 hi.Boolean = {fg = colors.base09, ctermfg = terminal_colors.cterm09}
 hi.Character = {fg = colors.base08, ctermfg = terminal_colors.cterm08}
 hi.Comment = {fg = colors.base03, ctermfg = terminal_colors.cterm03}
@@ -230,24 +230,6 @@ hi.Todo = {
 }
 hi.Type = {fg = colors.base0A, ctermfg = terminal_colors.cterm0A}
 hi.Typedef = {fg = colors.base0A, ctermfg = terminal_colors.cterm0A}
-
--- " C highlighting
--- call <sid>hi("cOperator",   s:gui0C, "", s:cterm0C, "", "", "")
--- call <sid>hi("cPreCondit",  s:gui0E, "", s:cterm0E, "", "", "")
---
--- " C# highlighting
--- call <sid>hi("csClass",                 s:gui0A, "", s:cterm0A, "", "", "")
--- call <sid>hi("csAttribute",             s:gui0A, "", s:cterm0A, "", "", "")
--- call <sid>hi("csModifier",              s:gui0E, "", s:cterm0E, "", "", "")
--- call <sid>hi("csType",                  s:gui08, "", s:cterm08, "", "", "")
--- call <sid>hi("csUnspecifiedStatement",  s:gui0D, "", s:cterm0D, "", "", "")
--- call <sid>hi("csContextualStatement",   s:gui0E, "", s:cterm0E, "", "", "")
--- call <sid>hi("csNewDecleration",        s:gui08, "", s:cterm08, "", "", "")
---
--- " CSS highlighting
--- call <sid>hi("cssBraces",      s:gui05, "", s:cterm05, "", "", "")
--- call <sid>hi("cssClassName",   s:gui0E, "", s:cterm0E, "", "", "")
--- call <sid>hi("cssColor",       s:gui0C, "", s:cterm0C, "", "", "")
 
 -- Diff highlighting
 hi.DiffAdd = {
@@ -376,6 +358,31 @@ hi.GitSignsChangeDelete = {
     ctermbg = terminal_colors.cterm01
 }
 
+-- LSP + Diagnostic highlighting
+hi.DiagnosticError = {fg = colors.base08, ctermfg = terminal_colors.cterm08}
+hi.DiagnosticWarn = {fg = colors.base0E, ctermfg = terminal_colors.cterm0E}
+hi.DiagnosticInfo = {fg = colors.base0D, ctermfg = terminal_colors.cterm0D}
+hi.DiagnosticHint = {fg = colors.base0C, ctermfg = terminal_colors.cterm0C}
+hi.DiagnosticUnderlineError = {undercurl = true, sp = colors.base08}
+hi.DiagnosticUnderlineWarning = {undercurl = true, sp = colors.base0E}
+hi.DiagnosticUnderlineWarn = {undercurl = true, sp = colors.base0E}
+hi.DiagnosticUnderlineInformation = {undercurl = true, sp = colors.base0F}
+hi.DiagnosticUnderlineHint = {undercurl = true, sp = colors.base0C}
+
+hi.LspReferenceText = {underline = true, sp = colors.base04}
+hi.LspReferenceRead = {underline = true, sp = colors.base04}
+hi.LspReferenceWrite = {underline = true, sp = colors.base04}
+hi.LspDiagnosticsDefaultError = {link = 'DiagnosticError'}
+hi.LspDiagnosticsDefaultWarning = {link = 'DiagnosticWarn'}
+hi.LspDiagnosticsDefaultInformation = {link = 'DiagnosticInfo'}
+hi.LspDiagnosticsDefaultHint = {link = 'DiagnosticHint'}
+hi.LspDiagnosticsUnderlineError = {link = 'DiagnosticUnderlineError'}
+hi.LspDiagnosticsUnderlineWarning = {link = 'DiagnosticUnderlineWarning'}
+hi.LspDiagnosticsUnderlineInformation = {
+    link = 'DiagnosticUnderlineInformation'
+}
+hi.LspDiagnosticsUnderlineHint = {link = 'DiagnosticUnderlineHint'}
+
 -- " Markdown highlighting
 -- call <sid>hi("markdownCode",              s:gui0B, "", s:cterm0B, "", "", "")
 -- call <sid>hi("markdownError",             s:gui05, s:gui00, s:cterm05, s:cterm00, "", "")
@@ -387,6 +394,108 @@ hi.GitSignsChangeDelete = {
 -- call <sid>hi("SpellLocal",   "", "", "", "", "undercurl", s:gui0C)
 -- call <sid>hi("SpellCap",     "", "", "", "", "undercurl", s:gui0D)
 -- call <sid>hi("SpellRare",    "", "", "", "", "undercurl", s:gui0E)
+
+hi.TSAnnotation = {fg = colors.base0F, ctermfg = terminal_colors.cterm0F}
+hi.TSAttribute = {fg = colors.base0A, ctermfg = terminal_colors.cterm0A}
+hi.TSBoolean = {fg = colors.base09, ctermfg = terminal_colors.cterm09}
+hi.TSCharacter = {fg = colors.base08, ctermfg = terminal_colors.cterm08}
+hi.TSComment = {
+    fg = colors.base03,
+    italic = true,
+    ctermfg = terminal_colors.cterm03
+}
+hi.TSConstructor = {fg = colors.base0D, ctermfg = terminal_colors.cterm0D}
+hi.TSConditional = {fg = colors.base0E, ctermfg = terminal_colors.cterm0E}
+hi.TSConstant = {fg = colors.base09, ctermfg = terminal_colors.cterm09}
+hi.TSConstBuiltin = {
+    fg = colors.base09,
+    italic = true,
+    ctermfg = terminal_colors.cterm09
+}
+hi.TSConstMacro = {fg = colors.base08, ctermfg = terminal_colors.cterm08}
+hi.TSError = {fg = colors.base08, ctermfg = terminal_colors.cterm08}
+hi.TSException = {fg = colors.base08, ctermfg = terminal_colors.cterm08}
+hi.TSField = {fg = colors.base05, ctermfg = terminal_colors.cterm05}
+hi.TSFloat = {fg = colors.base09, ctermfg = terminal_colors.cterm09}
+hi.TSFunction = {fg = colors.base0D, ctermfg = terminal_colors.cterm0D}
+hi.TSFuncBuiltin = {
+    fg = colors.base0D,
+    italic = true,
+    ctermfg = terminal_colors.cterm0D
+}
+hi.TSFuncMacro = {fg = colors.base08, ctermfg = terminal_colors.cterm08}
+hi.TSInclude = {fg = colors.base0D, ctermfg = terminal_colors.cterm0D}
+hi.TSKeyword = {fg = colors.base0E, ctermfg = terminal_colors.cterm0E}
+hi.TSKeywordFunction = {fg = colors.base0E, ctermfg = terminal_colors.cterm0E}
+hi.TSKeywordOperator = {fg = colors.base0E, ctermfg = terminal_colors.cterm0E}
+hi.TSLabel = {fg = colors.base0A, ctermfg = terminal_colors.cterm0A}
+hi.TSMethod = {fg = colors.base0D, ctermfg = terminal_colors.cterm0D}
+hi.TSNamespace = {fg = colors.base08, ctermfg = terminal_colors.cterm08}
+hi.TSNone = {fg = colors.base05, ctermfg = terminal_colors.cterm05}
+hi.TSNumber = {fg = colors.base09, ctermfg = terminal_colors.cterm09}
+hi.TSOperator = {fg = colors.base05, ctermfg = terminal_colors.cterm05}
+hi.TSParameter = {fg = colors.base05, ctermfg = terminal_colors.cterm05}
+hi.TSParameterReference = {
+    fg = colors.base05,
+    ctermfg = terminal_colors.cterm05
+}
+hi.TSProperty = {fg = colors.base05, ctermfg = terminal_colors.cterm05}
+hi.TSPunctDelimiter = {fg = colors.base0F, ctermfg = terminal_colors.cterm0F}
+hi.TSPunctBracket = {fg = colors.base05, ctermfg = terminal_colors.cterm05}
+hi.TSPunctSpecial = {fg = colors.base0F, ctermfg = terminal_colors.cterm0F}
+hi.TSRepeat = {fg = colors.base0E, ctermfg = terminal_colors.cterm0E}
+hi.TSString = {fg = colors.base0B, ctermfg = terminal_colors.cterm0B}
+hi.TSStringRegex = {fg = colors.base0C, ctermfg = terminal_colors.cterm0C}
+hi.TSStringEscape = {fg = colors.base0C, ctermfg = terminal_colors.cterm0C}
+hi.TSSymbol = {fg = colors.base0B, ctermfg = terminal_colors.cterm0B}
+hi.TSTag = {fg = colors.base08, ctermfg = terminal_colors.cterm08}
+hi.TSTagDelimiter = {fg = colors.base0F, ctermfg = terminal_colors.cterm0F}
+hi.TSText = {fg = colors.base05, ctermfg = terminal_colors.cterm05}
+hi.TSStrong = {bold = true}
+hi.TSEmphasis = {
+    fg = colors.base09,
+    italic = true,
+    ctermfg = terminal_colors.cterm09
+}
+hi.TSUnderline = {
+    fg = colors.base00,
+    underline = true,
+    ctermfg = terminal_colors.cterm00
+}
+hi.TSStrike = {
+    fg = colors.base00,
+    strikethrough = true,
+    ctermfg = terminal_colors.cterm00
+}
+hi.TSTitle = {fg = colors.base0D, ctermfg = terminal_colors.cterm0D}
+hi.TSLiteral = {fg = colors.base09, ctermfg = terminal_colors.cterm09}
+hi.TSURI = {
+    fg = colors.base09,
+    underline = true,
+    ctermfg = terminal_colors.cterm09
+}
+hi.TSType = {fg = colors.base0A, ctermfg = terminal_colors.cterm0A}
+hi.TSTypeBuiltin = {
+    fg = colors.base0A,
+    italic = true,
+    ctermfg = terminal_colors.cterm0A
+}
+hi.TSVariable = {fg = colors.base08, ctermfg = terminal_colors.cterm08}
+hi.TSVariableBuiltin = {
+    fg = colors.base08,
+    italic = true,
+    ctermfg = terminal_colors.cterm08
+}
+
+hi.TSDefinition = {underline = true, sp = colors.base04}
+hi.TSDefinitionUsage = {underline = true, sp = colors.base04}
+hi.TSCurrentScope = {bold = true}
+
+hi.LspInlayHint = {
+    fg = colors.base03,
+    italic = true,
+    ctermfg = terminal_colors.cterm03
+}
 
 hi.EndOfBuffer = {bg = colors.base01, ctermbg = terminal_colors.cterm01}
 

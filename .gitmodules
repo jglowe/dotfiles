@@ -118,3 +118,6 @@
 [submodule ".config/nvim/pack/all/opt/ron.vim"]
 	path = .config/nvim/pack/all/opt/ron.vim
 	url = git@github.com:ron-rs/ron.vim.git
+[submodule "nvim-treesitter"]
+	path = .config/nvim/pack/all/opt/nvim-treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter.git
