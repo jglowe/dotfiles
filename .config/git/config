@@ -1,13 +1,13 @@
 [user]
-	email = me@jonathanlowe.dev
-	name = Jonathan Lowe
+    email = me@jonathanlowe.dev
+    name = Jonathan Lowe
 
 [core]
     editor = nvim
-	excludesfile = ~/.gitignore_global
+    excludesfile = ~/.config/git/gitignore_global
 
 [alias]
-    f       = !git fetch && git rebase && git-submodule update --init
+    f       = !git fetch && git rebase && git-submodule update --init --recursive
     c-p     = cherry-pick
     p       = pull # --rebase
     st      = status
