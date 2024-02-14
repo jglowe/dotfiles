@@ -14,16 +14,16 @@
 # External files
 ################################################################################
 
-cd "$HOME" || echo "$HOME variable is not set"
+# cd "$HOME" || echo "$HOME variable is not set"
 
 # Bash aliases
-if [ -f .bash_aliases ]; then
-	source .bash_aliases
+if [ -f "$HOME/.bash_aliases" ]; then
+	source $HOME/.bash_aliases
 fi
 
 # Bash functions
-if [ -f .bash_functions ]; then
-	source .bash_functions
+if [ -f "$HOME/.bash_functions" ]; then
+	source $HOME/.bash_functions
 fi
 
 ################################################################################
@@ -114,7 +114,7 @@ fi
 
 if [ -x "$(command -v doctl)" ]; then
 	print_module_status "digitalocean ctl" true
-	source .doctl.bash
+	source $HOME/.doctl.bash
 else
 	print_module_status "digitalocean ctl" false
 fi
