@@ -7,9 +7,6 @@
 [submodule "vim-reason-plus"]
 	path = .config/nvim/pack/all/opt/vim-reason-plus
 	url = https://github.com/reasonml-editor/vim-reason-plus.git
-[submodule "base16-vim"]
-	path = .config/nvim/pack/all/opt/base16-vim
-	url = https://github.com/chriskempson/base16-vim.git
 [submodule "tmuxline.vim"]
 	path = .config/nvim/pack/all/opt/tmuxline.vim
 	url = https://github.com/edkolev/tmuxline.vim.git
@@ -34,9 +31,6 @@
 [submodule "ale"]
 	path = .config/nvim/pack/all/opt/ale
 	url = https://github.com/dense-analysis/ale.git
-[submodule "vim-startify"]
-	path = .config/nvim/pack/all/opt/vim-startify
-	url = git@github.com:mhinz/vim-startify.git
 [submodule "salt-vim"]
 	path = .config/nvim/pack/all/opt/salt-vim
 	url = git@github.com:saltstack/salt-vim.git
@@ -94,9 +88,6 @@
 [submodule "telescope.nvim"]
 	path = .config/nvim/pack/all/opt/telescope.nvim
 	url = https://github.com/nvim-telescope/telescope.nvim.git
-[submodule "nvim-dap"]
-	path = .config/nvim/pack/all/opt/nvim-dap
-	url = https://github.com/mfussenegger/nvim-dap.git
 [submodule "lualine.nvim"]
 	path = .config/nvim/pack/all/opt/lualine.nvim
 	url = https://github.com/nvim-lualine/lualine.nvim.git
@@ -127,6 +118,3 @@
 [submodule ".config/nvim/pack/all/opt/ron.vim"]
 	path = .config/nvim/pack/all/opt/ron.vim
 	url = git@github.com:ron-rs/ron.vim.git
-[submodule ".config/nvim/pack/all/opt/base16-nvim"]
-	path = .config/nvim/pack/all/opt/base16-nvim
-	url = git@github.com:RRethy/base16-nvim.git

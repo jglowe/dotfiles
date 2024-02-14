@@ -27,5 +27,5 @@ end
 --
 -- Must come *after* the `:packadd!` calls above otherwise the contents of
 -- package "ftdetect" directories won't be evaluated.
-vim.cmd("filetype indent plugin on")
+vim.cmd.filetype("indent plugin on")
 vim.opt.syntax = "on"

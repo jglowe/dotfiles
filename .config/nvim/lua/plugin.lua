@@ -25,35 +25,6 @@ local yapm = require("yapm")
 -- Adds annoying red for trailing whitespace
 yapm.load("bronson/vim-trailing-whitespace")
 
--- Colors columns beyond the textwidth background to show the line limit
-local number_range = {}
-for i = 1, 254 do table.insert(number_range, tostring(i)) end
-vim.opt.colorcolumn = '+' .. table.concat(number_range, ',+')
-vim.opt.textwidth = 80
-
-vim.opt.fillchars = {
-    diff = '∙', -- BULLET OPERATOR (U+2219, UTF-8: E2 88 99)
-    eob = ' ', -- NO-BREAK SPACE (U+00A0, UTF-8: C2 A0)
-    --          to suppress ~ at EndOfBuffer
-    fold = '·', -- MIDDLE DOT (U+00B7, UTF-8: C2 B7)
-    vert = '┃' -- BOX DRAWINGS HEAVY VERTICAL
-    --            (U+2503, UTF-8: E2 94 83)
-}
-
-vim.g.base16colorspace = 256
-vim.opt.termguicolors = true
-
--- Base16 Color schemes
--- It is quite nifty to have them
-yapm.load("chriskempson/base16-vim")
-vim.cmd.colorscheme("base16-classic-dark")
-vim.cmd(
-    "execute 'highlight EndOfBuffer ctermbg=' . g:base16_cterm01 . ' guibg=#' . g:base16_gui01")
-
--- Lualine takes this name and emits a warning thinking that it is a base16-nvim
--- theme which it isn't.
-vim.g.colors_name = "classic-dark"
-
 -- Shows cool status bar
 vim.opt.laststatus = 2
 vim.opt.showmode = false

@@ -114,3 +114,9 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 
 -- Folding code defaults
 vim.opt.foldmethod = "syntax"
+
+--------------------------------------------------------------------------------
+-- Color scheme
+--------------------------------------------------------------------------------
+vim.cmd.colorscheme("classic_dark")
+
