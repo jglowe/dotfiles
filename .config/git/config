@@ -12,6 +12,7 @@
     p       = pull # --rebase
     st      = status
     cm      = commit
+    bclone  = clone --bare
     br      = branch -v
     bra     = branch -a
     co      = checkout
