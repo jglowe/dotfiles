@@ -118,5 +118,5 @@ vim.opt.foldmethod = "syntax"
 --------------------------------------------------------------------------------
 -- Color scheme
 --------------------------------------------------------------------------------
-vim.cmd.colorscheme("classic_dark")
+vim.cmd.colorscheme("eighties")
 
