@@ -241,3 +241,4 @@ else
 	print_module_status "shellcheck" false
 fi
 
+source <(kubectl completion bash)

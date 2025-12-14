@@ -121,3 +121,6 @@
 [submodule "nvim-treesitter"]
 	path = .config/nvim/pack/all/opt/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
+[submodule ".config/nvim/pack/all/opt/base16-nvim"]
+	path = .config/nvim/pack/all/opt/base16-nvim
+	url = git@github.com:wincent/base16-nvim.git

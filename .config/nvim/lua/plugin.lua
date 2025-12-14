@@ -21,6 +21,10 @@ local yapm = require("yapm")
 --------------------------------------------------------------------------------
 -- Appearence
 --------------------------------------------------------------------------------
+--
+-- Loads the color scheme
+yapm.load("wincent/base16-nvim")
+vim.cmd.colorscheme("base16-eighties")
 
 -- Adds annoying red for trailing whitespace
 yapm.load("bronson/vim-trailing-whitespace")
@@ -97,34 +101,19 @@ yapm.load("lewis6991/gitsigns.nvim")
 require("gitsigns").setup({
     signs = {
         add = {
-            hl = "GitSignsAdd",
             text = "+",
-            numhl = "GitSignsAddNr",
-            linehl = "GitSignsAddLn"
         },
         change = {
-            hl = "GitSignsChange",
             text = "~",
-            numhl = "GitSignsChangeNr",
-            linehl = "GitSignsChangeLn"
         },
         delete = {
-            hl = "GitSignsDelete",
             text = "-",
-            numhl = "GitSignsDeleteNr",
-            linehl = "GitSignsDeleteLn"
         },
         topdelete = {
-            hl = "GitSignsDelete",
             text = "-",
-            numhl = "GitSignsDeleteNr",
-            linehl = "GitSignsDeleteLn"
         },
         changedelete = {
-            hl = "GitSignsChange",
             text = "~",
-            numhl = "GitSignsChangeNr",
-            linehl = "GitSignsChangeLn"
         }
     }
 })
@@ -160,15 +149,15 @@ require("alpha").setup(require("alpha.themes.startify").opts)
 
 yapm.load("vim-tmux-navigator")
 
-vim.g.tmux_navigator_no_mappings = 1
+vim.g.ale_linters = { sh = {} }
 
-vim.keymap.set("n", "<C-H>", ":TmuxNavigateLeft<cr>",
+vim.keymap.set("n", "<C-h>", ":TmuxNavigateLeft<cr>",
                {noremap = true, silent = true})
-vim.keymap.set("n", "<C-J>", ":TmuxNavigateDown<cr>",
+vim.keymap.set("n", "<C-j>", ":TmuxNavigateDown<cr>",
                {noremap = true, silent = true})
-vim.keymap.set("n", "<C-K>", ":TmuxNavigateUp<cr>",
+vim.keymap.set("n", "<C-k>", ":TmuxNavigateUp<cr>",
                {noremap = true, silent = true})
-vim.keymap.set("n", "<C-L>", ":TmuxNavigateRight<cr>",
+vim.keymap.set("n", "<C-l>", ":TmuxNavigateRight<cr>",
                {noremap = true, silent = true})
 
 --------------------------------------------------------------------------------
@@ -355,6 +344,8 @@ yapm.load("sbdchd/neoformat")
 vim.api.nvim_set_keymap("", "<leader>k", ":Neoformat<cr>",
                         {noremap = true, silent = true})
 
+vim.g.neoformat_try_node_exe = 1
+
 --------------------------------------------------------------------------------
 -- Ale settings
 --
@@ -489,7 +480,6 @@ cmp.setup({
 -- LSP Settings
 --------------------------------------------------------------------------------
 
-yapm.load("neovim/nvim-lspconfig")
 yapm.load("hrsh7th/cmp-nvim-lsp")
 
 -- Use LspAttach autocommand to only map the following keys
@@ -531,11 +521,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local standard_lsp_options = {capabilities = capabilities}
 
 if vim.fn.executable("lua-language-server") == 1 then
-    local runtime_path = vim.split(package.path, ";")
-    table.insert(runtime_path, "lua/?.lua")
-    table.insert(runtime_path, "lua/?/init.lua")
-
-    require("lspconfig").lua_ls.setup({
+    vim.lsp.config['lua_ls'] = {
         capabilities = capabilities,
         settings = {
             Lua = {
@@ -558,51 +544,51 @@ if vim.fn.executable("lua-language-server") == 1 then
                 telemetry = {enable = false}
             }
         }
-    })
+    }
 end
 
 -- if vim.fn.executable("clangd") == 1 then
---     require("lspconfig").clangd.setup(standard_lsp_options)
+--     vim.lsp.config().clangd.setup(standard_lsp_options)
 -- end
 
 if vim.fn.executable("crystalline") == 1 then
-    require'lspconfig'.crystalline.setup {standard_lsp_options}
+    vim.lsp.enable('crystalline')
 end
 
 if vim.fn.executable("ocamllsp") == 1 then
-    require("lspconfig").ocamllsp.setup(standard_lsp_options)
+    vim.lsp.enable('ocamllsp')
 end
 
 if vim.fn.executable("rust-analyzer") == 1 then
-    require("lspconfig").rust_analyzer.setup(standard_lsp_options)
+    vim.lsp.enable('rust_analyzer')
 end
 
 -- if vim.fn.executable("pyright") == 1 then
---     require("lspconfig").pyright.setup(standard_lsp_options)
+--     vim.lsp.config().pyright.setup(standard_lsp_options)
 -- end
 
-if vim.fn.executable("bash-language-server") == 1 then
-    require('lspconfig').bashls.setup(standard_lsp_options)
-end
+-- if vim.fn.executable("bash-language-server") == 1 then
+--     vim.lsp.config().bashls.setup(standard_lsp_options)
+-- end
 
 -- if vim.fn.executable("jedi-language-server") == 1 then
---     require("lspconfig").jedi_language_server.setup(standard_lsp_options)
+--     vim.lsp.config().jedi_language_server.setup(standard_lsp_options)
 -- end
 
 -- if vim.fn.executable("pyright") == 1 then
---     require("lspconfig").pyright.setup(standard_lsp_options)
+--     vim.lsp.config().pyright.setup(standard_lsp_options)
 -- end
 --
 if vim.fn.executable("ansible-language-server") == 1 then
-    require("lspconfig").ansiblels.setup(standard_lsp_options)
+    vim.lsp.enable('ansiblels')
 end
 
 if vim.fn.executable("fsautocomplete") == 1 then
-    require'lspconfig'.fsautocomplete.setup {}
+    vim.lsp.enable('fsautocomplete')
 end
 
 if vim.fn.executable("terraform-ls") == 1 then
-    require("lspconfig").terraformls.setup(standard_lsp_options)
+    vim.lsp.enable('terraformls')
 end
 
 --------------------------------------------------------------------------------

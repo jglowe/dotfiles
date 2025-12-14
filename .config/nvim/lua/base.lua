@@ -13,7 +13,6 @@
 --
 -- This file contains all the baseline settings that don't require plugins
 --------------------------------------------------------------------------------
-
 -- turn absolute line numbers on
 vim.opt.number = true
 -- vim.opt.relativenumber = true
@@ -37,19 +36,12 @@ vim.opt.path = vim.opt.path + "**"
 
 vim.g.mapleader = " "
 
--- Pane navigation
-vim.keymap.set("n", "<C-J>", "<C-W><C-J>", {noremap = true})
-vim.keymap.set("n", "<C-K>", "<C-W><C-K>", {noremap = true})
-vim.keymap.set("n", "<C-L>", "<C-W><C-L>", {noremap = true})
-vim.keymap.set("n", "<C-H>", "<C-W><C-H>", {noremap = true})
-
 -- Sets the update time to be more responsive
 vim.opt.updatetime = 100
 
 vim.opt.mouse = "a"
 
 vim.opt.paste = false
-vim.opt.pastetoggle = "<F2>"
 vim.opt.clipboard = vim.opt.clipboard + "unnamedplus"
 
 vim.opt.list = true
@@ -59,6 +51,10 @@ vim.opt.listchars = "tab:>>"
 vim.opt.expandtab = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
+vim.opt.spelllang = 'en_us'
+vim.opt.spell = true
+vim.opt.textwidth = 100
+vim.opt.formatoptions = ""
 
 --------------------------------------------------------------------------------
 -- Indentation settings
@@ -74,23 +70,26 @@ vim.api.nvim_create_autocmd("Filetype", {
 
 -- Changes tab settings for specific languages
 vim.api.nvim_create_autocmd("Filetype", {
-    pattern = {"ocaml", "ruby", "vim", "crystal", "tex"},
+    pattern = {
+        "ocaml", "ruby", "vim", "crystal", "tex", "javascript",
+        "javascriptreact"
+    },
     command = "setlocal expandtab tabstop=2 shiftwidth=2",
     group = indentation_group
 })
 
 -- Enables spell checking for text files
 vim.api.nvim_create_autocmd("Filetype", {
-    pattern = {"markdown", "text", "tex"},
+    pattern = {"markdown", "text", "tex", "markdown"},
     command = "set spell spelllang=en_us | highlight clear SpellBad | highlight SpellBad cterm=underline,bold",
     group = indentation_group
 })
 
-vim.api.nvim_create_autocmd("Filetype", {
-    pattern = {"markdown"},
-    command = "setlocal textwidth=80",
-    group = indentation_group
-})
+-- vim.api.nvim_create_autocmd("Filetype", {
+--     pattern = {"markdown"},
+--     command = "setlocal textwidth=80",
+--     group = indentation_group
+-- })
 
 --------------------------------------------------------------------------------
 -- Folding settings
@@ -115,8 +114,4 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 -- Folding code defaults
 vim.opt.foldmethod = "syntax"
 
---------------------------------------------------------------------------------
--- Color scheme
---------------------------------------------------------------------------------
-vim.cmd.colorscheme("eighties")
 
