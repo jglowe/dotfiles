@@ -28,9 +28,6 @@
 [submodule "vim-silicon"]
 	path = .config/nvim/pack/all/opt/vim-silicon
 	url = https://github.com/segeljakt/vim-silicon.git
-[submodule "ale"]
-	path = .config/nvim/pack/all/opt/ale
-	url = https://github.com/dense-analysis/ale.git
 [submodule "salt-vim"]
 	path = .config/nvim/pack/all/opt/salt-vim
 	url = git@github.com:saltstack/salt-vim.git

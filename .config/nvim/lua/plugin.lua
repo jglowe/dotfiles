@@ -149,8 +149,6 @@ require("alpha").setup(require("alpha.themes.startify").opts)
 
 yapm.load("vim-tmux-navigator")
 
-vim.g.ale_linters = { sh = {} }
-
 vim.keymap.set("n", "<C-h>", ":TmuxNavigateLeft<cr>",
                {noremap = true, silent = true})
 vim.keymap.set("n", "<C-j>", ":TmuxNavigateDown<cr>",
@@ -347,18 +345,6 @@ vim.api.nvim_set_keymap("", "<leader>k", ":Neoformat<cr>",
 vim.g.neoformat_try_node_exe = 1
 
 --------------------------------------------------------------------------------
--- Ale settings
---
--- Linter integration for languages
---------------------------------------------------------------------------------
-
-yapm.load("dense-analysis/ale")
-
---   "let g:ale_set_highlights = 0
-vim.cmd("highlight ALEError ctermbg=none cterm=underline")
-vim.cmd("highlight ALEWarning ctermbg=none cterm=underline")
-
---------------------------------------------------------------------------------
 -- Autocompletion settings
 --------------------------------------------------------------------------------
 
@@ -481,6 +467,7 @@ cmp.setup({
 --------------------------------------------------------------------------------
 
 yapm.load("hrsh7th/cmp-nvim-lsp")
+yapm.load("neovim/nvim-lspconfig")
 
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
@@ -521,7 +508,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local standard_lsp_options = {capabilities = capabilities}
 
 if vim.fn.executable("lua-language-server") == 1 then
-    vim.lsp.config['lua_ls'] = {
+    vim.lsp.config('lua_ls', {
         capabilities = capabilities,
         settings = {
             Lua = {
@@ -544,7 +531,8 @@ if vim.fn.executable("lua-language-server") == 1 then
                 telemetry = {enable = false}
             }
         }
-    }
+    })
+    vim.lsp.enable('lua_ls')
 end
 
 -- if vim.fn.executable("clangd") == 1 then
@@ -575,10 +563,6 @@ end
 --     vim.lsp.config().jedi_language_server.setup(standard_lsp_options)
 -- end
 
--- if vim.fn.executable("pyright") == 1 then
---     vim.lsp.config().pyright.setup(standard_lsp_options)
--- end
---
 if vim.fn.executable("ansible-language-server") == 1 then
     vim.lsp.enable('ansiblels')
 end
